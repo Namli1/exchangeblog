@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+
+{% block title%}<title> {% trans "Blog Authors" %}</title> {% endblock %}
+{% block content %}
+<div class="row">
+<div class="col-1">
+<a class="btn btn-primary mt-2 float-left" href="{% url 'author-list' %}" role="button">{% trans "Back" %}</a>
+</div>
+<h1 class="col-9 text-center">Author: {{ blogauthor.name }}</h1>
+</div>
+<hr>
+<p>{{ blogauthor.bio }}</p>
+
+{% endblock %}
