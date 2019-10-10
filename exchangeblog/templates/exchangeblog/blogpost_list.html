@@ -2,12 +2,13 @@
 {% load i18n %}
 
 {% block title %}<title>All Blog Posts</title>{% endblock%}
+{% block blogposts-active %}active{% endblock %}
 
 {% block content %}
 <h1>All Blog Posts</h1>
 
 {% if blogpost_list %}
-<ul>
+<ul class="cubeList">
 {% for post in blogpost_list %}
     <li>{% blocktrans with title=post.title date=post.date_of_creation absolute_url=post.get_absolute_url %}<a href="{{ absolute_url }}"> {{ title }}</a> -({{ date }}) {% endblocktrans %}</li>
 {% endfor %}

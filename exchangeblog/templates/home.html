@@ -1,6 +1,9 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
 
+{% block title%}<title>Blog | Home</title>{% endblock %}
+{% block home-active %}active{% endblock %}
+
 {% block content %}
     <h1>Home</h1>
     <p>{% trans "Welcome to this blog about my exchange year in China!" %}</p>

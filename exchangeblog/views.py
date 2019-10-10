@@ -1,6 +1,11 @@
 from django.shortcuts import render
-from exchangeblog.models import BlogPost, BlogAuthor, BlogPostImage
+from exchangeblog.models import BlogPost, BlogAuthor
 from django.views import generic
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 # Create your views here.
 def home(request):
@@ -29,3 +34,7 @@ class BlogAuthorListView(generic.ListView):
 
 class BlogAuthorDetailView(generic.DetailView):
     model = BlogAuthor
+
+class BlogPostCreate(CreateView):
+    model = BlogPost
+    fields = ['title', 'content']

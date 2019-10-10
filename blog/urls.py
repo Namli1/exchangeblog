@@ -14,21 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-]
-
-from django.urls import include
-from django.urls import path
+from django.urls import include, path, re_path
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from filebrowser.sites import site
 
-urlpatterns += [
+urlpatterns = [
     path('blog/', include('exchangeblog.urls')),
+    path(r'tinymce/', include('tinymce.urls')),
+    path('admin/filebrowser/', site.urls),
+    path('admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL , document_root = settings.STATIC_ROOT )
+    urlpatterns += static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT )
 
 urlpatterns += [
     path('', RedirectView.as_view(url='/blog/', permanent=True)),

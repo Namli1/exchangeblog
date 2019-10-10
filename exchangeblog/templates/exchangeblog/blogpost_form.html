@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block meta %}
+<script src="{% static 'js/tinymce/tinymce.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tinymce/custom.js' %}" ></script>
+{% endblock %}
+
+{% block title %}<title>Add Blog Post</title>{% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-3">Add Blog Post</h1>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <table class="mx-auto text-center" id="dataInputField">
+        {{ form.as_table }}
+    </table>
+    <input type=submit>
+</form>
+{% endblock %}
