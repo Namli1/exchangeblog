@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}<title>Add Blog Post</title>{% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-3">Add Blog Post</h1>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <table class="mx-auto ">
+        {{ form.media}}
+        {{ form.as_table }}
+    </table>
+    <input type=submit class="btn btn-secondary mt-3 mb-5">
+</form>
+{% endblock %}
