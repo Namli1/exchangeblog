@@ -17,17 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from filebrowser.sites import site
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('tinymce/', include('tinymce.urls')),
+    path('admin/filebrowser/', site.urls),
+    path('grappelli/', include('grappelli.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-from django.urls import include
-from django.urls import path
 from django.views.generic import RedirectView
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns += [
     path('blog/', include('exchangeblog.urls')),

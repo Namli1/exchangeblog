@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
-from ckeditor_uploader.fields import RichTextUploadingField
+from tinymce import models as tinymce_models
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -28,7 +28,7 @@ class BlogPost(models.Model):
         ('TH', '🇹🇭Thailand'),
     ]
     country = models.CharField(max_length=2, choices=COUNTRY_CHOICES, default='CH')
-    blogcontent = RichTextUploadingField(config_name='blogpost-editor')
+    blogcontent = tinymce_models.HTMLField()
 
     class Meta:
         verbose_name_plural = ('blog posts')
@@ -54,5 +54,7 @@ class BlogAuthor(models.Model):
 
     def get_absolute_url(self):
         return reverse("author-detail", kwargs={"pk": self.pk}) 
+
+
 
     
