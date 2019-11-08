@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['.explore-exchange.com', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
+    'filebrowser',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -129,26 +131,23 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
 ####################################
-    ##  CKEDITOR CONFIGURATION ##
+    ##  TINYMCE CONFIGURATION ##
 ####################################
- 
-CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
- 
-CKEDITOR_UPLOAD_PATH = 'media/uploads/'
-CKEDITOR_IMAGE_BACKEND = "pillow"
-CKEDITOR_RESTRICT_BY_USER = True
 
-CKEDITOR_CONFIGS = {
-    'blogpost-editor': {
-        'toolbar': None,
-        'removePlugins': 'iframe, flash',
-    }
+TINYMCE_COMPRESSOR = True
+TINYMCE_FILEBROWSER = True
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
 }
- 
+
 ###################################
