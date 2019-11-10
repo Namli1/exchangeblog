@@ -29,6 +29,7 @@ class BlogPost(models.Model):
     ]
     country = models.CharField(max_length=2, choices=COUNTRY_CHOICES, default='CH')
     blogcontent = RichTextUploadingField(config_name='blogpost-editor')
+    thumbnail_picture = models.ImageField(_("Thumbnail Picture"), upload_to='tumbnails/%Y', max_length=100, default='/media/uploads/tilman/2019/10/15/img_2092.jpeg')
 
     class Meta:
         verbose_name_plural = ('blog posts')

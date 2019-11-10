@@ -37,7 +37,7 @@ class BlogAuthorCreate(generic.CreateView):
 
 class BlogPostCreate(generic.CreateView):
     model = BlogPost
-    fields = ['title', 'language', 'country', 'blogcontent']
+    fields = ['title', 'language', 'country', 'blogcontent', 'thumbnail_picture']
     permission_required = 'exchangeblog.can_create_post'
     permission_denied_message = "Please make sure you're logged in and have applied as an author"
     def form_valid(self, form):
