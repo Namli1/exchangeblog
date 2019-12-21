@@ -1,0 +1,30 @@
+.authorlist-ul {
+    list-style-type: none;
+    margin: 0 auto;
+    margin-left: 0;
+    width: 100%;
+    padding: 0;
+}
+
+.list-item-container {
+    display: flex;
+    background-color: burlywood;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    height: 13vw;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+#authorname {
+    color: red;
+    float: left;
+    font-size: 13vw;
+    margin-bottom: 0px;
+}
+
+#author-link:hover .list-item-container{
+    background-color: brown;
+}

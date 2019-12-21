@@ -1,19 +1,24 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
+{% load static %}
 
 {% block title%} <title>{{ blogpost.title }}</title>{% endblock %}
 
 {% block content%}
-<div class="row">
-<div class="col-1">
-<a class="btn btn-primary mt-2 float-left" href="{% url 'post-list' %}" role="button">{% trans "Back" %}</a>
+<div>
+    <a class="btn btn-primary mr-2 mt-2 float-left" href="{% url 'post-list' %}" role="button">{% trans "&#60;Blog List" %}</a>
 </div>
-<div class="col-9">
-<h1 class="text-center"> {{ blogpost.title }}</h1>
+<div class="mr-auto">
+<h1 class="text-center"> {{ blogpost.title }} </h1>
 </div>
-</div>
-<p><strong class="font-weight-bold">Author: </strong><span class="font-weight-light"><a href="{% url 'author-detail' blogpost.author.pk %}">{{ blogpost.author }}</a></span></p>
-<p><strong class="font-weight-bold">Date of creation: </strong><span class="font-weight-light">{{ blogpost.date_of_creation }}</span></p>
+
+    <p><strong class="font-weight-bold">Author: </strong><span class="font-weight-light"><a href="{{ author.get_absolute_url }}">{{ blogpost.author }}</a></span></p>
+    <p><strong class="font-weight-bold">Date of creation: </strong><span class="font-weight-light">{{ blogpost.date_of_creation }}</span></p>
 <hr>
-<p>{{ blogpost.blogcontent }}</p>
+<img id="thumbnail_picture_test"src="{{ blogpost.thumbnail_picture.url }}" alt="{{ blogpost.title }}">
+<p>{{ blogpost.blogcontent | safe }}</p>
+{% if test_func %}
+    <a class="btn btn-primary mx-2 mt-2 float-right" href="{% url 'post-update' blogpost.pk %}" role="button">{% trans "Update" %}</a>
+    <a class="btn btn-danger mx-2 mt-2 float-right" href="{% url 'post-delete' blogpost.pk %}" role="button">{% trans "Delete" %}</a>
+{% endif %}
 {% endblock%}

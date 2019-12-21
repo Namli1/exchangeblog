@@ -17,17 +17,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.decorators import permission_required
+from django.views.decorators.cache import never_cache
+from ckeditor_uploader import views as ckeditor_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('accounts/', include('authentication.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('ckeditor/upload/', permission_required('exchangeblog.add_blogpost')(ckeditor_views.upload), name='ckeditor_upload'),
+    path('ckeditor/browse/', permission_required('exchangeblog.add_blogpost')(ckeditor_views.browse), name='ckeditor_browse'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-from django.urls import include
-from django.urls import path
 from django.views.generic import RedirectView
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns += [
     path('blog/', include('exchangeblog.urls')),

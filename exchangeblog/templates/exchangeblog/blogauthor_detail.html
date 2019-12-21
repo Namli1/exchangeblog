@@ -6,11 +6,15 @@
 {% block content %}
 <div class="row">
 <div class="col-1">
-<a class="btn btn-primary mt-2 float-left" href="{% url 'author-list' %}" role="button">{% trans "Back" %}</a>
+<a class="btn btn-primary mt-2 float-left" href="{% url 'author-list' %}" role="button">{% trans "&#60;Author List" %}</a>
 </div>
 <h1 class="col-9 text-center">Author: {{ blogauthor.name }}</h1>
 </div>
 <hr>
 <p>{{ blogauthor.bio }}</p>
-
+<ul>
+    {% for post in blogauthor.blogpost_set.all %}
+        <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</li>
+    {% endfor %}
+</ul>
 {% endblock %}
