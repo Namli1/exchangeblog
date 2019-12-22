@@ -1,4 +1,4 @@
-django==2.2.4
+django==2.2.8
 django-ckeditor==5.7.1
 django-imagekit==4.0.2
 django-uuslug==1.2.0
