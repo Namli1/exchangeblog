@@ -6,7 +6,6 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import permission_required
 from django.core.exceptions import ValidationError
-from guardian.shortcuts import assign_perm
 from uuslug import slugify
 
 # Create your views here.
