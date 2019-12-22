@@ -42,9 +42,7 @@ INSTALLED_APPS = [
     'guardian',
     'ckeditor',
     'ckeditor_uploader',
-    'easy_thumbnails',
     'imagekit',
-    'filer',
     'exchangeblog',
     'authentication',
 ]
