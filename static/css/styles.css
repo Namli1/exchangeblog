@@ -1,0 +1,14 @@
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cube-list {
+    list-style-type: none;
+}
+
+.cube-item {
+    width: 25%;
+    height: 40%;
+}

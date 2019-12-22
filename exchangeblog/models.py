@@ -1,7 +1,6 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
@@ -33,8 +32,12 @@ class BlogPost(models.Model):
         ('TH', '🇹🇭Thailand'),
     ]
     country = models.CharField(max_length=2, choices=COUNTRY_CHOICES, default='CH')
+<<<<<<< HEAD
     blogcontent = RichTextUploadingField(config_name='blogpost-editor')
     thumbnail_picture = ProcessedImageField(upload_to='thumbnails/', processors=[ResizeToFill(300, 200)], options={'quality': 80}, max_length=100, null=True)
+=======
+    blogcontent = models.CharField(_("Placeholder"), max_length=50, null=True)
+>>>>>>> master
 
     class Meta:
         verbose_name_plural = ('blog posts')

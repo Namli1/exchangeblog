@@ -1,6 +1,13 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
 {% load static %}
+<<<<<<< HEAD
+=======
+
+{% block meta %} 
+    <link rel="stylesheet" href="{% static 'css/bloglist-styles.css' %}">
+{% endblock %}
+>>>>>>> master
 
 {% block title %}<title>All Blog Posts</title>{% endblock%}
 
@@ -12,6 +19,7 @@
 <h1>All Blog Posts</h1>
 
 {% if blogpost_list %}
+<<<<<<< HEAD
 <ul class ="blogpost-list">
 {% for post in blogpost_list %}
 <a href="{{ post.get_absolute_url }}">
@@ -28,6 +36,14 @@
     </div>
     </a>
 {% endfor %}
+=======
+<ul class="cube-list">
+{% for post in blogpost_list %}
+    <div class="cube-item">
+        <li>{% blocktrans with title=post.title date=post.date_of_creation absolute_url=post.get_absolute_url %}<a href="{{ absolute_url }}"> {{ title }}</a> -({{ date }}) {% endblocktrans %}</li>
+    </div>
+        {% endfor %}
+>>>>>>> master
 </ul>
 {% else %}
 <p>{% trans "There are no blog posts. Sorry!" %}</p>

@@ -23,10 +23,13 @@ from ckeditor_uploader import views as ckeditor_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
     path('accounts/', include('authentication.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('ckeditor/upload/', permission_required('exchangeblog.add_blogpost')(ckeditor_views.upload), name='ckeditor_upload'),
     path('ckeditor/browse/', permission_required('exchangeblog.add_blogpost')(ckeditor_views.browse), name='ckeditor_browse'),
+=======
+>>>>>>> master
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 from django.views.generic import RedirectView
