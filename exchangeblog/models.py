@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
-from ckeditor.fields import RichTextUploadingField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
