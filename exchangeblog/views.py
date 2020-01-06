@@ -3,23 +3,38 @@ from exchangeblog.models import BlogPost, BlogAuthor
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.contrib.auth.models import Permission
 from django.views import generic
+from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import permission_required
 from django.core.exceptions import ValidationError
 from uuslug import slugify
 
 # Create your views here.
-def home(request):
-    """View function for home page of the blog"""
+class HomePageView(TemplateView):
+
+    template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['num_blog_posts'] = BlogPost.objects.all().count()
+        context['num_blog_authors'] = BlogAuthor.objects.all().count()
+        context['latest_posts'] = BlogPost.objects.all()[:3]
+        return context
+
+
+""" def home(request):
+    View function for home page of the blog
 
     num_blog_posts = BlogPost.objects.all().count()
+    num_blog_authors = BlogPost.objects.all().count()
 
     context = {
         'num_blog_posts' : num_blog_posts,
+        'num_blog_authors' : num_blog_authors,
         "home_active" : "active",
     }
 
-    return render(request, 'home.html', context=context)
+    return render(request, 'home.html', context=context) """
 
 
 class BlogPostListView(generic.ListView):
@@ -31,7 +46,7 @@ class BlogPostDetailView(generic.DetailView):
 
 class BlogAuthorListView(generic.ListView):
     model = BlogAuthor
-    paginate_by = 5
+    paginate_by = 10
 
 class BlogAuthorDetailView(generic.DetailView):
     model = BlogAuthor
@@ -55,7 +70,7 @@ class BlogPostCreate(LoginRequiredMixin, PermissionRequiredMixin, generic.Create
     permission_denied_message = "Please make sure you're logged in and have applied as an author"
     def form_valid(self, form):
         form.instance.author = get_object_or_404(BlogAuthor, user=self.request.user)
-        form.instance.slug = slugify(form.instance.title, stopwords=['a', 'the', 'to', 'and'])
+        form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
         max_posts = get_object_or_404(BlogAuthor, user=self.request.user).allowed_posts
         if BlogPost.objects.filter(author=form.instance.author).count() >= max_posts:
             raise ValidationError("You are not allowed to write more than {} posts".format(max_posts))

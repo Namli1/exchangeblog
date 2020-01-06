@@ -2,9 +2,6 @@
 {% load i18n %}
 {% load static %}
 
-{% block meta %} 
-    <link rel="stylesheet" href="{% static 'css/bloglist_styles.css' %}">
-{% endblock %}
 
 {% block title %}<title>All Blog Posts</title>{% endblock%}
 
@@ -13,50 +10,7 @@
 {% block content %}
 <h1>All Blog Posts</h1>
 
-{% if blogpost_list %}
-<div class="card-columns">
-    {% for post in blogpost_list %}
-    <div class="card">
-        <img class="card-img-top" src="{{ post.thumbnail_picture.url }}">
-        <div class="card-body">
-            {% blocktrans with title=post.title date=post.date_of_creation country=post.country language=post.get_language_display author=post.author author_url=post.author.get_absolute_url %}
-            <h5 class="card-title"> {{ title }}</h5>
-            <p class="card-text"><small class="text-muted">{{ date }}</small></p>
-        </div>
-        {% endblocktrans %}
-    </div>
-    {% endfor %}
-</div>
-{% endif %}
+
+{% include "exchangeblog/post_list_snippet.html" with list=blogpost_list pagination=True %}
+
 {% endblock %}
-    
-
-
-
-
-
-
-{% comment %}  
-{% if blogpost_list %}
-<ul class ="blogpost-list">
-{% for post in blogpost_list %}
-<a href="{{ post.get_absolute_url }}">
-    <div class="blogpost-list-item">
-        <div id="post-country"> {{ post.get_country_display }}</div>
-        <img class="list-item-thumbnail" src="{{ post.thumbnail_picture.url }}">
-        <li class="blogpost-list-li">
-            <h2 id="postTitle">{% blocktrans with title=post.title date=post.date_of_creation country=post.country language=post.get_language_display author=post.author author_url=post.author.get_absolute_url %} {{ title }}</h2>
-            <p id="post-date">Posted on: {{ date }}</p>
-            <p id="post-language">Language: {{ language }}</p>
-            <a id="author-link" href="{{ author_url }}"><button type="button" class="btn btn-outline-primary">{{ author }}</button></a>
-            {% endblocktrans %}
-        </li>
-    </div>
-    </a>
-{% endfor %}
-</ul>
-{% else %}
-<p>{% trans "There are no blog posts. Sorry!" %}</p>
-{% endif %}
-{% endblock %}
-{% endcomment %}

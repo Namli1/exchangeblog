@@ -1,14 +1,24 @@
 {% extends "base_generic.html" %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}<title>Explore-Exchange | Home</title> {% endblock%}
 
 {% block home-active %}active{% endblock %}
 
 {% block content %}
-    <h1>Home</h1>
-    <p>{% trans "Welcome to this blog about my exchange year in China!" %}</p>
+<div class="jumbotron mt-3 text-white bg-dark">
+    <h1 class="display-4">Explore the world of exchange students!</h1>
+    <p class="lead">{% trans "This blog gives you an insight in the life of an exchange student" %}</p>
+    <hr class="my-4">
         <ul>
             <li>{% blocktrans %}Number of posts: {{ num_blog_posts }}{% endblocktrans %}</li>
+            <li>{% blocktrans %}Number of authors: {{ num_blog_authors }}{% endblocktrans %}</li>
         </ul>
+</div>
+<h1 class="display-4">{% trans "Look at the most recent blog posts:" %}</h1>
+    
+    {% include "exchangeblog/post_list_snippet.html" with list=latest_posts teaser=True %}
+
+</div>
 {% endblock %}

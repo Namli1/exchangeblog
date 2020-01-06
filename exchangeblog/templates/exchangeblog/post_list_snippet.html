@@ -1,0 +1,83 @@
+{% load i18n %}
+{% load static %}
+
+{% block meta %}
+    <link rel="stylesheet" href="{% static 'css/blogpost_styles.css' %}">
+{% endblock %}
+
+{% if list %}
+<div class="card-columns">
+    {% for post in list  %}
+    
+    <div id="post-card" class="card bg-light">
+        <img class="card-img-top" src="{{ post.thumbnail_picture.url }}">
+        <div class="card-body">
+            {% blocktrans with post_url=post.get_absolute_url title=post.title date=post.date_of_creation country=post.get_country_display language=post.get_language_display author=post.author author_url=post.author.get_absolute_url %}
+            <strong class="d-inline-block mb-2 text-primary">{{ country }}</strong>
+            <a href="{{ post_url }}" class="stretched-link"><h2 id="post-title" class="card-title text-left"> {{ title }}</h2></a>
+            <p class="card-text text-right"><small class="text-muted">-{{ date }}</small></p>
+            <p>Author: <a href="{{ author_url }}">{{ author }}</a></p>
+            <div class="card-footer">
+                <small class="text-muted text-left">In {{ language }}</small>
+                <small class="text-muted float-right">{{ country }}</small>
+            </div>
+        </div>
+        {% endblocktrans %}
+    </div>
+    {% endfor %}
+
+    {% if teaser == True %}
+    <div id="post-card" class="card bg-light">
+            <div class="card-body">
+                <a href="{% url 'post-list'%}" style="text-decoration: none;"><h1>{% trans "See more" %} -></h1></a>
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+
+    {% if pagination == True %}
+    <nav aria-label="Blog list navigation">
+<ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+            <a class="page-link" href="?page=1" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+            <a class="page-link" href="?page=1" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+    </li>
+    {% endif %}
+
+    {% for page_number in page_obj.paginator.page_range %}
+    {% if forloop.counter < 7 %}
+    {% if page_number == page_obj.number %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}<span class="sr-only">(current)</span></a>
+        </li>
+    {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+{% else %}
+<p>Sorry, there are no blog posts yet.</p>
+{% endif %}

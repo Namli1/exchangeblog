@@ -8,7 +8,7 @@
 
 .list-item-container {
     display: flex;
-    background-color: burlywood;
+    background-color: rgb(223, 223, 223);
     width: 100%;
     margin: 0 auto;
     padding: 0;
@@ -19,12 +19,13 @@
 }
 
 #authorname {
-    color: red;
+    color: #363537;
+    font-family: 'Montserrat', sans-serif;
     float: left;
     font-size: 13vw;
     margin-bottom: 0px;
 }
 
 #author-link:hover .list-item-container{
-    background-color: brown;
+    background-color: rgb(172, 172, 172);
 }

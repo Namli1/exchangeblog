@@ -13,8 +13,7 @@
 <hr>
 <p>{{ blogauthor.bio }}</p>
 <ul>
-    {% for post in blogauthor.blogpost_set.all %}
-        <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</li>
-    {% endfor %}
+<h1 class="display-4">My blog posts:</h1>
+    {% include "exchangeblog/post_list_snippet.html" with list=blogauthor.blogpost_set.all %}
 </ul>
 {% endblock %}

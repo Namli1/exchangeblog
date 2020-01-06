@@ -44,8 +44,6 @@ INSTALLED_APPS = [
     'imagekit',
     'exchangeblog',
     'authentication',
-    'filer',
-    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [

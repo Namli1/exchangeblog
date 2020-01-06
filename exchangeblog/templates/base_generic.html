@@ -6,20 +6,63 @@
   {% block title %}<title>Explore-Exchange</title>{% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <link rel=stylesheet href="{% static 'styles.css'%}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel=stylesheet href="{% static 'css/styles.css'%}">
     <link rel=stylesheet href="{% static 'homepage_styles.css'%}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:600|Raleway|Roboto:500&display=swap" rel="stylesheet">
     {% block meta %}{% endblock %}
 </head>
 <body>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<header>
+  <nav class="navbar navbar-expand-md navbar-light bg-white absolute-top">
+    <div class="container">
+        <button class="navbar-toggler order-2 order-md-1" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-left navbar-right" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse order-3 order-md-2 float-left" id="navbar-left">
+            <ul class="navbar-nav mr-auto">
+              
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'post-list' %}">Posts</a>
+              </li>
+          </div>
+
+              <a class="navbar-brand order-1 order-md-3 text-center" id="logo-header" href="{% url 'home' %}">Explore-Exchange</a>
+
+              <div class="collapse navbar-collapse order-4 order-md-4" id="navbar-right">
+                <ul class="navbar-nav ml-auto">
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                </ul>
+                
+
+              </ul>
+            </div>
+
+    </div>
+  </nav>
+</header>
+<hr />
+
+
+
+
+
+        {% comment %} <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #230A59;">
                 <a class="navbar-brand" href="{% url 'home' %}">Explore-Exchange</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarAllContent" aria-controls="navbarAllContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                      </button>
-                <div class="collapse navbar-collapse" id="navbarAllContent">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item {% block home-active %}{% endblock%}">
                       <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
@@ -32,7 +75,7 @@
                     </li>
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                  <li class="nav-item dropdown">
+                  <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Languages
                         </a>
@@ -40,7 +83,7 @@
                           <a class="dropdown-item" href="#">English</a>
                           <a class="dropdown-item" href="#">Deutsch</a>
                         </div>
-                      </li>
+                      </li> -->
                       <li class="nav-item"> 
                       {% if user.is_authenticated %}
                       <button type="button" class="btn btn-outline-danger">
@@ -54,12 +97,16 @@
                 </ul>
                 </div>
         
-              </nav>
+              </nav> {% endcomment %}
   
 <div class="container">
 {% block content %}
 {% endblock %}
 </div>
 
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

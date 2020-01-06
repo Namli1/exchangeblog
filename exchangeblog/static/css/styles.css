@@ -3,3 +3,13 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+}
+
+#logo-header {
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+}
