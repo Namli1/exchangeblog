@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}<title>About us</title>{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center">{% trans "About Explore-Exchange.com" %}</h1>
+
+<p class="text-center">{% trans "This website is meant to let you explore the world of an exchange student and get an insight look at what life looks like as an exchange student all over the world. We hope to present fascinating stories and maybe we can spark your interest about doing an exchange year." %}
+
+<ul class="list-group list-group-horizontal-sm mx-auto my-5 justify-between-content">
+    <li class="list-group-item">
+    <a href="{% url 'post-list'%}" class="text-decoration-none text-dark">
+        <h3 class="display-3">{{ num_blog_posts }}</h3> 
+        <h6 class="text-muted">Blog Posts</h6>
+    </a>
+    </li>
+    <li class="list-group-item">
+    <a href="{% url 'author-list'%}" class="text-decoration-none text-dark">
+        <h3 class="display-3">{{ num_blog_authors }}</h3> 
+        <h6 class="text-muted">Blog Authors</h6>
+    </a>
+    </li>
+    <li class="list-group-item">
+        <h6 class="text-muted">Since</h6>
+        <h3 class="display-4">{% trans "11th January 2020" %}</h3> 
+    </li>
+</ul>
+{% endblock %}

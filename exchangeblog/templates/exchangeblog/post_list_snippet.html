@@ -26,9 +26,9 @@
     {% endfor %}
 
     {% if teaser == True %}
-    <div id="post-card" class="card bg-light">
+    <div id="post-card" class="card bg-light mb-5">
             <div class="card-body">
-                <a href="{% url 'post-list'%}" style="text-decoration: none;"><h1>{% trans "See more" %} -></h1></a>
+                <a href="{% url 'post-list'%}" class="text-decoration-none text-secondary"><h2 class="text-monospace">{% trans "See more" %} -></h2></a>
             </div>
         </div>
     {% endif %}
@@ -37,7 +37,7 @@
 
     {% if pagination == True %}
     <nav aria-label="Blog list navigation">
-<ul class="pagination">
+<ul class="pagination mb-5">
     {% if page_obj.has_previous %}
     <li class="page-item">
             <a class="page-link" href="?page=1" aria-label="Previous">

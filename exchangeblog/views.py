@@ -21,20 +21,15 @@ class HomePageView(TemplateView):
         context['latest_posts'] = BlogPost.objects.all()[:3]
         return context
 
+class AboutPageView(TemplateView):
+    template_name = "about.html"
 
-""" def home(request):
-    View function for home page of the blog
-
-    num_blog_posts = BlogPost.objects.all().count()
-    num_blog_authors = BlogPost.objects.all().count()
-
-    context = {
-        'num_blog_posts' : num_blog_posts,
-        'num_blog_authors' : num_blog_authors,
-        "home_active" : "active",
-    }
-
-    return render(request, 'home.html', context=context) """
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['num_blog_posts'] = BlogPost.objects.all().count()
+        context['num_blog_authors'] = BlogAuthor.objects.all().count()
+        return context
+    
 
 
 class BlogPostListView(generic.ListView):
