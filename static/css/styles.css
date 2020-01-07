@@ -4,11 +4,13 @@
     transform: translateX(-50%);
 }
 
-.cube-list {
-    list-style-type: none;
+h1 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
 }
 
-.cube-item {
-    width: 25%;
-    height: 40%;
+#logo-header {
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
