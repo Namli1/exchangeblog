@@ -10,7 +10,7 @@
 {% block blogauthors-active %}active{% endblock %}
 
 {% block content %}
-<h1>All Blog Authors</h1>
+<h1>{% trans "All Blog Authors" %}</h1>
 {% if blogauthor_list %}
 <ul class="authorlist-ul">
 {% for author in blogauthor_list %}

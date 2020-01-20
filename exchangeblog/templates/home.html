@@ -8,13 +8,15 @@
 
 {% block content %}
 <div class="jumbotron mt-3 text-white bg-dark">
-    <h1 class="display-4">Explore the world of exchange students!</h1>
+    <h1 class="display-4">{% trans "Explore the world of exchange students!" %}</h1>
     <p class="lead">{% trans "This blog gives you an insight in the life of an exchange student" %}</p>
+    {% comment %}
     <hr class="my-4">
         <ul>
-            <li>{% blocktrans %}Number of posts: {{ num_blog_posts }}{% endblocktrans %}</li>
-            <li>{% blocktrans %}Number of authors: {{ num_blog_authors }}{% endblocktrans %}</li>
+            <li>{% blocktrans with num_blog_posts=num_blog_posts %}Number of posts: {{ num_blog_posts }}{% endblocktrans %}</li>
+            <li>{% blocktrans with num_blog_authors=num_blog_authors %}Number of authors: {{ num_blog_authors }}{% endblocktrans %}</li>
         </ul>
+    {% endcomment %}
 </div>
 <h1 class="display-4">{% trans "Look at the most recent blog posts:" %}</h1>
     

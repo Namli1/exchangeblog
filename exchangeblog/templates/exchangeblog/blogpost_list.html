@@ -3,12 +3,12 @@
 {% load static %}
 
 
-{% block title %}<title>All Blog Posts</title>{% endblock%}
+{% block title %}<title>{% trans "All Blog Posts" %}</title>{% endblock%}
 
 {% block blogposts-active %}active{% endblock %}
 
 {% block content %}
-<h1>All Blog Posts</h1>
+<h1>{% trans "All Blog Posts" %}</h1>
 
 
 {% include "exchangeblog/post_list_snippet.html" with list=blogpost_list pagination=True %}

@@ -13,7 +13,7 @@
 <hr>
 <p>{{ blogauthor.bio }}</p>
 <ul>
-<h1 class="display-4">My blog posts:</h1>
+<h1 class="display-4">{% trans "My blog posts:" %}</h1>
     {% include "exchangeblog/post_list_snippet.html" with list=blogauthor.blogpost_set.all %}
 </ul>
 {% endblock %}

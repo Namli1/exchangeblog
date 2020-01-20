@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:600|Raleway|Roboto:500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:600,200|Raleway|Roboto:500&display=swap" rel="stylesheet">
     <link rel=stylesheet href="{% static 'css/styles.css'%}">
     <link rel=stylesheet href="{% static 'homepage_styles.css'%}">
     {% block meta %}{% endblock %}
@@ -26,11 +26,11 @@
             <ul class="navbar-nav mr-auto">
               
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                <a class="nav-link {% block home-active %}{% endblock %}" href="{% url 'home' %}">{% trans "Home" %}</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'post-list' %}">Posts</a>
+                <a class="nav-link {% block blogposts-active %}{% endblock %}" href="{% url 'post-list' %}">{% trans "Posts" %}</a>
               </li>
           </div>
 
@@ -40,69 +40,67 @@
                 <ul class="navbar-nav ml-auto">
                   
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                    <a class="nav-link {% block about-active %}{% endblock %}" href="{% url 'about' %}">{% trans "About" %}</a>
                   </li>
-                </ul>
-                
 
-              </ul>
-            </div>
+                  
+
+                  <li class="nav-item dropdown">
+                      <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                          <input name="next" type="hidden" value="{{ request.path }}">
+                          
+                              {% get_current_language as LANGUAGE_CODE %}
+                              {% get_available_languages as LANGUAGES %}
+                              {% get_language_info_list for LANGUAGES as languages %}
+                              <div class="btn-group">
+                                  <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      {% trans "Languages" %}
+                                    </button>
+                                  <div class="dropdown-menu dropdown-menu-right">
+                                    {% for language in languages %}
+                                        <button type="submit" name="language" value="{{ language.code }}" class="dropdown-item {% if language.code == LANGUAGE_CODE %}active{% endif %}">
+                                            {{ language.name_local }}
+                                        </button>
+                                    {% endfor %}
+                                  </div>
+                              </div>
+                      </form>
+                  </li>
 
     </div>
   </nav>
-</header>
 <hr />
-
-
-
-
-
-        {% comment %} <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #230A59;">
-                <a class="navbar-brand" href="{% url 'home' %}">Explore-Exchange</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item {% block home-active %}{% endblock%}">
-                      <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item {% block blogposts-active %}{% endblock%}">
-                      <a class="nav-link" href="{% url 'post-list' %}">Blog Posts</a>
-                    </li>
-                    <li class="nav-item {% block blogauthors-active %}{% endblock%}"> 
-                        <a class="nav-link" href="{% url 'author-list' %}">Blog Authors</a>
-                    </li>
-                  </ul>
-                  <ul class="navbar-nav mr-auto">
-                  <!-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Languages
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">English</a>
-                          <a class="dropdown-item" href="#">Deutsch</a>
-                        </div>
-                      </li> -->
-                      <li class="nav-item"> 
-                      {% if user.is_authenticated %}
-                      <button type="button" class="btn btn-outline-danger">
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                      </button>
-                      <li><div class="nav-item" role="tablist">
-                      <a class="nav-item nav-link active bg-primary ml-2 mb-0" href="#" role="tab">{{ user.get_username }}</a>
-                      </div></li>
-                      {% endif %}
-                    </li>
-                </ul>
-                </div>
-        
-              </nav> {% endcomment %}
+</header>
   
-<div class="container">
+<div id="main" class="container">
 {% block content %}
 {% endblock %}
 </div>
+
+<footer class="footer" style="bottom: 0%;">
+  <div id="bottom-footer" class="container-fluid bg-dark">
+    <div class="row d-flex">
+      <div class="col-lg-8">
+      <ul class="nav text-lg-left text-sm-center">
+        <li class="nav-item">
+          <a class="nav-link text-white pt-4 pb-1" href="{% url 'about' %}">{% trans "About us" %}</a>
+        </li>
+        {% comment %}
+        <li class="nav-item pt-4 pb-1">
+          <a class="nav-link d-inline text-white" href="#">{% trans "Follow us on" %}<img src="{% static 'instagram-logo.png' %}" alt="Instagram Site Button" width="15%"></a>
+        </li>
+        {% endcomment %}
+      </ul>
+    </div>
+
+      <div class="col-lg-4">
+          <p id="copyright" class="text-white pt-4 pb-1"> 
+            &copy; <script>document.write(new Date().getFullYear())</script>, Explore-Exchange.com</p>
+      </div>
+      </div>
+  </div>
+</footer>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

@@ -6,31 +6,33 @@
 {% endblock %}
 
 {% if list %}
-<div class="card-columns">
+{% if deck == True %}<div class="mb-5">
+{% else %}<div class="card-columns mb-5">{% endif%}
     {% for post in list  %}
     
-    <div id="post-card" class="card bg-light">
+    <div id="post-card" class="card bg-light shadow mb-2">
         <img class="card-img-top" src="{{ post.thumbnail_picture.url }}">
         <div class="card-body">
-            {% blocktrans with post_url=post.get_absolute_url title=post.title date=post.date_of_creation country=post.get_country_display language=post.get_language_display author=post.author author_url=post.author.get_absolute_url %}
-            <strong class="d-inline-block mb-2 text-primary">{{ country }}</strong>
-            <a href="{{ post_url }}" class="stretched-link"><h2 id="post-title" class="card-title text-left"> {{ title }}</h2></a>
-            <p class="card-text text-right"><small class="text-muted">-{{ date }}</small></p>
-            <p>Author: <a href="{{ author_url }}">{{ author }}</a></p>
+            <strong class="d-inline-block mb-2 text-primary">{{ post.get_country_display }}</strong>
+            <a href="{{ post.get_absolute_url }}" class="stretched-link"><h2 id="post-title" class="card-title text-left"> {{ post.title }}</h2></a>
+            <p class="card-text text-right"><small class="text-muted">-{{ post.date_of_creation }}</small></p>
+            <p>{{ post.short_description }} </p>
+            <p>{% trans "Author:" %} <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
             <div class="card-footer">
-                <small class="text-muted text-left">Language: {{ language }}</small>
+                <small class="text-muted text-left">{% trans "Language:" %} {{ post.get_language_display }}</small>
             </div>
         </div>
-        {% endblocktrans %}
     </div>
     {% endfor %}
 
     {% if teaser == True %}
-    <div id="post-card" class="card bg-light mb-5">
+    {% if list.count > 1 %}
+    <div id="post-card" class="card bg-light mb-5 mt-3">
             <div class="card-body">
                 <a href="{% url 'post-list'%}" class="text-decoration-none text-secondary"><h2 class="text-monospace">{% trans "See more" %} -></h2></a>
             </div>
         </div>
+    {% endif %}
     {% endif %}
 
 </div>
@@ -78,5 +80,5 @@
 {% endif %}
 
 {% else %}
-<p>Sorry, there are no blog posts yet.</p>
+<p>{% trans "Sorry, there are no blog posts yet." %}</p>
 {% endif %}

@@ -39,6 +39,14 @@ class BlogPostListView(generic.ListView):
 class BlogPostDetailView(generic.DetailView):
     model = BlogPost
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_author = self.get_object().author
+        context['num_authors_posts'] = BlogPost.objects.filter(author=current_author).count()
+        context['more_posts_from_author'] = BlogPost.objects.filter(author=current_author)[:2]
+        context['next_post'] = BlogPost.objects.filter(date_of_creation__gt=self.get_object().date_of_creation).order_by('date_of_creation')[0:1]
+        return context
+
 class BlogAuthorListView(generic.ListView):
     model = BlogAuthor
     paginate_by = 10
@@ -59,7 +67,7 @@ class BlogAuthorCreate(LoginRequiredMixin, PermissionRequiredMixin, generic.Crea
 
 class BlogPostCreate(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
     model = BlogPost
-    fields = ['title', 'language', 'country', 'blogcontent', 'thumbnail_picture']
+    fields = ['title', 'language', 'country', 'short_description', 'blogcontent', 'thumbnail_picture']
     permission_object = None
     permission_required = 'exchangeblog.add_blogpost'
     permission_denied_message = "Please make sure you're logged in and have applied as an author"
@@ -68,7 +76,7 @@ class BlogPostCreate(LoginRequiredMixin, PermissionRequiredMixin, generic.Create
         form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
         max_posts = get_object_or_404(BlogAuthor, user=self.request.user).allowed_posts
         if BlogPost.objects.filter(author=form.instance.author).count() >= max_posts:
-            raise ValidationError("You are not allowed to write more than {} posts".format(max_posts))
+            raise ValidationError(_("You are not allowed to write more than {} posts").format(max_posts))
         return super().form_valid(form)
 
 class BlogPostUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
