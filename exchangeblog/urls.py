@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from exchangeblog.views import HomePageView, AboutPageView
+from exchangeblog.views import HomePageView
 from django.utils.translation import gettext_lazy as _
 
 urlpatterns = [
