@@ -1,5 +1,6 @@
 django
-django-ckeditor==5.7.1
+django-ckeditor
 django-imagekit==4.0.2
 django-uuslug==1.2.0
-Pillow==6.1.0
+Pillow
+django-filter

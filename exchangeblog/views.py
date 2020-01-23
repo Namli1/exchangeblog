@@ -8,6 +8,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import permission_required
 from django.core.exceptions import ValidationError
 from uuslug import slugify
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from exchangeblog.filters import BlogPostFilter
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -29,12 +31,29 @@ class AboutPageView(TemplateView):
         context['num_blog_posts'] = BlogPost.objects.all().count()
         context['num_blog_authors'] = BlogAuthor.objects.all().count()
         return context
-    
 
 
 class BlogPostListView(generic.ListView):
     model = BlogPost
     paginate_by = 20
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['blog_list_filtered'] = BlogPostFilter(self.request.GET)
+        return context
+
+def blogpost_list(request):
+    f = BlogPostFilter(request.GET, queryset=BlogPost.objects.all()).qs
+    paginator = Paginator(f, 20)
+    page = request.GET.get('page')
+    try:
+        response = paginator.page(page)
+    except PageNotAnInteger:
+        response = paginator.page(1)
+    except EmptyPage:
+        response = paginator.page(paginator.num_pages)
+
+    return render(request, 'exchangeblog/blogpost_list.html', {'response': response})
 
 class BlogPostDetailView(generic.DetailView):
     model = BlogPost
@@ -43,7 +62,7 @@ class BlogPostDetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         current_author = self.get_object().author
         context['num_authors_posts'] = BlogPost.objects.filter(author=current_author).count()
-        context['more_posts_from_author'] = BlogPost.objects.filter(author=current_author)[:2]
+        context['more_posts_from_author'] = BlogPost.objects.filter(author=current_author).exclude(slug=self.get_object().slug)[:2]
         context['next_post'] = BlogPost.objects.filter(date_of_creation__gt=self.get_object().date_of_creation).order_by('date_of_creation')[0:1]
         return context
 

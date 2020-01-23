@@ -16,15 +16,15 @@
         </div>
         <div class="row justify-content-center mb-4">
             <button class="btn btn-light disabled mx-2">{{ blogpost.date_of_creation }}</button>
-            <button class="btn btn-light mx-2">{{ blogpost.get_country_display }}</button>
-            <button class="btn btn-light mx-2 my-1">{% comment %}Translators: In meaning e.g. In English/In Chinese/...{% endcomment %}{% trans "In" %} {{ blogpost.get_language_display }}</button>
+            <a href="{% url 'post-list' %}?country={{ blogpost.country }}"><button class="btn btn-light mx-2">{{ blogpost.get_country_display }}</button></a>
+            <a href="{% url 'post-list' %}?language={{ blogpost.language }}"><button class="btn btn-light mx-2 my-1">{% comment %}Translators: In meaning e.g. In English/In Chinese/...{% endcomment %}{% trans "In" %} {{ blogpost.get_language_display }}</button></a>
         </div>
         <div id="image-container" class="container mx-auto">
             <img src="{{ blogpost.thumbnail_picture.url }}">
         </div>
         <p>{{ blogpost.blogcontent | safe }}</p>
 
-        <div class="text-center justify-content-between">
+        <div class="text-center justify-content-between d-block">
         <!-- AddToAny BEGIN -->
         <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
             <a class="a2a_button_facebook mt-1"></a>

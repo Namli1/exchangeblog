@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:600,200|Raleway|Roboto:500&display=swap" rel="stylesheet">
     <link rel=stylesheet href="{% static 'css/styles.css'%}">
-    <link rel=stylesheet href="{% static 'homepage_styles.css'%}">
     {% block meta %}{% endblock %}
 </head>
 <body>
@@ -83,17 +82,21 @@
     <div class="row d-flex">
       <div class="col-lg-8">
       <ul class="nav text-lg-left text-sm-center">
+
+        <li class="nav-item pt-3 pb-1"><button type="button" class="btn btn-success">{% trans "Current user:" %} {{ request.user }}</button></li>
+
         <li class="nav-item">
           <a class="nav-link text-white pt-4 pb-1" href="{% url 'about' %}">{% trans "About us" %}</a>
         </li>
+
         {% comment %}
         <li class="nav-item pt-4 pb-1">
           <a class="nav-link d-inline text-white" target="_blank" href="https://www.instagram.com/explore-exchange">{% trans "Follow us on" %}<img src="{% static 'instagram-logo.png' %}" alt="Instagram Site Button" width="15%"></a>
         </li>
        {% endcomment %} 
+
       </ul>
     </div>
-
       <div class="col-lg-4">
           <p id="copyright" class="text-white pt-4 pb-1"> 
             &copy; <script>document.write(new Date().getFullYear())</script>, Explore-Exchange.com</p>

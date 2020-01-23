@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-20 14:44+0100\n"
-"PO-Revision-Date: 2020-01-20 21:45+0800\n"
+"POT-Creation-Date: 2020-01-23 13:10+0100\n"
+"PO-Revision-Date: 2020-01-23 20:13+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -88,29 +88,29 @@ msgstr ""
 msgid "Please enter a short description of yourself."
 msgstr "Stellen sie sich kurz selber vor."
 
-#: exchangeblog/templates/base_generic.html:29
+#: exchangeblog/templates/base_generic.html:28
 msgid "Home"
 msgstr "Home"
 
-#: exchangeblog/templates/base_generic.html:33
+#: exchangeblog/templates/base_generic.html:32
 msgid "Posts"
 msgstr "Posts"
 
-#: exchangeblog/templates/base_generic.html:43
+#: exchangeblog/templates/base_generic.html:42
 msgid "About"
 msgstr "Über"
 
-#: exchangeblog/templates/base_generic.html:58
+#: exchangeblog/templates/base_generic.html:57
 msgid "Languages"
 msgstr "Sprachen"
 
-#: exchangeblog/templates/base_generic.html:87 templates/about.html:4
+#: exchangeblog/templates/base_generic.html:86
+msgid "Current user:"
+msgstr "Aktuell eingeloggt:"
+
+#: exchangeblog/templates/base_generic.html:89 templates/about.html:4
 msgid "About us"
 msgstr "Über uns"
-
-#: exchangeblog/templates/base_generic.html:90
-msgid "Follow us on"
-msgstr "Folgt uns auf"
 
 #: exchangeblog/templates/exchangeblog/blogauthor_detail.html:5
 #: exchangeblog/templates/exchangeblog/blogauthor_list.html:6
@@ -182,6 +182,27 @@ msgstr "Blog Post schreiben"
 msgid "All Blog Posts"
 msgstr "Alle Blog Posts"
 
+#: exchangeblog/templates/exchangeblog/blogpost_list.html:14
+#: exchangeblog/templates/exchangeblog/blogpost_list.html:49
+msgid "Filter"
+msgstr "Filter"
+
+#: exchangeblog/templates/exchangeblog/blogpost_list.html:25
+msgid "Select author"
+msgstr "Autor auswählen"
+
+#: exchangeblog/templates/exchangeblog/blogpost_list.html:32
+msgid "Select language"
+msgstr "Sprache auswählen"
+
+#: exchangeblog/templates/exchangeblog/blogpost_list.html:39
+msgid "Select country"
+msgstr "Land auswählen"
+
+#: exchangeblog/templates/exchangeblog/blogpost_list.html:46
+msgid "Select a year"
+msgstr "Jahr auswählen"
+
 #: exchangeblog/templates/exchangeblog/post_list_snippet.html:20
 msgid "Author:"
 msgstr "Autor:"
@@ -226,7 +247,7 @@ msgstr "autor/erstellen/"
 msgid "authors/"
 msgstr "autoren/"
 
-#: exchangeblog/views.py:79
+#: exchangeblog/views.py:98
 msgid "You are not allowed to write more than {} posts"
 msgstr "Du kannst nicht mehr als {} Posts schreiben"
 
@@ -255,8 +276,11 @@ msgid "Since"
 msgstr "Seit"
 
 #: templates/about.html:29
-msgid "11th January 2020"
-msgstr "11. Januar 2020"
+msgid "22th January 2020"
+msgstr "22. Januar 2020"
+
+#~ msgid "Follow us on"
+#~ msgstr "Folgt uns auf"
 
 #~ msgid "Number of posts: %(num_blog_posts)s"
 #~ msgstr "Anzahl von Posts: %(num_blog_posts)s"
