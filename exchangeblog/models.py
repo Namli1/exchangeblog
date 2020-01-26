@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-import random
+import random, datetime
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from imagekit.models import ProcessedImageField
@@ -12,7 +12,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class BlogPost(models.Model):
     """A model representing the blog posts for the Exchange-Blog"""
     title = models.CharField(help_text=_("Please enter the title of the Blog Post."), max_length=50)
-    date_of_creation = models.DateField(help_text=_("Enter date of creation of post."), auto_now_add=True)
+    date_of_creation = models.DateField(help_text=_("Enter date of creation of post."), default=datetime.date.today)
     author = models.ForeignKey('BlogAuthor', on_delete=models.CASCADE)
     slug = models.SlugField(help_text=_("Enter a slug according to the title of the post"),unique=True, null=False)
     LANGUAGE_CHOICES = [

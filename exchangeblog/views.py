@@ -8,8 +8,11 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import permission_required
 from django.core.exceptions import ValidationError
 from uuslug import slugify
+import datetime
+from django.forms import ModelForm, DateField
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from exchangeblog.filters import BlogPostFilter
+from django_filters.views import FilterView
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -33,27 +36,19 @@ class AboutPageView(TemplateView):
         return context
 
 
-class BlogPostListView(generic.ListView):
+class BlogPostListView(FilterView):
     model = BlogPost
-    paginate_by = 20
+    filterset_class = BlogPostFilter
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        context['blog_list_filtered'] = BlogPostFilter(self.request.GET)
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.copy()
+        if 'page' in query:
+            del query['page']
+        context['querystring'] = query.urlencode()
+        context['posts_filtered'] = BlogPostFilter(self.request.GET, queryset=self.get_queryset())
         return context
-
-def blogpost_list(request):
-    f = BlogPostFilter(request.GET, queryset=BlogPost.objects.all()).qs
-    paginator = Paginator(f, 20)
-    page = request.GET.get('page')
-    try:
-        response = paginator.page(page)
-    except PageNotAnInteger:
-        response = paginator.page(1)
-    except EmptyPage:
-        response = paginator.page(paginator.num_pages)
-
-    return render(request, 'exchangeblog/blogpost_list.html', {'response': response})
 
 class BlogPostDetailView(generic.DetailView):
     model = BlogPost
@@ -86,7 +81,7 @@ class BlogAuthorCreate(LoginRequiredMixin, PermissionRequiredMixin, generic.Crea
 
 class BlogPostCreate(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
     model = BlogPost
-    fields = ['title', 'language', 'country', 'short_description', 'blogcontent', 'thumbnail_picture']
+    fields = ['title', 'date_of_creation', 'language', 'country', 'short_description', 'blogcontent', 'thumbnail_picture'] 
     permission_object = None
     permission_required = 'exchangeblog.add_blogpost'
     permission_denied_message = "Please make sure you're logged in and have applied as an author"
