@@ -5,7 +5,6 @@ from django.urls import reverse
 class PostSiteMap(Sitemap):
     changefreq = "weekly"
     priority = 0.8
-    i18n = True
 
     def items(self):
         return BlogPost.objects.all()

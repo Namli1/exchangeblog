@@ -1,4 +1,4 @@
-import django_filters
+from django-filter import django_filters
 import datetime
 from django import forms
 

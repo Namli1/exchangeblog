@@ -10,7 +10,7 @@
 {% else %}<div class="card-columns mb-5">{% endif%}
     {% for post in list %}
     
-    <div id="post-card" class="card bg-light shadow mb-2">
+    <div id="post-card" class="card bg-light shadow mb-3">
         <img class="card-img-top" src="{{ post.thumbnail_picture.url }}">
         <div class="card-body">
             <strong class="d-inline-block mb-2 text-primary">{{ post.get_country_display }}</strong>

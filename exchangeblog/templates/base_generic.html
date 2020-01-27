@@ -83,7 +83,9 @@
       <div class="col-lg-8">
       <ul class="nav text-lg-left text-sm-center">
 
-        <li class="nav-item pt-3 pb-1"><button type="button" class="btn btn-success">{% trans "Current user:" %} {{ request.user }}</button></li>
+        {% if user.is_authenticated %}
+        <li class="nav-item pt-3 pb-1"><button type="button" class="btn btn-success">{% trans "Current user:" %} {{ user.get_username }}</button></li>
+        {% endif %}
 
         <li class="nav-item">
           <a class="nav-link text-white pt-4 pb-1" href="{% url 'about' %}">{% trans "About us" %}</a>

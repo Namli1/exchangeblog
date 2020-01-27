@@ -39,7 +39,8 @@ class AboutPageView(TemplateView):
 class BlogPostListView(FilterView):
     model = BlogPost
     filterset_class = BlogPostFilter
-    paginate_by = 10
+    order_by = ['-date_of_creation'] 
+    paginate_by = 20
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
