@@ -155,6 +155,8 @@ CKEDITOR_UPLOAD_PATH = 'media/uploads/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
+CKEDITOR_FORCE_JPEG_COMPRESSION = True
+CKEDITOR_IMAGE_QUALITY = 50
 
 CKEDITOR_CONFIGS = {
     'blogpost-editor': {
@@ -196,8 +198,9 @@ CKEDITOR_CONFIGS = {
         'extraPlugins': ','.join([
             'uploadimage', # the upload image feature
             # your extra plugins here
-            'image',
+            # 'image',
             'image2',
+            'imageresize',
             'div',
             'autolink',
             'autoembed',

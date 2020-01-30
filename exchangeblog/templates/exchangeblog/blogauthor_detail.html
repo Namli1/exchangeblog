@@ -14,6 +14,6 @@
 <p>{{ blogauthor.bio }}</p>
 <ul>
 <h1 class="display-4">{% trans "My blog posts:" %}</h1>
-    {% include "exchangeblog/post_list_snippet.html" with list=blogauthor.blogpost_set.all %}
+    {% include "exchangeblog/post_list_snippet.html" with list=blogauthor.blogpost_set.all|slice:":10" author_more=True %}
 </ul>
 {% endblock %}

@@ -1,4 +1,4 @@
-from django-filter import django_filters
+import django_filters
 import datetime
 from django import forms
 
@@ -26,4 +26,4 @@ class BlogPostFilter(django_filters.FilterSet):
     
     class Meta:
         model = BlogPost
-        fields = ['language', 'country',]
+        fields = ['author', 'language', 'country', 'date_of_creation']

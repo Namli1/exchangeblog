@@ -25,6 +25,7 @@ from django.views.decorators.cache import never_cache
 from ckeditor_uploader import views as ckeditor_views
 from exchangeblog.views import AboutPageView
 from blog.sitemaps import PostSiteMap, AuthorSiteMap, StaticViewSitemap
+from markdownx import urls
 
 sitemaps = {
     'posts': PostSiteMap,
