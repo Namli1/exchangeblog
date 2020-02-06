@@ -96,7 +96,7 @@ class BlogPostCreate(LoginRequiredMixin, PermissionRequiredMixin, generic.Create
 
 class BlogPostUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = BlogPost
-    fields = ['language', 'country', 'blogcontent', 'thumbnail_picture',]
+    fields = ['language', 'country', 'short_description', 'blogcontent', 'thumbnail_picture',]
 
     def test_func(self):
         obj = self.get_object()

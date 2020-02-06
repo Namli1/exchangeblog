@@ -73,6 +73,9 @@
     $('.js-filter-multiple').select2({
         placeholder: "Select...",
     });
+    $('#date_of_creation').find(":selected").each(function (index, value){
+        $('#selected-filters').prepend('<button class="btn btn-sm btn-outline-dark mx-2">' + value.text + '</button>')
+    });
     $('#author').find(":selected").each(function (index, value){
         $('#selected-filters').prepend('<button class="btn btn-sm btn-outline-secondary mx-2">' + value.text + '</button>')
     });

@@ -22,7 +22,7 @@ class BlogPostFilter(django_filters.FilterSet):
     author = django_filters.ModelMultipleChoiceFilter(queryset=BlogAuthor.objects.all(), widget=forms.SelectMultiple(attrs={'class': 'js-filter-multiple', 'style': 'width: 100%;', 'id': 'author', 'aria-describedby': 'authorfilter-help'}))
     language = django_filters.MultipleChoiceFilter(choices=BlogPost.LANGUAGE_CHOICES, widget=forms.SelectMultiple(attrs={'class': 'js-filter-multiple', 'style': 'width: 100%;','id': 'language', 'aria-describedby': 'languagefilter-help', 'multiple': 'multiple'}))
     country = django_filters.MultipleChoiceFilter(choices=BlogPost.COUNTRY_CHOICES, widget=forms.SelectMultiple(attrs={'class': 'js-filter-multiple', 'style': 'width: 100%;', 'id': 'country', 'aria-describedby': 'countryfilter-help'}))
-    date_of_creation = django_filters.ChoiceFilter(choices=YEAR_CHOICES, lookup_expr='year', widget=forms.Select(attrs={'class': 'custom-select custom-select-sm', 'aria-describedby': 'datefilter-help'}))
+    date_of_creation = django_filters.MultipleChoiceFilter(choices=YEAR_CHOICES, lookup_expr='year', widget=forms.SelectMultiple(attrs={'class': 'js-filter-multiple', 'style': 'width: 100%;', 'id': 'date_of_creation','aria-describedby': 'datefilter-help'}))
     
     class Meta:
         model = BlogPost

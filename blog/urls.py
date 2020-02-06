@@ -44,15 +44,9 @@ urlpatterns = [
      name='sitemap')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-from django.views.generic import RedirectView
-
 urlpatterns += i18n_patterns(
     path(_('about'), AboutPageView.as_view(), name='about'),
     path(_('blog/'), include('exchangeblog.urls')),
 )
-
-urlpatterns += [
-    path('', RedirectView.as_view(url='/blog/', permanent=True)),
-]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

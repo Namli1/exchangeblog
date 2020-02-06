@@ -29,7 +29,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link {% block blogposts-active %}{% endblock %}" href="{% url 'post-list' %}">{% trans "Posts" %}</a>
+                <a class="nav-link {% block blogposts-active %}{% endblock %}" href="{% url 'post-list' %}?language={% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|upper }}">{% trans "Posts" %}</a>
               </li>
           </div>
 
