@@ -23,9 +23,8 @@ from django.conf.urls.static import static
 from django.contrib.auth.decorators import permission_required
 from django.views.decorators.cache import never_cache
 from ckeditor_uploader import views as ckeditor_views
-from exchangeblog.views import AboutPageView
+from exchangeblog.views import AboutPageView, HomePageView, PrivacyPolicyView
 from blog.sitemaps import PostSiteMap, AuthorSiteMap, StaticViewSitemap
-from markdownx import urls
 
 sitemaps = {
     'posts': PostSiteMap,
@@ -45,8 +44,11 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(
+    path('', HomePageView.as_view(), name='home'),
     path(_('about'), AboutPageView.as_view(), name='about'),
+    path(_('privacy-policy'), PrivacyPolicyView.as_view(), name="privacy-policy"),
     path(_('blog/'), include('exchangeblog.urls')),
+    path(_('guide/'), include('exchangeguide.urls')),
 )
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

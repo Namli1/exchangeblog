@@ -6,21 +6,140 @@
 
 {% block home-active %}active{% endblock %}
 
+{% block meta %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+{% endblock %}
+
+
 {% block content %}
-<div class="jumbotron mt-3 text-white bg-dark">
-    <h1 class="display-4">{% trans "Explore the world of exchange students!" %}</h1>
-    <p class="lead text-break" style="overflow-wrap: break-word;">{% trans "This blog gives you an insight in the life of an exchange student" %}</p>
-    {% comment %}
-    <hr class="my-4">
-        <ul>
-            <li>{% blocktrans with num_blog_posts=num_blog_posts %}Number of posts: {{ num_blog_posts }}{% endblocktrans %}</li>
-            <li>{% blocktrans with num_blog_authors=num_blog_authors %}Number of authors: {{ num_blog_authors }}{% endblocktrans %}</li>
-        </ul>
-    {% endcomment %}
+
+<div class="row justify-content-center my-3">
+    <h2 class="text-center display-4 col-md-6 animated pulse delay-1s"><strong>Welcome to Explore Exchange!</strong></h2>
 </div>
-<h1 class="display-4">{% trans "Look at the most recent blog posts:" %}</h1>
-    
-    {% include "exchangeblog/post_list_snippet.html" with list=latest_posts teaser=True %}
+
+{% if author_name %}
+<div class="text-center">
+    <a href="{% url 'author-detail' author_name %}"><button class="btn btn-success btn-lg">Go to my author page</button></a>
+</div>
+{% endif %}
+
+<div class="panel">
+
+
+<div class="container mx-md-5 p-3">
+<div class="row mx-md-5 aniview" data-av-animation="slideInLeft">
+    <div class="col-md-6">
+        <div class="text-center">
+            <img width=300 src="https://cdn.pixabay.com/photo/2017/02/01/17/06/signpost-2030780_1280.png">
+        </div>
+    </div>
+
+    <div class="col-md-6 align-self-center">
+        <h1 class="align-middle">Exchange Guide</h1>
+        <p class="small">{% trans "See how you can start your exchange year journey by looking at our guide." %}</p>
+        <a href="{% url 'guide-list' %}"><button class="btn btn-info shadow-lg" href="">Start your journey</button></a>
+    </div>
+</div>
+
+<div class="row mb-5 mx-md-5 aniview" data-av-animation="slideInRight">
+    <div class="col-md-7 order-md-12">
+        <div class="text-center">
+            <img width=300 src="https://cdn.pixabay.com/photo/2013/07/12/15/59/ink-150697_1280.png">
+        </div>
+    </div>
+
+    <div class="col-md-5 align-self-center oder-md-1">
+        <h1 class="align-middle">Blog</h1>
+        <p class="small">{% trans "Explore how exchange students around the world are spending their time and what experiences they make." %}</p>
+        <a href="{% url 'post-list' %}"><button class="btn btn-info shadow-lg">Explore</button></a>
+    </div>
+</div>
+
+<div class="row mx-md-5 aniview" data-av-animation="slideInLeft">
+    <div class="col-md-6">
+        <div class="text-center">
+            <img width=200 src="https://cdn.pixabay.com/photo/2018/03/06/21/43/heart-3204671_1280.png">
+        </div>
+    </div>
+
+    <div class="col-md-6 align-self-center">
+        <h1 class="align-middle">Country Guides</h1>
+        <p class="small">{% trans "See how you can start your exchange year journey by looking at our guide." %}</p>
+        <a href="{% url 'countryguide-list' %}"><button class="btn btn-info shadow-lg">See the countries</button></a>
+    </div>
+</div>
+</div>
 
 </div>
+
+
+{% comment %}
+<div class="row my-3">
+    <div class="col-md-4 mt-4">
+        <div class="bg-dark rounded mr-md-3 text-center text-white overflow-hidden">
+            <div class="bg-info shadow-sm mx-auto" style="width: 50%; border-radius: 0 0 21px 21px;">
+                <img src="{% static 'icons/compass.svg' %}">
+            </div>
+            <div class="my-3 py-1 pt-3 px-3 pt-md-3 px-md-4">
+                <h2 class="display-5">{% trans "Exchange Guide"%}</h2>
+                <p class="lead">{% trans "See how you can start your exchange year journey by looking at our guide." %}</p>
+                <a class="btn btn-outline-light stretched-link" href="{% url 'guide-list' %}">{% trans "Explore" %}</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mt-4">
+        <div class="bg-light rounded mr-md-3 text-center text-black overflow-hidden">
+            <div class="shadow mx-auto" style="width: 50%; border-radius: 0 0 21px 21px; background-color: #b2edff;">
+                <img src="{% static 'icons/pencil.svg' %}">
+            </div>
+            <div class="my-3 py-1 pt-3 px-3 pt-md-3 px-md-4">
+                <h2 class="display-5">{% trans "Blog" %}</h2>
+                <p class="lead">{% trans "Explore how exchange students around the world are spending their time and what experiences they make." %}</p>
+                <a class="btn btn-outline-dark stretched-link" href="{% url 'post-list' %}">{% trans "Explore" %}</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mt-4">
+        <div class="bg-dark rounded-lg mr-md-3 text-center text-white overflow-hidden">
+            <div class="bg-light shadow-sm mx-auto" style="width: 50%; border-radius: 0 0 21px 21px;">
+                <img src="{% static 'icons/flag.svg' %}">
+            </div>
+            <div class="my-3 py-1 pt-3 px-3 pt-md-3 px-md-4">
+                <h2 class="display-5">{% trans "Country guides" %}</h2>
+                <p class="lead">{% trans "Exchange students present their exchange country and explain why it's special." %}</p>
+                <a class="btn btn-outline-light stretched-link" href="{% url 'countryguide-list' %}">{% trans "Explore" %}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<hr /> {% endcomment %}
+
+<div class="panel">
+
+<h1 class="display-4 mt-5">{% trans "Start your exchange journey here:"%}</h1>
+<div class="container col-md-11 float-left">
+    {% include "guide_post_snippet.html" with list=guide_teaser teaser=True %}
+</div>
+
+
+<h1 class="display-4 p-3">{% trans "Look at the most recent blog posts:" %}</h1>
+    <div class="container">
+        {% include "exchangeblog/post_list_snippet.html" with list=latest_posts teaser=True %}
+    </div>
+
+</div>
+{% endblock %}
+
+{% block body-meta %}
+<script src="https://unpkg.com/jquery-aniview/dist/jquery.aniview.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(function() {
+        $('.aniview').AniView();
+    })
+});
+</script>
+
 {% endblock %}

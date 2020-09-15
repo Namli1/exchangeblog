@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'imagekit',
     'django_filters',
+    'crispy_forms',
     'exchangeblog',
+    'exchangeguide',
     'authentication',
 ]
 
@@ -146,6 +148,12 @@ LOCALE_PATHS = (
 )
 
 ####################################
+    ##  CRISPY FORMS CONFIGURATION ##
+####################################
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+####################################
     ##  CKEDITOR CONFIGURATION ##
 ####################################
  
@@ -156,7 +164,7 @@ CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 CKEDITOR_FORCE_JPEG_COMPRESSION = True
-CKEDITOR_IMAGE_QUALITY = 50
+CKEDITOR_IMAGE_QUALITY = 60
 
 CKEDITOR_CONFIGS = {
     'blogpost-editor': {
@@ -164,27 +172,28 @@ CKEDITOR_CONFIGS = {
             ['Source', '-', 'Bold', 'Italic']
         ],
         'toolbar_YourCustomToolbarConfig': [
-            {'name': 'document', 'items': ['-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
+            {'name': 'document', 'items': ['-', 'Preview', 'Print', '-', 'Templates']},
             {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
-            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
+            {'name': 'editing', 'items': ['Find']},
             {'name': 'forms',
-             'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
-                       'HiddenField']},
+             'items': ['Checkbox', 'Radio', 'Button']},
             '/',
             {'name': 'basicstyles',
-             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript']},
             {'name': 'paragraph',
-             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
-                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
-                       'Language']},
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-',
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl']},
             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
             {'name': 'insert',
-             'items': ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak']},
+             'items': ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar']},
             '/',
             {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
-            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
+            {'name': 'tools', 'items': ['ShowBlocks']},
             {'name': 'about', 'items': ['About']},
+            '/',
+            {'name': 'Maximize', 'items': ['Maximize']},
+            
         ],
         'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
         'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
@@ -214,7 +223,11 @@ CKEDITOR_CONFIGS = {
             'dialogui',
             'elementspath',
             'preview',
-        ]),
+            ]),
+        'templates_files': [
+            '/static/ckeditor/my_templates.js',
+        ],
+        'templates' : 'default, my_templates',
     }
 }
 

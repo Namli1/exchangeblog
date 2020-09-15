@@ -1,4 +1,5 @@
 {% extends "base_generic.html" %}
+{% load i18n %}
 
 {% block title %}<title>{% trans "Delete Post?" %}</title>{% endblock %}
 
@@ -10,7 +11,7 @@
 
 <form action="" method="POST">
   {% csrf_token %}
-  <input type="submit" value="Yes, delete.">
+  <button class="btn btn-danger mb-2" type="submit">Yes, delete</button>
 </form>
 
 {% endblock %}

@@ -1,0 +1,107 @@
+{% load i18n %}
+{% load static %}
+
+
+{% if list %}
+
+{% if vertical_list %}
+
+    {% for countryguide in list %}
+
+    <div class="card mb-4 shadow">
+            <a class="stretched-link" href="{{ countryguide.get_absolute_url }}"></a>
+                <div class="card-body">
+                    <h1 id="{% if small_list == True %}country-guide-header-small{% else %}country-guide-header{% endif %}" class="card-title">{{ countryguide.get_country_display }}</h1>
+
+                    <p class="card-text">
+                        {{ countryguide.short_description|truncatechars:130 }}
+                    </p>
+                </div>
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+<div class="row justify-content-center">
+    <div class="row justify-content-center">
+    {% for countryguide in list %}
+        <div class="col-md-12">
+            <div class="card shadow mb-4 col-md-12 p-md-3">
+                <div class="row no-gutters">
+                    <div class="col-md-7 p-2 d-flex align-items-center justify-content-center">
+                        <h1 id="{% if small_list == True %}country-guide-header-small{% else %}country-guide-header{% endif %}">{{ countryguide.get_country_display }}</h1>
+
+                        <a class="stretched-link" href="{{ countryguide.get_absolute_url }}">
+                        <!-- <img src="{% for country in countryguide.slideshowimages_set.all|slice:':1' %} {{ country.image.url }} {% endfor %}" class="card-img img-fluid"> -->
+                        </a> 
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="card-body">
+                            <p class="card-text">{{ countryguide.short_description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    
+    {% if teaser == True %}
+            <div class="card shadow mb-4 col-10">
+                    <div class="card-body text-center">
+                        <a class="stretched-link text-dark text-decoration-none" href="{% url 'countryguide-list' %}"><h1 class="card-title">{% trans "See more countries" %} &rarr;</h1></a>
+                    </div>
+            </div>
+    {% endif %}
+    </div>
+</div>
+
+{% endif %}
+
+
+{% if pagination == True %}
+    <nav aria-label="Country guide navigation">
+<ul class="pagination mb-5">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+            <a class="page-link" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+            <a class="page-link" href="?{% if querystring %}&amp;{{ querystring }}{% endif %}page=1" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+    </li>
+    {% endif %}
+
+    {% for page_number in page_obj.paginator.page_range %}
+    {% if forloop.counter < 7 %}
+    {% if page_number == page_obj.number %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_number }}">{{ page_number }}<span class="sr-only">(current)</span></a>
+        </li>
+    {% else %}
+        <li class="page-item"><a class="page-link" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_number }}">{{ page_number }}</a></li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_obj.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+{% else %}
+<p>{% trans "Sorry, there are no country guides." %}</p>
+{% endif %}

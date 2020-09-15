@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-23 13:10+0100\n"
-"PO-Revision-Date: 2020-01-23 20:13+0800\n"
+"POT-Creation-Date: 2020-04-17 15:55+0200\n"
+"PO-Revision-Date: 2020-04-18 19:05+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,15 +16,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.3\n"
 
-#: blog/urls.py:49
+#: blog/urls.py:48
 msgid "about"
 msgstr "über"
+
+#: blog/urls.py:49
+msgid "privacy-policy"
+msgstr "datenschutzerklärung"
 
 #: blog/urls.py:50
 msgid "blog/"
 msgstr "blog/"
+
+#: blog/urls.py:51
+msgid "guide/"
+msgstr "guide"
 
 #: exchangeblog/models.py:14
 msgid "Please enter the title of the Blog Post."
@@ -42,31 +50,31 @@ msgstr "Geben Sie einen Slug passend zum Titel ein"
 msgid "Please enter the language you will use for the post."
 msgstr "Wählen sie die Sprache des Artikels."
 
-#: exchangeblog/models.py:26
+#: exchangeblog/models.py:26 exchangeguide/models.py:36
 msgid "🇨🇳China"
 msgstr "🇨🇳China"
 
-#: exchangeblog/models.py:27
+#: exchangeblog/models.py:27 exchangeguide/models.py:37
 msgid "🇺🇸USA"
 msgstr "🇺🇸USA"
 
-#: exchangeblog/models.py:28
+#: exchangeblog/models.py:28 exchangeguide/models.py:38
 msgid "🇬🇧United Kingdom"
 msgstr "🇬🇧Vereinigtes Königreich"
 
-#: exchangeblog/models.py:29
+#: exchangeblog/models.py:29 exchangeguide/models.py:39
 msgid "🇩🇪Germany"
 msgstr "🇩🇪Deutschland"
 
-#: exchangeblog/models.py:30
+#: exchangeblog/models.py:30 exchangeguide/models.py:40
 msgid "🇮🇹Italy"
 msgstr "🇮🇹Italien"
 
-#: exchangeblog/models.py:31
+#: exchangeblog/models.py:31 exchangeguide/models.py:41
 msgid "🇫🇷France"
 msgstr "🇫🇷Frankreich"
 
-#: exchangeblog/models.py:32
+#: exchangeblog/models.py:32 exchangeguide/models.py:42
 msgid "🇹🇭Thailand"
 msgstr "🇹🇭Thailand"
 
@@ -84,33 +92,9 @@ msgid ""
 msgstr ""
 "Geben sie den Namen des Autors ein (Er wird mit den Artikel angezeigt)."
 
-#: exchangeblog/models.py:58
+#: exchangeblog/models.py:59
 msgid "Please enter a short description of yourself."
 msgstr "Stellen sie sich kurz selber vor."
-
-#: exchangeblog/templates/base_generic.html:28
-msgid "Home"
-msgstr "Home"
-
-#: exchangeblog/templates/base_generic.html:32
-msgid "Posts"
-msgstr "Posts"
-
-#: exchangeblog/templates/base_generic.html:42
-msgid "About"
-msgstr "Über"
-
-#: exchangeblog/templates/base_generic.html:57
-msgid "Languages"
-msgstr "Sprachen"
-
-#: exchangeblog/templates/base_generic.html:86
-msgid "Current user:"
-msgstr "Aktuell eingeloggt:"
-
-#: exchangeblog/templates/base_generic.html:89 templates/about.html:4
-msgid "About us"
-msgstr "Über uns"
 
 #: exchangeblog/templates/exchangeblog/blogauthor_detail.html:5
 #: exchangeblog/templates/exchangeblog/blogauthor_list.html:6
@@ -118,20 +102,29 @@ msgstr "Über uns"
 msgid "Blog Authors"
 msgstr "Blog Autoren"
 
-#: exchangeblog/templates/exchangeblog/blogauthor_detail.html:9
-msgid "Author List"
-msgstr "Autoren Liste"
+#: exchangeblog/templates/exchangeblog/blogauthor_detail.html:7
+#: exchangeblog/templates/exchangeblog/post_list_snippet.html:21
+msgid "Author:"
+msgstr "Autor:"
 
-#: exchangeblog/templates/exchangeblog/blogauthor_detail.html:16
+#: exchangeblog/templates/exchangeblog/blogauthor_detail.html:11
+msgid "Check out my social media"
+msgstr "Mein Social media"
+
+#: exchangeblog/templates/exchangeblog/blogauthor_detail.html:17
 msgid "My blog posts:"
 msgstr "Meine Posts:"
 
-#: exchangeblog/templates/exchangeblog/blogauthor_form.html:5
+#: exchangeblog/templates/exchangeblog/blogauthor_detail.html:20
+msgid "Add a new blog post"
+msgstr "Blog Post schreiben"
+
+#: exchangeblog/templates/exchangeblog/blogauthor_form.html:6
 msgid "Add Blog Author"
 msgstr "Blog Autor anlegen"
 
-#: exchangeblog/templates/exchangeblog/blogauthor_form.html:8
-msgid "Create/Update your Blog Author Profile"
+#: exchangeblog/templates/exchangeblog/blogauthor_form.html:9
+msgid "Your Blog Author Profile"
 msgstr "Dein Blog Autor Profil"
 
 #: exchangeblog/templates/exchangeblog/blogauthor_list.html:13
@@ -143,113 +136,304 @@ msgstr "Alle Blog Autoren"
 msgid " %(name)s "
 msgstr ""
 
-#: exchangeblog/templates/exchangeblog/blogpost_confirm_delete.html:3
+#: exchangeblog/templates/exchangeblog/blogpost_confirm_delete.html:4
 msgid "Delete Post?"
 msgstr "Post löschen?"
 
-#: exchangeblog/templates/exchangeblog/blogpost_confirm_delete.html:9
+#: exchangeblog/templates/exchangeblog/blogpost_confirm_delete.html:10
 #, python-format
 msgid "Are you sure you want to delete the blogpost: %(blogpost.title)s"
 msgstr ""
 "Bist du sicher, dass du den Blog Post löschen möchtest: %(blogpost.title)s"
 
-#: exchangeblog/templates/exchangeblog/blogpost_detail.html:49
+#: exchangeblog/templates/exchangeblog/blogpost_detail.html:22
+#, fuzzy
+#| msgid "Update"
+msgid "Update Post"
+msgstr "Aktualisieren"
+
+#: exchangeblog/templates/exchangeblog/blogpost_detail.html:23
+#, fuzzy
+#| msgid "Delete Post?"
+msgid "Delete Post"
+msgstr "Post löschen?"
+
+#: exchangeblog/templates/exchangeblog/blogpost_detail.html:54
 msgid "Next Post:"
 msgstr "Nächster Post:"
 
-#: exchangeblog/templates/exchangeblog/blogpost_detail.html:58
+#: exchangeblog/templates/exchangeblog/blogpost_detail.html:63
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:105
 msgid "About this Author"
 msgstr "Über diesen Autor"
 
-#: exchangeblog/templates/exchangeblog/blogpost_detail.html:63
+#: exchangeblog/templates/exchangeblog/blogpost_detail.html:68
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:117
 msgid "More from this author:"
 msgstr "Mehr von diesem Autor:"
 
-#: exchangeblog/templates/exchangeblog/blogpost_detail.html:71
-msgid "Update"
-msgstr "Aktualisieren"
-
-#: exchangeblog/templates/exchangeblog/blogpost_detail.html:72
-msgid "Delete"
-msgstr "Löschen"
-
-#: exchangeblog/templates/exchangeblog/blogpost_form.html:5
-msgid "Add Blog Post"
-msgstr "Blog Post schreiben"
-
-#: exchangeblog/templates/exchangeblog/blogpost_list.html:6
-#: exchangeblog/templates/exchangeblog/blogpost_list.html:11
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:6
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:12
 msgid "All Blog Posts"
 msgstr "Alle Blog Posts"
 
-#: exchangeblog/templates/exchangeblog/blogpost_list.html:14
-#: exchangeblog/templates/exchangeblog/blogpost_list.html:49
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:25
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:59
+#: exchangeguide/templates/exchangeguide/countryguidepost_filter.html:22
 msgid "Filter"
 msgstr "Filter"
 
-#: exchangeblog/templates/exchangeblog/blogpost_list.html:25
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:37
 msgid "Select author"
 msgstr "Autor auswählen"
 
-#: exchangeblog/templates/exchangeblog/blogpost_list.html:32
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:43
 msgid "Select language"
 msgstr "Sprache auswählen"
 
-#: exchangeblog/templates/exchangeblog/blogpost_list.html:39
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:49
 msgid "Select country"
 msgstr "Land auswählen"
 
-#: exchangeblog/templates/exchangeblog/blogpost_list.html:46
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:56
 msgid "Select a year"
 msgstr "Jahr auswählen"
 
-#: exchangeblog/templates/exchangeblog/post_list_snippet.html:20
-msgid "Author:"
-msgstr "Autor:"
+#: exchangeblog/templates/exchangeblog/blogpost_form.html:6
+msgid "Add Blog Post"
+msgstr "Blog Post schreiben"
 
-#: exchangeblog/templates/exchangeblog/post_list_snippet.html:22
+#: exchangeblog/templates/exchangeblog/post_list_snippet.html:23
 msgid "Language:"
 msgstr "Sprache:"
 
-#: exchangeblog/templates/exchangeblog/post_list_snippet.html:32
+#: exchangeblog/templates/exchangeblog/post_list_snippet.html:33
 msgid "See more"
 msgstr "Mehr"
 
-#: exchangeblog/templates/exchangeblog/post_list_snippet.html:83
-msgid "Sorry, there are no blog posts yet."
+#: exchangeblog/templates/exchangeblog/post_list_snippet.html:43
+msgid "See all posts"
+msgstr "Alle Posts"
+
+#: exchangeblog/templates/exchangeblog/post_list_snippet.html:94
+#, fuzzy
+#| msgid "Sorry, there are no blog posts yet."
+msgid "Sorry, no blog posts found."
 msgstr "Sorry, es gibt noch keine Blog Posts."
 
-#: exchangeblog/templates/home.html:11
-msgid "Explore the world of exchange students!"
-msgstr "Entdecke die Welt eines Austauschschülers!"
+#: exchangeblog/templates/home.html:40 exchangeblog/templates/home.html:68
+msgid ""
+"See how you can start your exchange year journey by looking at our guide."
+msgstr ""
+"Guck dir unseren Wegweiser an, um zu sehen, wie du dein Austauschjahr "
+"beginnen kannst."
 
-#: exchangeblog/templates/home.html:12
-msgid "This blog gives you an insight in the life of an exchange student"
-msgstr "Dieser Blog gibt einen Einblick in die Welt eines Austauschschülers"
+#: exchangeblog/templates/home.html:54
+msgid ""
+"Explore how exchange students around the world are spending their time and "
+"what experiences they make."
+msgstr ""
+"Entdecke wie Austauschschüler auf der ganzen Welt ihre Zeit verbringen und "
+"welche Erfahrungen sie machen."
 
-#: exchangeblog/templates/home.html:22
+#: exchangeblog/templates/home.html:123
+msgid "Start your exchange journey here:"
+msgstr "Hier ist der Beginn deiner Austauschreise:"
+
+#: exchangeblog/templates/home.html:129
 msgid "Look at the most recent blog posts:"
 msgstr "Hier sind die letzten Posts:"
 
-#: exchangeblog/urls.py:8
+#: exchangeblog/urls.py:6
 msgid "posts/"
 msgstr "posts/"
 
-#: exchangeblog/urls.py:9
-msgid "post/create/"
-msgstr "post/erstellen/"
-
 #: exchangeblog/urls.py:10
-msgid "author/create/"
-msgstr "autor/erstellen/"
-
-#: exchangeblog/urls.py:12
 msgid "authors/"
 msgstr "autoren/"
 
-#: exchangeblog/views.py:98
+#: exchangeblog/views.py:127 exchangeblog/views.py:133
+msgid "You are not allowed to write more than {} posts, sorry."
+msgstr "Du kannst nicht mehr als {} Posts schreiben."
+
+#: exchangeguide/models.py:13
+msgid "Please enter the title of the Post"
+msgstr "Geben Sie bitte den Titel des Posts ein"
+
+#: exchangeguide/models.py:14
+msgid "Slug consisting of title of guide post."
+msgstr "Geben Sie einen Slug passend zum Titel ein."
+
+#: exchangeguide/models.py:16
+msgid "Enter a short description about what this tutorial is about."
+msgstr "Beschreiben sie kurz den Inhalt dieses Tutorials."
+
+#: exchangeguide/models.py:18
+msgid ""
+"If post is part of the main step by step guide, enter its number in the "
+"order here."
+msgstr ""
+"Wenn der Post Teil des Haupt-Wegweisers ist, dann gib hier seine Nummer in "
+"der Reihenfolge an."
+
+#: exchangeguide/models.py:34
+msgid "Please select the language you will use for the post."
+msgstr "Wählen sie die Sprache des Artikels."
+
+#: exchangeguide/models.py:44
+msgid "Select the country you want to present."
+msgstr "Wählen Sie das gewählte Land aus."
+
+#: exchangeguide/models.py:45
+msgid "Slug consisting of country"
+msgstr "Slug aus dem Land"
+
+#: exchangeguide/models.py:47
+msgid "Date guide was last updated."
+msgstr "Datum, an dem Artikel zuletzt aktualisiert wurde."
+
+#: exchangeguide/models.py:48
+msgid "Enter the languages spoken in this country."
+msgstr "Welche Sprachen werden in diesem Land gesprochen."
+
+#: exchangeguide/models.py:49
+msgid "Enter the population of this country."
+msgstr "Bevölkerungszahl des Landes angeben."
+
+#: exchangeguide/models.py:50
+msgid "Enter the capital city of this country."
+msgstr "Gib die Hauptstadt des Landes ein."
+
+#: exchangeguide/models.py:51
+msgid "Enter what currency (money) is being used in this country."
+msgstr "Gib ein, welche Währung zur Zeit in diesem Land benutzt wird."
+
+#: exchangeguide/models.py:52
+msgid "Enter a short description about what makes this country special."
+msgstr "Beschreiben sie kurz, was dieses Land so besonders macht."
+
+#: exchangeguide/models.py:52
+msgid "Check out this amazing country"
+msgstr "Guck dir dieses tolle Land an"
+
+#: exchangeguide/models.py:53
+msgid ""
+"Please select the Country Guide Template from the template button (Third "
+"symbol at top left)."
+msgstr ""
+"Wähl bitte die „Country Guide Template” von dem Template Button (drittes "
+"Symbol oben links)"
+
+#: exchangeguide/models.py:69
+msgid "Briefly describe what can be seen in picture."
+msgstr "Beschreibe kurz, was man in dem Bild sehen kann."
+
+#: exchangeguide/templates/country_guide_snippet.html:33
+msgid "See more countries"
+msgstr "Mehr Länder"
+
+#: exchangeguide/templates/country_guide_snippet.html:86
+msgid "Sorry, there are no country guides."
+msgstr "Sorry, es gibt noch keine Länder-Guides."
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_confirm.html:4
+msgid "Delete Country Guide?"
+msgstr "Länder-Guide löschen?"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_confirm.html:10
+#, python-format
+msgid "Are you sure you want to delete the country guide for %(country)s"
+msgstr "Bist du sicher, dass du den Länder-Guide löschen möchtest: %(country)s"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:29
+msgid "Previous"
+msgstr "Vorheriges"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:33
+msgid "Next"
+msgstr "Nächstes"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:44
+msgid "Brief overview"
+msgstr "Kurzer Überblick"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:56
+msgid "Capital City"
+msgstr "Hauptstadt"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:67
+msgid "Spoken Language(s)"
+msgstr "Gesprochene Sprache(n)"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:78
+msgid "Currency"
+msgstr "Währung"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:89
+msgid "Population"
+msgstr "Bevölkerungsanzahl"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:112
+msgid "See blog posts from this country"
+msgstr "Blog Posts aus diesem Land"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:128
+msgid "Check out these other countries:"
+msgstr "Guck dir diese anderen Länder an:"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_filter.html:6
+#: exchangeguide/templates/exchangeguide/countryguidepost_filter.html:12
+msgid "Country guides"
+msgstr "Länder-Guides"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_form.html:6
+msgid "Add Country Guide"
+msgstr "Länder-Guide hinzufügen"
+
+#: exchangeguide/templates/exchangeguide/guidepost_confirm.html:9
+msgid "Delete"
+msgstr "Löschen"
+
+#: exchangeguide/templates/exchangeguide/guidepost_confirm.html:11
+#, python-format
+msgid "Are you sure you want to delete \"%(guide)s\"?"
+msgstr "Bist du sicher, dass du  “%(guide)s” löschen möchtest?"
+
+#: exchangeguide/templates/exchangeguide/guidepost_detail.html:24
+msgid "Next guide post:"
+msgstr "Nächster Guide:"
+
+#: exchangeguide/templates/exchangeguide/guidepost_detail.html:30
+msgid "See these interesting countries:"
+msgstr "Guck dir diese interessanten Länder an:"
+
+#: exchangeguide/templates/exchangeguide/guidepost_form.html:6
+msgid "Add Guide Post"
+msgstr "Länder-Guide schreiben"
+
+#: exchangeguide/templates/exchangeguide/guidepost_list.html:6
+msgid "All Guide Posts"
+msgstr "Alle Länder-Guides"
+
+#: exchangeguide/templates/exchangeguide/guidepost_list.html:10
+msgid "Explore how you can go on an exchange:"
+msgstr "Entdecke, wie du auf einen Austausch gehen kannst:"
+
+#: exchangeguide/templates/exchangeguide/guidepost_list.html:12
+msgid ""
+"See how you can start your exchange journey and what steps you have to take "
+"to go abroad. The tutorials guide you along the way."
+msgstr ""
+"Wie kannst du deine Austauschreise starten, welche Schritte sind dafür "
+"notwendig? Die Tutorials helfen dir auf dem Weg."
+
+#: exchangeguide/views.py:119
 msgid "You are not allowed to write more than {} posts"
 msgstr "Du kannst nicht mehr als {} Posts schreiben"
+
+#: templates/about.html:4 templates/base_generic.html:127
+msgid "About us"
+msgstr "Über uns"
 
 #: templates/about.html:10
 msgid "About Explore-Exchange.com"
@@ -279,6 +463,76 @@ msgstr "Seit"
 msgid "22th January 2020"
 msgstr "22. Januar 2020"
 
+#: templates/base_generic.html:29
+msgid "Home"
+msgstr "Home"
+
+#: templates/base_generic.html:35
+msgid "Guide"
+msgstr "Guide"
+
+#: templates/base_generic.html:39
+msgid "Guide Posts"
+msgstr "Länder-Guides"
+
+#: templates/base_generic.html:40
+msgid "Country Guides"
+msgstr "Länder-Guides"
+
+#: templates/base_generic.html:46
+msgid "Blog"
+msgstr "Blog"
+
+#: templates/base_generic.html:57
+msgid "About"
+msgstr "Über"
+
+#: templates/base_generic.html:72
+msgid "Languages"
+msgstr "Sprachen"
+
+#: templates/base_generic.html:92
+msgid "Heads Up! We need your consent."
+msgstr "Achtung! Wir brachen deine Einverständniserklärung."
+
+#: templates/base_generic.html:95
+msgid "Read more"
+msgstr "Mehr"
+
+#: templates/base_generic.html:96
+msgid "Reject"
+msgstr "Ablehnen"
+
+#: templates/base_generic.html:97
+msgid "Accept"
+msgstr "Akzeptieren"
+
+#: templates/base_generic.html:120
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: templates/base_generic.html:123
+msgid "Login"
+msgstr "Einloggen"
+
+#~ msgid "Current user:"
+#~ msgstr "Aktuell eingeloggt:"
+
+#~ msgid "Author List"
+#~ msgstr "Autoren Liste"
+
+#~ msgid "Explore the world of exchange students!"
+#~ msgstr "Entdecke die Welt eines Austauschschülers!"
+
+#~ msgid "This blog gives you an insight in the life of an exchange student"
+#~ msgstr "Dieser Blog gibt einen Einblick in die Welt eines Austauschschülers"
+
+#~ msgid "post/create/"
+#~ msgstr "post/erstellen/"
+
+#~ msgid "author/create/"
+#~ msgstr "autor/erstellen/"
+
 #~ msgid "Follow us on"
 #~ msgstr "Folgt uns auf"
 
@@ -290,6 +544,3 @@ msgstr "22. Januar 2020"
 
 #~ msgid "Date of creation:"
 #~ msgstr "Erstellungsdatum:"
-
-#~ msgid "Please enter the text you want to publish."
-#~ msgstr "Geben Sie bitte den Text für den Post ein."

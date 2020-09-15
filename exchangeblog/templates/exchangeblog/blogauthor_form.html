@@ -1,16 +1,17 @@
 {% extends 'base_generic.html'%}
 {% load i18n %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}<title>{% trans "Add Blog Author" %}</title>{% endblock %}
 
 {% block content %}
-<h1 class="text-center mt-3">{% trans "Create/Update your Blog Author Profile" %}</h1>
+<h1 class="text-center mt-3">{% trans "Your Blog Author Profile" %}</h1>
 
 <form method="POST" action="">
     {% csrf_token %}
     <table class="mx-auto">
-            {{ form.as_table }}
+            {{ form|crispy }}
         </table>
         <input type=submit class="btn btn-secondary mt-3 mb-3">
 </form>

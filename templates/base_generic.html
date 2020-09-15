@@ -4,18 +4,33 @@
 <html lang="en">
 <head>
   {% block title %}<title>Explore-Exchange</title>{% endblock %}
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:600,200|Raleway|Roboto:500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:600,200|Raleway|Roboto:500|Archivo+Black&display=swap" rel="stylesheet">
     <link rel=stylesheet href="{% static 'css/styles.css'%}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-178031048-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-178031048-1');
+  </script>
+
+
+
     {% block meta %}{% endblock %}
 </head>
+
 <body>
 
 <header>
-  <nav class="navbar navbar-expand-md navbar-light bg-white absolute-top">
+  <nav class="navbar navbar-expand-md navbar-light bg-white absolute-top mt-3">
     <div class="container">
         <button class="navbar-toggler order-2 order-md-1" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-left navbar-right" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -28,9 +43,23 @@
                 <a class="nav-link {% block home-active %}{% endblock %}" href="{% url 'home' %}">{% trans "Home" %}</a>
               </li>
 
-              <li class="nav-item">
-                <a class="nav-link {% block blogposts-active %}{% endblock %}" href="{% url 'post-list' %}?language={% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|upper }}">{% trans "Posts" %}</a>
+              <li class="nav-item dropdown">
+                <div class="btn-group">
+                  <button type="button" class="btn dropdown-toggle nav-link {% block guides-active %}{% endblock %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {% trans "Guide" %}
+                  </button>
+                    
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{% url 'guide-list' %}"><img src="{% static 'icons/compass.svg' %}" width="30em" height="30em">{% trans "Guide Posts" %}</a>
+                      <a class="dropdown-item" href="{% url 'countryguide-list' %}"><img src="{% static 'icons/flag.svg' %}" width="30em" height="30em">{% trans "Country Guides" %}</a>
+                    </div>
+                </div>
               </li>
+
+              <li class="nav-item">
+                <a class="nav-link {% block blogposts-active %}{% endblock %}" href="{% url 'post-list' %}?language={% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|upper }}">{% trans "Blog" %}</a>
+              </li>
+
           </div>
 
               <a class="navbar-brand order-1 order-md-3 text-center" id="logo-header" href="{% url 'home' %}">Explore-Exchange</a>
@@ -54,7 +83,7 @@
                               {% get_language_info_list for LANGUAGES as languages %}
                               <div class="btn-group">
                                   <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      {% trans "Languages" %}
+                                      {% trans "Languages" %}<img src="{% static 'icons/arrow-repeat.svg' %}">
                                     </button>
                                   <div class="dropdown-menu dropdown-menu-right">
                                     {% for language in languages %}
@@ -71,6 +100,24 @@
   </nav>
 <hr />
 </header>
+
+<div class="container">
+  <div id="cookies-eu-banner" class="d-flex justify-content-between alert alert-danger alert-dismissible fade show" role="alert">
+      <b class="align-self-center">{% trans "Heads Up! We need your consent." %}</b>
+      
+      <div>
+        <a href="{% url 'privacy-policy' %}" class="btn btn-light">{% trans "Read more" %}</a>
+        <button id="cookies-eu-reject" class="btn btn-danger">{% trans "Reject" %}</button>
+        <button id="cookies-eu-accept" class="btn btn-success">{% trans "Accept" %}</button>
+      </div>
+  
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+</div>
+
+{% block full-width %}{% endblock %}
   
 <div id="main" class="container">
 {% block content %}
@@ -80,12 +127,16 @@
 <footer class="footer" style="bottom: 0%;">
   <div id="bottom-footer" class="container-fluid bg-dark">
     <div class="row d-flex">
-      <div class="col-lg-8">
+      <div class="col-lg-7">
       <ul class="nav text-lg-left text-sm-center">
 
         {% if user.is_authenticated %}
-        <li class="nav-item pt-3 pb-1"><button type="button" class="btn btn-success">{% trans "Current user:" %} {{ user.get_username }}</button></li>
+          <li class="nav-item pt-3 pb-1"><a href="{% url 'logout' %}?next={{request.path}}"><button type="button" class="btn btn-danger">{% trans "Logout" %}</button></a></li>
+
+        {% else %}
+          <li class="nav-item pt-3 pb-1"><a href="{% url 'login' %}?next={{request.path}}"><button type="button" class="btn btn-success">{% trans "Login" %}</button></a></li>
         {% endif %}
+
 
         <li class="nav-item">
           <a class="nav-link text-white pt-4 pb-1" href="{% url 'about' %}">{% trans "About us" %}</a>
@@ -99,9 +150,17 @@
 
       </ul>
     </div>
-      <div class="col-lg-4">
-          <p id="copyright" class="text-white pt-4 pb-1"> 
-            &copy; <script>document.write(new Date().getFullYear())</script>, Explore-Exchange.com</p>
+      <div class="col-lg-5">
+        <ul class="nav text-lg-left text-sm-center">
+
+            <li class="nav-item">
+              <p><a class="nav-link text-white pt-4 pb-1" href="{% url 'privacy-policy' %}">Privacy Policy</a></p>
+            </li>
+
+            <li class="nav-item">
+              <p id="copyright" class="text-white pt-4 pb-1"> 
+              &copy; <script>document.write(new Date().getFullYear())</script>, Explore-Exchange.com</p>
+            </li>
       </div>
       </div>
   </div>
@@ -111,6 +170,18 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="{% static 'cookies-eu-banner.js' %}"></script>
+    <script>
+        new CookiesEuBanner(function () {
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-178031048-1', 'auto');
+            ga('send', 'pageview');
+        });
+    </script>
     {% block body-meta %}{% endblock %}
 </body>
 </html>

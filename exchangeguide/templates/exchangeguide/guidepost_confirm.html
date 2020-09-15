@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title> {{ guidepost.title }}</title>{% endblock %}
+
+{% block content %}
+<h1>{% trans "Delete" %} {{ guidepost.title }}?</h1>
+
+<p>{% blocktrans with guide=guidepost.title %}Are you sure you want to delete "{{ guide }}"?{% endblocktrans %}</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <button class="btn btn-danger mb-2" type="submit" value="Yes, delete.">
+</form>
+
+{% endblock %}

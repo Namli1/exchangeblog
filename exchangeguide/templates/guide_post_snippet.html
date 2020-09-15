@@ -1,0 +1,115 @@
+{% load static %}
+{% load i18n %}
+
+{% block meta %}
+    <link rel="stylesheet" href="{% static 'css/blogpost_styles.css' %}">
+{% endblock %}
+
+{% if list %}
+
+{% if vertical_list == True %}
+    {% for guide in list %}
+    <div class="card mb-5">
+            <a class="stretched-link" href="{{ guide.get_absolute_url }}"></a>
+                <img src="{{ guide.thumbnail_picture.url }}" class="card-img-top">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        {% if guide.main_guide_post_number %} {{ forloop.counter }}.{% endif %} {{ guide.title }}
+                    </h3>
+                    <p class="card-text">
+                        {{ guide.short_description|truncatechars:130 }}
+                    </p>
+                </div>
+    </div>
+    {% endfor %}
+
+{% else %}
+<div class="row">
+
+    <div class="col-12 mx-auto">
+        <ul class="timeline">
+            {% for guide in list %}
+                <li class="timeline-item ml-3 p-4 mb-3 shadow">
+                    <div class="timeline-arrow"></div>
+                        <div class="card mb-3">
+                            <div class="row no-gutters">
+                                <a class="stretched-link" href="{{ guide.get_absolute_url }}"></a>
+                                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                    <img src="{{ guide.thumbnail_picture.url }}" class="card-img">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h3 class="card-title">
+                                            {% if guide.main_guide_post_number %} {{ forloop.counter }}.{% endif %} {{ guide.title }}
+                                        </h3>
+                                        <p class="card-text">
+                                            {{ guide.short_description}}
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </li>
+            {% endfor %}
+
+            {% if teaser == True %}
+            <li class="timeline-item ml-3 p-4 mb-3 shadow w-md-25">
+                    <div class="timeline-arrow"></div>
+                            <a class="stretched-link" href="{% url 'guide-list' %}"></a>
+                            <h3 class="ml-3 aniview" data-av-animation="pulse">Continue &rarr;</h3>
+                    </div>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endif %}
+
+{% if pagination == True %}
+<nav aria-label="Country guide navigation">
+<ul class="pagination mb-5">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+            <a class="page-link" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+            <a class="page-link" href="?{% if querystring %}&amp;{{ querystring }}{% endif %}page=1" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+    </li>
+    {% endif %}
+
+    {% for page_number in page_obj.paginator.page_range %}
+    {% if forloop.counter < 7 %}
+    {% if page_number == page_obj.number %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_number }}">{{ page_number }}<span class="sr-only">(current)</span></a>
+        </li>
+    {% else %}
+        <li class="page-item"><a class="page-link" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_number }}">{{ page_number }}</a></li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_obj.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+{% else %}
+
+<p>{% trans "Sorry, there are no country guides." %}</p>
+
+{% endif%}

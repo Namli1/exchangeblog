@@ -3,6 +3,7 @@
 
 {% block meta %}
     <link rel="stylesheet" href="{% static 'css/blogpost_styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 {% endblock %}
 
 {% if list %}
@@ -27,11 +28,11 @@
 
     {% if teaser == True %}
     {% if list.count > 1 %}
-    <div id="post-card" class="card bg-light mb-5 mt-3">
+    <div id="post-card" class="card bg-light mb-5 mt-3 shadow-sm aniview" data-av-animation="slideInLeft">
             <div class="card-body">
-                <a href="{% url 'post-list'%}" class="text-decoration-none text-secondary"><h2 class="text-monospace">{% trans "See more" %} -></h2></a>
+                <a href="{% url 'post-list'%}" class="text-decoration-none text-secondary"><h2 class="text-dark">{% trans "See more" %} &rarr;</h2></a>
             </div>
-        </div>
+    </div>
     {% endif %}
     {% endif %}
 
@@ -90,5 +91,5 @@
 {% endif %}
 
 {% else %}
-<p>{% trans "Sorry, there are no blog posts." %}</p>
+<p>{% trans "Sorry, no blog posts found." %}</p>
 {% endif %}

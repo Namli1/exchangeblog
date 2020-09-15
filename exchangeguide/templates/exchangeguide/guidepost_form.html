@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title>{% trans "Add Guide Post" %}</title>{% endblock %}
+
+{% block content %}
+
+<form method="post" class="form-horizontal" action="" enctype='multipart/form-data'>
+    {% csrf_token %}
+        {{ form.media }}
+        {{ form|crispy }}
+
+        <input type=submit class="btn btn-success mt-3 mb-5">
+</form>
+
+{% endblock %}

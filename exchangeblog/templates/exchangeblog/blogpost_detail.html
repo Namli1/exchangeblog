@@ -18,10 +18,15 @@
             <button class="btn btn-light disabled mx-2">{{ blogpost.date_of_creation }}</button>
             <a href="{% url 'post-list' %}?country={{ blogpost.country }}"><button class="btn btn-light mx-2">{{ blogpost.get_country_display }}</button></a>
             <a href="{% url 'post-list' %}?language={{ blogpost.language }}"><button class="btn btn-light mx-2 my-1">{% comment %}Translators: In meaning e.g. In English/In Chinese/...{% endcomment %}{% trans "In" %} {{ blogpost.get_language_display }}</button></a>
+            {% if is_author %}
+            <a class="btn btn-primary mx-2 mt-2" href="{% url 'post-update' blogpost.author.slug blogpost.slug %}" role="button">{% trans "Update Post" %}</a>
+            <a class="btn btn-danger mx-2 mt-2" href="{% url 'post-delete' blogpost.author.slug blogpost.slug %}" role="button">{% trans "Delete Post" %}</a>
+            {% endif %}
         </div>
         <div id="image-container" class="container mx-auto">
             <img src="{{ blogpost.thumbnail_picture.url }}">
         </div>
+
         <p>{{ blogpost.blogcontent | safe }}</p>
 
         <div class="text-center justify-content-between d-block">
@@ -66,9 +71,4 @@
     </div>
 </div>
 
-
-{% if test_func %}
-    <a class="btn btn-primary mx-2 mt-2 float-right" href="{% url 'post-update' blogpost.pk %}" role="button">{% trans "Update" %}</a>
-    <a class="btn btn-danger mx-2 mt-2 float-right" href="{% url 'post-delete' blogpost.pk %}" role="button">{% trans "Delete" %}</a>
-{% endif %}
 {% endblock%}
