@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'imagekit',
     'django_filters',
+    'crispy_forms',
     'exchangeblog',
+    'exchangeguide',
     'authentication',
 ]
 
