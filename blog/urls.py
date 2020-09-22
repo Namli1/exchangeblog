@@ -25,6 +25,8 @@ from django.views.decorators.cache import never_cache
 from ckeditor_uploader import views as ckeditor_views
 from exchangeblog.views import AboutPageView, HomePageView, PrivacyPolicyView
 from blog.sitemaps import PostSiteMap, AuthorSiteMap, StaticViewSitemap
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
 
 sitemaps = {
     'posts': PostSiteMap,
@@ -40,7 +42,8 @@ urlpatterns = [
     path('ckeditor/upload/', permission_required('exchangeblog.add_blogpost')(ckeditor_views.upload), name='ckeditor_upload'),
     path('ckeditor/browse/', permission_required('exchangeblog.add_blogpost')(ckeditor_views.browse), name='ckeditor_browse'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
-     name='sitemap')
+     name='sitemap'),
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('images/favicon.ico'))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(

@@ -44,14 +44,14 @@ h1 {
 
 #country-guide-header {
     font-family: 'Archivo Black', sans-serif;
-    font-weight: 600;
+    font-weight: 900;
     font-size: 9vh;
 }
 
 #country-guide-header-small {
     font-family: 'Archivo Black', sans-serif;
-    font-weight: 600;
-    font-size: 3.5rem;
+    font-weight: 200;
+    font-size: 1.9rem;
 }
 
 /* For crispy form to not use asterisk for required fields */
