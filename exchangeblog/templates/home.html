@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}<title>Explore-Exchange | Home</title> {% endblock%}
+{% block title %}<title>{% trans "Explore-Exchange | Home" %}</title> {% endblock%}
 
 {% block home-active %}active{% endblock %}
 
@@ -13,21 +13,57 @@
 
 {% block content %}
 
+<style>
+.toBeSlidden {
+    visibility: hidden;
+}
+
+.slide-in-left {
+    animation-duration: 1.5s;
+    animation-name: slideinLeft;
+    animation-direction: alternate;
+}
+.slide-in-right {
+    animation-duration: 1.5s;
+    animation-name: slideinRight;
+    animation-direction: alternate;
+}
+
+
+@keyframes slideinLeft {
+    0% {
+        transform: translateX(-900px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideinRight {
+    0% {
+        transform: translateX(900px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+</style>
+
 <div class="row justify-content-center my-3">
-    <h2 class="text-center display-4 col-md-6 animated pulse delay-1s"><strong>Welcome to Explore Exchange!</strong></h2>
+    <h2 class="text-center display-4 col-md-6 animated pulse delay-1s"><strong>{% trans "Welcome to Explore Exchange!" %}</strong></h2>
 </div>
 
 {% if author_name %}
 <div class="text-center">
-    <a href="{% url 'author-detail' author_name %}"><button class="btn btn-success btn-lg">Go to my author page</button></a>
+    <a href="{% url 'author-detail' author_name %}"><button class="btn btn-success btn-lg">{% trans "Go to my author page" %}</button></a>
 </div>
 {% endif %}
 
 <div class="panel">
 
 
-<div class="container mx-md-5 p-3">
-<div class="row mx-md-5 aniview" data-av-animation="slideInLeft">
+<div class="row toBeSlidden right">
     <div class="col-md-6">
         <div class="text-center">
             <img width=300 src="{% static 'images/Signpost.jpg'%}">
@@ -35,13 +71,13 @@
     </div>
 
     <div class="col-md-6 align-self-center">
-        <h1 class="align-middle">Exchange Guide</h1>
+        <h1 class="align-middle">{% trans "Exchange Guide" %}</h1>
         <p class="small">{% trans "See how you can start your exchange year journey by looking at our guide." %}</p>
-        <a href="{% url 'guide-list' %}"><button class="btn btn-info shadow-lg" href="">Start your journey</button></a>
+        <a href="{% url 'guide-list' %}"><button class="btn btn-info shadow-lg" href="">{% trans "Start your journey" %}</button></a>
     </div>
 </div>
 
-<div class="row mb-5 mx-md-5 aniview" data-av-animation="slideInRight">
+<div class="row mb-5 mx-md-5 aniview toBeSlidden left">
     <div class="col-md-7 order-md-12">
         <div class="text-center">
             <img width=300 src="{% static 'images/blogPen.jpg' %}">
@@ -49,13 +85,13 @@
     </div>
 
     <div class="col-md-5 align-self-center oder-md-1">
-        <h1 class="align-middle">Blog</h1>
+        <h1 class="align-middle">{% trans "Blog" %}</h1>
         <p class="small">{% trans "Explore how exchange students around the world are spending their time and what experiences they make." %}</p>
-        <a href="{% url 'post-list' %}"><button class="btn btn-info shadow-lg">Explore</button></a>
+        <a href="{% url 'post-list' %}"><button class="btn btn-info shadow-lg">{% trans "Explore" %}</button></a>
     </div>
 </div>
 
-<div class="row mx-md-5 aniview" data-av-animation="slideInLeft">
+<div class="row mx-md-5 aniview toBeSlidden right">
     <div class="col-md-6">
         <div class="text-center">
             <img width=200 src="{% static 'images/FlagHeart.jpg' %}">
@@ -63,9 +99,9 @@
     </div>
 
     <div class="col-md-6 align-self-center">
-        <h1 class="align-middle">Country Guides</h1>
+        <h1 class="align-middle">{% trans "Country Guides" %}</h1>
         <p class="small">{% trans "See how you can start your exchange year journey by looking at our guide." %}</p>
-        <a href="{% url 'countryguide-list' %}"><button class="btn btn-info shadow-lg">See the countries</button></a>
+        <a href="{% url 'countryguide-list' %}"><button class="btn btn-info shadow-lg">{% trans "See the countries" %}</button></a>
     </div>
 </div>
 </div>
@@ -74,14 +110,14 @@
 
 <div class="panel">
 
-<h1 class="display-4 mt-5">{% trans "Start your exchange journey here:"%}</h1>
+<h1 class="display-4 mt-5 p-3">{% trans "Start your exchange journey here:"%}</h1>
 <div class="container col-md-11 float-left">
     {% include "guide_post_snippet.html" with list=guide_teaser teaser=True %}
 </div>
 
 
 <h1 class="display-4 p-3">{% trans "Look at the most recent blog posts:" %}</h1>
-    <div class="container">
+    <div class="container col-md-11 float-left">
         {% include "exchangeblog/post_list_snippet.html" with list=latest_posts teaser=True %}
     </div>
 
@@ -91,10 +127,74 @@
 {% block body-meta %}
 <script src="https://unpkg.com/jquery-aniview/dist/jquery.aniview.js"></script>
 <script type="text/javascript">
+(function($) {
+
+  /**
+   * Copyright 2012, Digital Fusion
+   * Licensed under the MIT license.
+   * http://teamdf.com/jquery-plugins/license/
+   *
+   * @author Sam Sehnert
+   * @desc A small plugin that checks whether elements are within
+   *     the user visible viewport of a web browser.
+   *     only accounts for vertical position, not horizontal.
+   */
+
+  $.fn.visible = function(partial) {
+    
+      var $t            = $(this),
+          $w            = $(window),
+          viewTop       = $w.scrollTop(),
+          viewBottom    = viewTop + $w.height(),
+          _top          = $t.offset().top,
+          _bottom       = _top + $t.height(),
+          compareTop    = partial === true ? _bottom : _top,
+          compareBottom = partial === true ? _top : _bottom;
+    
+    return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+
+  };
+    
+})(jQuery);
+
 $(document).ready(function() {
     $(function() {
-        $('.aniview').AniView();
+
+  var allSliders = $(".toBeSlidden");
+
+  allSliders.each(function(i, el) {
+  var el = $(el);
+  if (el.visible(true)) {
+    if (el.hasClass("right")) {
+        el.addClass("slide-in-right");
+        el.removeClass("toBeSlidden");
+    } else if (el.hasClass("left")) {
+        el.addClass("slide-in-left");
+        el.removeClass("toBeSlidden");
+    } 
+  }; 
+});
+
+  $(window).scroll(function(event) {
+  
+  allSliders.each(function(i, el) {
+    var el = $(el);
+    if (el.visible(true)) {
+        setTimeout(() => {
+            if (el.hasClass("right")) {
+                el.addClass("slide-in-right");
+                el.removeClass("toBeSlidden");
+            } else if (el.hasClass("left")) {
+                el.addClass("slide-in-left");
+                el.removeClass("toBeSlidden");
+            };
+        }, 300);
+  };
+  
+        });
     })
+});
+
 });
 </script>
 

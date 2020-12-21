@@ -67,6 +67,7 @@
      * Show banner at the top of the page
      */
     showBanner: function () {
+      console.log("showing banner");
       var _this = this,
         getElementById = document.getElementById.bind(document),
         banner = getElementById('cookies-eu-banner'),
@@ -96,6 +97,7 @@
 
       if (rejectButton) {
         addClickListener(rejectButton, function () {
+          console.log("hello?, cookie?");
           removeBanner();
           _this.setConsent(false);
 
@@ -169,6 +171,7 @@
      * to specify their own transition effects
      */
     removeBanner: function (wait) {
+      console.log("removing banner");
       var banner = document.getElementById('cookies-eu-banner');
       banner.classList.add('cookies-eu-banner--before-remove');
       setTimeout (function() {

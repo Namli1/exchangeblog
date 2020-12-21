@@ -43,6 +43,7 @@ urlpatterns = [
     path('ckeditor/browse/', permission_required('exchangeblog.add_blogpost')(ckeditor_views.browse), name='ckeditor_browse'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
      name='sitemap'),
+
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('images/favicon.ico'))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
