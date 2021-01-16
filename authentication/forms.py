@@ -6,7 +6,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.forms import ValidationError
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV3
-from blog import development_settings as settings
+try:
+    from blog import development_settings as settings
+except ImportError as e:
+    from blog import settings
 
 class SignUpWithCodeForm(UserCreationForm):
     registration_code = forms.CharField(label=_("Registration Code"), max_length=7, required=True, help_text=_("Please enter the registration code given to you to register your account. (You cannot sign up without a registration code. Contact us on Instagram to request a code.)"))
