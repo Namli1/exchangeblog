@@ -148,7 +148,7 @@ LOCALE_PATHS = (
 
 #ReCaptcha Configuration
 RECAPTCHA_PUBLIC_KEY = '6LfiFBkaAAAAAG_2J5fXAqsVI3aFfOdjjcrXUcnu'
-RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY") '6LfiFBkaAAAAADI3nOf3YUARDPitcS5eAnuqzeVr'
+RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
 
 ####################################
     ##  CKEDITOR CONFIGURATION ##
