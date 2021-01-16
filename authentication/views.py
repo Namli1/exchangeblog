@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.models import Permission
-from blog import development_settings as settings
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
 
