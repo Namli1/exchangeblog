@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['.explore-exchange.com', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'authentication',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +47,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'exchangeblog',
     'exchangeguide',
-    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -145,6 +145,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+#ReCaptcha Configuration
+RECAPTCHA_PUBLIC_KEY = '6LfiFBkaAAAAAG_2J5fXAqsVI3aFfOdjjcrXUcnu'
+RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY") '6LfiFBkaAAAAADI3nOf3YUARDPitcS5eAnuqzeVr'
 
 ####################################
     ##  CKEDITOR CONFIGURATION ##

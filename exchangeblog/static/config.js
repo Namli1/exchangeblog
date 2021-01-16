@@ -4,6 +4,15 @@ var klaroConfig = {
     hideDeclineAll: true,
 
     acceptAll: true,
+    translations: {
+        zz: {
+            privacyPolicyUrl: '/en/privacy-policy',
+        },
+        de: {
+            privacyPolicyUrl: '/de/datenschutzerklärung',
+        }
+    },
+
     services: [
         // {
         //     name: 'google-tag-manager',
@@ -53,6 +62,19 @@ var klaroConfig = {
             cookies: [
                 /^_ga(_.*)?/ // we delete the Google Analytics cookies if the user declines its use
             ],
-        }
+        },
+        {
+            name: 'crsftoken',
+            purposes: ['neccessary'],
+            required: true,
+            translations: {
+                en: {
+                    description: 'This cookie is associated with Django web development platform for python. Used to help protect the website against Cross-Site Request Forgery attacks.'
+                },
+                de: {
+                    description: 'Dieses Cookie ist mit der Django Web-Entwicklungs Platform für Python assoziert. Es wird benutzt, um die Webseite gegen Cross-Site Request Forgery Attacken zu schützen.'
+                },
+            },
+        },
     ]
 }

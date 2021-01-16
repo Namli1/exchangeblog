@@ -23,11 +23,14 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['num_blog_posts'] = BlogPost.objects.all().count()
-        context['num_blog_authors'] = BlogAuthor.objects.all().count()
+        # context['num_blog_posts'] = BlogPost.objects.all().count()
+        # context['num_blog_authors'] = BlogAuthor.objects.all().count()
         context['latest_posts'] = BlogPost.objects.all()[:3]
         context['guide_teaser'] = GuidePost.objects.all()[:3]
         if self.request.user.is_authenticated:
+            context['username'] = self.request.user.username
+            if self.request.user.has_perm('exchangeblog.add_blogauthor') and not BlogAuthor.objects.filter(user=self.request.user).exists():
+                        context['needs_author_registration'] = True
             try:
                 if BlogAuthor.objects.get(user=self.request.user):
                     context["author_name"] = BlogAuthor.objects.get(user=self.request.user).slug
@@ -116,7 +119,7 @@ class BlogAuthorCreate(UserPassesTestMixin, LoginRequiredMixin, PermissionRequir
         form.instance.user = self.request.user
         form.instance.slug = slugify(form.instance.name)
         self.request.user.user_permissions.add(Permission.objects.get(codename="add_blogpost"))
-        if form.instance.social_media_link[:3] != 'http' or form.instance.social_media_link[:4] != 'http':
+        if form.instance.social_media_link[:3] != 'http' or form.instance.social_media_link[:4] != 'http' or form.instance.social_media_link[:5] != 'https':
             form.instance.social_media_link = "http://%s" % form.instance.social_media_link
         return super().form_valid(form)
 
@@ -143,7 +146,8 @@ class BlogPostCreate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTest
     fields = ['title', 'date_of_creation', 'language', 'country', 'short_description', 'blogcontent', 'thumbnail_picture'] 
     permission_object = None
     permission_required = 'exchangeblog.add_blogpost'
-    permission_denied_message = "Please make sure you're logged in and have applied as an author."
+    permission_denied_message = _("Please make sure you're logged in and have applied as an author.")
+    
     def form_valid(self, form):
         form.instance.author = get_object_or_404(BlogAuthor, user=self.request.user)
         form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])

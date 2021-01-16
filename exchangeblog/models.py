@@ -57,11 +57,10 @@ class BlogAuthor(models.Model):
     social_media_link = models.CharField(help_text="Please paste the url of your social media page (optional).", blank=True, null=True, max_length=300)
     slug = models.SlugField(null=False, unique=True)
     bio = models.TextField(help_text=_("Please enter a short description of yourself."), max_length=400)
-    allowed_posts = models.PositiveSmallIntegerField(default=0)
+    allowed_posts = models.PositiveSmallIntegerField(default=1)
 
     class Meta:
         ordering = ['name']
-        permissions = (('can_edit_blogpost', 'Can create, update and delete a blogpost '),)
 
     def __str__(self):
         return self.name

@@ -1,0 +1,38 @@
+{% extends 'base_generic.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title>{% trans "Sign Up" %}</title>{% endblock %}
+
+{% block content %}
+  <h1>{% trans "Sign up" %}</h1>
+  <form method="post" id="submit-form">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button id="signup-submit" 
+            type="submit" 
+            class="btn btn-success mb-5"
+            data-sitekey="{{ recaptcha_key }}" 
+            data-callback='onSubmit'
+            data-action='submit'>{% trans "Sign up" %}</button>
+  </form>
+{% endblock %}
+
+{% block body-meta %}
+
+<script src="https://www.recaptcha.net/recaptcha/api.js?render={{ recaptcha_key }}"></script>
+<script>
+grecaptcha.ready(function() {
+    $('#submit-form').submit(function(e) {
+      console.log('hello2?');
+        var form = this;
+        e.preventDefault();
+        grecaptcha.execute('{{ recaptcha_key }}', {action: 'submit'}).then(function(token) {
+          $('input#id_recaptcha').val(token);
+          console.log(token);
+          form.submit();
+      });
+    })
+  });
+</script>
+{% endblock %}

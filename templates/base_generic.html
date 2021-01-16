@@ -153,25 +153,9 @@ h1 {
 <hr />
 </header>
 
-{% comment %} <div class="container">
-  <div id="cookies-eu-banner" class="d-flex justify-content-between alert alert-danger alert-dismissible fade show" role="alert">
-      <b class="align-self-center">{% trans "Heads Up! We need your consent." %}</b>
-      
-      <div>
-        <button id="cookies-eu-accept" class="btn btn-success m-1">{% trans "Accept" %}</button>
-        <a href="{% url 'privacy-policy' %}" class="btn btn-light m-1" id="cookies-eu-more">{% trans "Read more" %}</a>
-        <button id="cookies-eu-reject" class="btn btn-danger m-1">{% trans "Reject" %}</button>
-      </div>
-  
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-  </div>
-</div> {% endcomment %}
-
 {% block full-width %}{% endblock %}
   
-<div id="main" class="container">
+<div id="main" class="container mb-5">
 {% block content %}
 {% endblock %}
 </div>
@@ -195,14 +179,12 @@ h1 {
         </li>
         
         <li class="nav-item pt-3 pb-1 mx-1">
-          <a><button type="button" class="btn btn-info" onClick="return klaro.show(klaroConfig, true);">{% trans "&#127850; settings" %}</button></a>
+          <a><button type="button" class="btn btn-info" onClick="return klaro.show(klaroConfig, true);">&#127850; {% trans "settings" %}</button></a>
         </li>
-
-        {% comment %} 
+        
         <li class="nav-item pt-4 pb-1 mx-1">
-          <a class="nav-link d-inline text-white" target="_blank" href="https://www.instagram.com/explore-exchange">{% trans "Follow us on" %}<img src="{% static 'instagram-logo.png' %}" alt="Instagram Site Button" width="15%"></a>
+          <a class="nav-link d-inline text-white" target="_blank" href="https://www.instagram.com/explore_exchange/">{% trans "Follow us on" %}<img src="{% static 'instagram-logo.png' %}" alt="Instagram Site Button" width="15%"></a>
         </li>
-       {% endcomment %} 
 
       </ul>
     </div>

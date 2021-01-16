@@ -26,19 +26,19 @@
         </div>
 </div>
 
-<div class="container">
-{% include "country_guide_snippet.html" with list=object_list queryset=queryset pagination=True %}
-</div>
-
 {% if user.is_authenticated and is_author %}
 <div class="row my-4">
 
     <div class="col-12 text-center">
-        <a href="{% url 'guide-create' %}"><button class="btn btn-success btn-lg">{% trans 'Add country guide post' %}</button>
+        <a href="{% url 'guide-create' %}" class="text-white text-decoration-none"><button class="btn btn-success btn-lg">{% trans 'Add country guide post' %}</button></a>
     </div>
 
 </div>
 {% endif %}
+
+<div class="container">
+{% include "country_guide_snippet.html" with list=object_list queryset=queryset pagination=True %}
+</div>
 
 {% endblock %}
 

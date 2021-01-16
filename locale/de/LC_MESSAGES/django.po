@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-17 15:55+0200\n"
-"PO-Revision-Date: 2020-04-18 19:05+0800\n"
+"POT-Creation-Date: 2020-12-28 17:06+0100\n"
+"PO-Revision-Date: 2020-12-28 17:07+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,21 +16,152 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.2\n"
 
-#: blog/urls.py:48
+#: authentication/forms.py:8
+msgid "Registration Code"
+msgstr "Registrierungscode"
+
+#: authentication/forms.py:8
+msgid ""
+"Please enter the registration code given to you to register your account. "
+"(Required for signup)"
+msgstr ""
+"Gib bitte den Registrierungscode ein, der dir gegeben wurde, um deinen "
+"Account zu erstellen. (Code ist erforderlich für Registrierung)"
+
+#: authentication/forms.py:16
+msgid ""
+"Invalid registration code. Please make sure you spelled it correctly. "
+"Otherwise contact the admin."
+msgstr ""
+"Ungültiger Registrierungscode. Achte darauf, dass du den Code richtig "
+"geschrieben hast. Wenn es nicht funktioniert, kontaktiere den Admin."
+
+#: authentication/templates/registration/login.html:5
+msgid "Log in"
+msgstr "Einloggen"
+
+#: authentication/templates/registration/login.html:8
+#: authentication/templates/registration/login.html:12
+#: authentication/templates/registration/password_reset_complete.html:11
+#: templates/base_generic.html:173
+msgid "Login"
+msgstr "Einloggen"
+
+#: authentication/templates/registration/login.html:13
+msgid "Forgot password?"
+msgstr "Passwort vergessen?"
+
+#: authentication/templates/registration/password_reset_complete.html:5
+msgid "Password reset complete"
+msgstr "Password wurde zurückgesetzt"
+
+#: authentication/templates/registration/password_reset_complete.html:8
+msgid "Your password has been reset"
+msgstr "Ihr Password wurde zurückgesetzt"
+
+#: authentication/templates/registration/password_reset_complete.html:9
+msgid "Your new password has been set."
+msgstr "Ihr neues Passwort wurde gespeichert."
+
+#: authentication/templates/registration/password_reset_complete.html:10
+msgid "You can now log in with your new password: "
+msgstr "Du kannst dich jetzt mit deinem neuen Passwort einloggen: "
+
+#: authentication/templates/registration/password_reset_confirm.html:5
+msgid "Enter new password"
+msgstr "Neues Passwort eingeben"
+
+#: authentication/templates/registration/password_reset_confirm.html:11
+msgid "Set a new password"
+msgstr "Neues Passwort festlegen"
+
+#: authentication/templates/registration/password_reset_confirm.html:15
+msgid "Reset password"
+msgstr "Passwort zurücksetzten"
+
+#: authentication/templates/registration/password_reset_confirm.html:20
+msgid "Password link invalid"
+msgstr "Passwort link ungültig"
+
+#: authentication/templates/registration/password_reset_confirm.html:22
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+"Der Passwort-Zurücksetzungs Link ist ungültig, möglicherweise weil er schon "
+"benutzt wurde. Forder bitte nochmal an, dein Passwort zurückzusetzen, um "
+"einen neuen Link zu bekommen."
+
+#: authentication/templates/registration/password_reset_done.html:5
+msgid "Password reset done"
+msgstr "Passwort Zurücksetzung fertig"
+
+#: authentication/templates/registration/password_reset_done.html:8
+msgid "Password reset sent"
+msgstr "Passwort Zurücksetzung wurde versendet"
+
+#: authentication/templates/registration/password_reset_done.html:9
+msgid ""
+"We’ve emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+"Wir haben dir über die E-Mail Anweisungen gesendet, ein neues Passwort "
+"festzulegen, wenn ein Account mit der E-Mail, die du eingegeben hast, "
+"existiert. Du solltest die E-Mail in Kürze erhalten."
+
+#: authentication/templates/registration/password_reset_done.html:10
+msgid ""
+"If you don’t receive an email, please make sure you’ve entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+"Wenn du keine E-Mail bekommen hast, stelle bitte sicher, dass du die E-Mail "
+"eingegeben hast, mit der du auch deinen Account registriert hast und "
+"überprüfe auch deinen Spam-Ordner."
+
+#: authentication/templates/registration/password_reset_form.html:5
+msgid "Password reset"
+msgstr "Passwort zurücksetzen"
+
+#: authentication/templates/registration/password_reset_form.html:8
+msgid "Forgotten your password?"
+msgstr "Passwort vergessen?"
+
+#: authentication/templates/registration/password_reset_form.html:9
+msgid ""
+"Enter the email address associated with your account below and we'll email "
+"instructions for setting a new password."
+msgstr ""
+"Gib bitte deine E-Mail Adresse, die du für die Registrierung benutzt hast "
+"unten ein und wir senden dir Anweisungen, um ein neues Passwort festzulegen."
+
+#: authentication/templates/registration/password_reset_form.html:18
+msgid "Send instructions"
+msgstr "Anweisungen schicken"
+
+#: authentication/templates/registration/signup.html:5
+msgid "Sign Up"
+msgstr "Registrieren"
+
+#: authentication/templates/registration/signup.html:8
+#: authentication/templates/registration/signup.html:12
+msgid "Sign up"
+msgstr "Registrieren"
+
+#: blog/urls.py:52
 msgid "about"
 msgstr "über"
 
-#: blog/urls.py:49
+#: blog/urls.py:53
 msgid "privacy-policy"
 msgstr "datenschutzerklärung"
 
-#: blog/urls.py:50
+#: blog/urls.py:54
 msgid "blog/"
 msgstr "blog/"
 
-#: blog/urls.py:51
+#: blog/urls.py:55
 msgid "guide/"
 msgstr "guide"
 
@@ -131,11 +262,6 @@ msgstr "Dein Blog Autor Profil"
 msgid "All Blog Authors"
 msgstr "Alle Blog Autoren"
 
-#: exchangeblog/templates/exchangeblog/blogauthor_list.html:20
-#, python-format
-msgid " %(name)s "
-msgstr ""
-
 #: exchangeblog/templates/exchangeblog/blogpost_confirm_delete.html:4
 msgid "Delete Post?"
 msgstr "Post löschen?"
@@ -147,16 +273,12 @@ msgstr ""
 "Bist du sicher, dass du den Blog Post löschen möchtest: %(blogpost.title)s"
 
 #: exchangeblog/templates/exchangeblog/blogpost_detail.html:22
-#, fuzzy
-#| msgid "Update"
 msgid "Update Post"
-msgstr "Aktualisieren"
+msgstr "Beitrag aktualisieren"
 
 #: exchangeblog/templates/exchangeblog/blogpost_detail.html:23
-#, fuzzy
-#| msgid "Delete Post?"
 msgid "Delete Post"
-msgstr "Post löschen?"
+msgstr "Post löschen"
 
 #: exchangeblog/templates/exchangeblog/blogpost_detail.html:54
 msgid "Next Post:"
@@ -216,19 +338,61 @@ msgid "See all posts"
 msgstr "Alle Posts"
 
 #: exchangeblog/templates/exchangeblog/post_list_snippet.html:94
-#, fuzzy
-#| msgid "Sorry, there are no blog posts yet."
 msgid "Sorry, no blog posts found."
 msgstr "Sorry, es gibt noch keine Blog Posts."
 
-#: exchangeblog/templates/home.html:40 exchangeblog/templates/home.html:68
+#: exchangeblog/templates/home.html:5
+msgid "Explore-Exchange | Home"
+msgstr "Explore-Exchange | Startseite"
+
+#: exchangeblog/templates/home.html:55
+msgid "Hi there! "
+msgstr "Hallo! "
+
+#: exchangeblog/templates/home.html:55
+msgid ""
+"It seems that you just signed up. Go ahead and set up your author profile by "
+"clicking the button."
+msgstr ""
+"Es sieht so aus, dass du dich gerade registriert hast. Jetzt kannst du dein "
+"Autoren-Profile einrichten, indem du auf den Button drückst."
+
+#: exchangeblog/templates/home.html:56
+msgid "Create Profile"
+msgstr "Profil erstellen"
+
+#: exchangeblog/templates/home.html:65
+msgid "Welcome back, "
+msgstr "Willkommen zurück, "
+
+#: exchangeblog/templates/home.html:67
+msgid "Welcome to Explore Exchange!"
+msgstr "Wilkommen zu Explore-Exchange!"
+
+#: exchangeblog/templates/home.html:73
+msgid "Go to my author page"
+msgstr "Zu meiner Autorenseite gehen"
+
+#: exchangeblog/templates/home.html:88
+msgid "Exchange Guide"
+msgstr "Austausch-Guide"
+
+#: exchangeblog/templates/home.html:89 exchangeblog/templates/home.html:117
 msgid ""
 "See how you can start your exchange year journey by looking at our guide."
 msgstr ""
 "Guck dir unseren Wegweiser an, um zu sehen, wie du dein Austauschjahr "
 "beginnen kannst."
 
-#: exchangeblog/templates/home.html:54
+#: exchangeblog/templates/home.html:90
+msgid "Start your journey"
+msgstr "Hier ist der Beginn deiner Austauschreise"
+
+#: exchangeblog/templates/home.html:102 templates/base_generic.html:112
+msgid "Blog"
+msgstr "Blog"
+
+#: exchangeblog/templates/home.html:103
 msgid ""
 "Explore how exchange students around the world are spending their time and "
 "what experiences they make."
@@ -236,11 +400,23 @@ msgstr ""
 "Entdecke wie Austauschschüler auf der ganzen Welt ihre Zeit verbringen und "
 "welche Erfahrungen sie machen."
 
-#: exchangeblog/templates/home.html:123
+#: exchangeblog/templates/home.html:104
+msgid "Explore"
+msgstr "Erkunden"
+
+#: exchangeblog/templates/home.html:116 templates/base_generic.html:106
+msgid "Country Guides"
+msgstr "Länder-Guides"
+
+#: exchangeblog/templates/home.html:118
+msgid "See the countries"
+msgstr "Länder angucken"
+
+#: exchangeblog/templates/home.html:127
 msgid "Start your exchange journey here:"
 msgstr "Hier ist der Beginn deiner Austauschreise:"
 
-#: exchangeblog/templates/home.html:129
+#: exchangeblog/templates/home.html:133
 msgid "Look at the most recent blog posts:"
 msgstr "Hier sind die letzten Posts:"
 
@@ -248,11 +424,30 @@ msgstr "Hier sind die letzten Posts:"
 msgid "posts/"
 msgstr "posts/"
 
-#: exchangeblog/urls.py:10
+#: exchangeblog/urls.py:11
 msgid "authors/"
 msgstr "autoren/"
 
-#: exchangeblog/views.py:127 exchangeblog/views.py:133
+#: exchangeblog/views.py:108
+msgid ""
+"Permission Denied, ask the site admin if you are allowed to become an "
+"author. If you are an author already, you also can't access this site."
+msgstr ""
+"Zutritt verwehrt, frag den Webseiten-Admin, ob du auch Autor werden kannst. "
+"Wenn du schon ein Autor bist, kannst du diese Seite auch nicht aufrufen."
+
+#: exchangeblog/views.py:129
+msgid "Permission denied. You don't have access to this site."
+msgstr "Zutritt verwehrt. Du hast keine Berechtigung für diese Seite."
+
+#: exchangeblog/views.py:149
+msgid "Please make sure you're logged in and have applied as an author."
+msgstr ""
+"Bitte stelle sicher, dass du eingeloggt bist und dich als Autor beworben "
+"hast."
+
+#: exchangeblog/views.py:156 exchangeblog/views.py:162
+#: exchangeguide/views.py:79 exchangeguide/views.py:145
 msgid "You are not allowed to write more than {} posts, sorry."
 msgstr "Du kannst nicht mehr als {} Posts schreiben."
 
@@ -328,11 +523,11 @@ msgstr ""
 msgid "Briefly describe what can be seen in picture."
 msgstr "Beschreibe kurz, was man in dem Bild sehen kann."
 
-#: exchangeguide/templates/country_guide_snippet.html:33
+#: exchangeguide/templates/country_guide_snippet.html:53
 msgid "See more countries"
 msgstr "Mehr Länder"
 
-#: exchangeguide/templates/country_guide_snippet.html:86
+#: exchangeguide/templates/country_guide_snippet.html:106
 msgid "Sorry, there are no country guides."
 msgstr "Sorry, es gibt noch keine Länder-Guides."
 
@@ -386,6 +581,10 @@ msgstr "Guck dir diese anderen Länder an:"
 msgid "Country guides"
 msgstr "Länder-Guides"
 
+#: exchangeguide/templates/exchangeguide/countryguidepost_filter.html:33
+msgid "Add country guide post"
+msgstr "Länder-Guide hinzufügen"
+
 #: exchangeguide/templates/exchangeguide/countryguidepost_form.html:6
 msgid "Add Country Guide"
 msgstr "Länder-Guide hinzufügen"
@@ -409,11 +608,11 @@ msgstr "Guck dir diese interessanten Länder an:"
 
 #: exchangeguide/templates/exchangeguide/guidepost_form.html:6
 msgid "Add Guide Post"
-msgstr "Länder-Guide schreiben"
+msgstr "Guide schreiben"
 
 #: exchangeguide/templates/exchangeguide/guidepost_list.html:6
 msgid "All Guide Posts"
-msgstr "Alle Länder-Guides"
+msgstr "Alle Guide Beiträge"
 
 #: exchangeguide/templates/exchangeguide/guidepost_list.html:10
 msgid "Explore how you can go on an exchange:"
@@ -427,17 +626,25 @@ msgstr ""
 "Wie kannst du deine Austauschreise starten, welche Schritte sind dafür "
 "notwendig? Die Tutorials helfen dir auf dem Weg."
 
-#: exchangeguide/views.py:119
+#: exchangeguide/templates/exchangeguide/guidepost_list.html:18
+msgid "Add guide post"
+msgstr "Guide hinzufügen"
+
+#: exchangeguide/templates/guide_post_snippet.html:113
+msgid "Sorry, there are no guides yet."
+msgstr "Sorry, es gibt noch keine Guides."
+
+#: exchangeguide/views.py:73 exchangeguide/views.py:161
 msgid "You are not allowed to write more than {} posts"
 msgstr "Du kannst nicht mehr als {} Posts schreiben"
 
-#: templates/about.html:4 templates/base_generic.html:127
+#: templates/about.html:4 templates/base_generic.html:178
 msgid "About us"
 msgstr "Über uns"
 
 #: templates/about.html:10
 msgid "About Explore-Exchange.com"
-msgstr "Über Explorer-Exchange.com"
+msgstr "Über Explore-Exchange.com"
 
 #: templates/about.html:12
 msgid ""
@@ -463,57 +670,45 @@ msgstr "Seit"
 msgid "22th January 2020"
 msgstr "22. Januar 2020"
 
-#: templates/base_generic.html:29
+#: templates/base_generic.html:95
 msgid "Home"
 msgstr "Home"
 
-#: templates/base_generic.html:35
+#: templates/base_generic.html:101
 msgid "Guide"
 msgstr "Guide"
 
-#: templates/base_generic.html:39
+#: templates/base_generic.html:105
 msgid "Guide Posts"
-msgstr "Länder-Guides"
+msgstr "Guide Posts"
 
-#: templates/base_generic.html:40
-msgid "Country Guides"
-msgstr "Länder-Guides"
-
-#: templates/base_generic.html:46
-msgid "Blog"
-msgstr "Blog"
-
-#: templates/base_generic.html:57
+#: templates/base_generic.html:123
 msgid "About"
 msgstr "Über"
 
-#: templates/base_generic.html:72
+#: templates/base_generic.html:138
 msgid "Languages"
 msgstr "Sprachen"
 
-#: templates/base_generic.html:92
-msgid "Heads Up! We need your consent."
-msgstr "Achtung! Wir brachen deine Einverständniserklärung."
-
-#: templates/base_generic.html:95
-msgid "Read more"
-msgstr "Mehr"
-
-#: templates/base_generic.html:96
-msgid "Reject"
-msgstr "Ablehnen"
-
-#: templates/base_generic.html:97
-msgid "Accept"
-msgstr "Akzeptieren"
-
-#: templates/base_generic.html:120
+#: templates/base_generic.html:170
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: templates/base_generic.html:123
-msgid "Login"
-msgstr "Einloggen"
+#: templates/base_generic.html:182
+msgid "settings"
+msgstr "Einstellungen"
+
+#~ msgid "Heads Up! We need your consent."
+#~ msgstr "Achtung! Wir brachen deine Einverständniserklärung."
+
+#~ msgid "Read more"
+#~ msgstr "Mehr"
+
+#~ msgid "Reject"
+#~ msgstr "Ablehnen"
+
+#~ msgid "Accept"
+#~ msgstr "Akzeptieren"
 
 #~ msgid "Current user:"
 #~ msgstr "Aktuell eingeloggt:"
