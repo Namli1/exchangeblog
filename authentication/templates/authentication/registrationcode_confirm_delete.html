@@ -1,0 +1,27 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}<title>Delete Code {{ registrationcode }}?</title>{% endblock %}
+
+{% block content %}
+
+<div class="m-md-2">
+<h2>Delete <i>{{ registrationcode }}</i>?</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete the code "{{ registrationcode }}"?<p>
+    {% if registrationcode.user %}
+    <div class="alert alert-info" role="alert">
+        It has already been used by {{ registrationcode.user }}
+    </div>
+    {% else %}
+    <div class="alert alert-danger" role="alert">
+    &#9888; It has not been used yet
+    </div>
+    {% endif %}
+    </p>
+    <input type="submit" value="Delete" class="btn btn-danger my-3">
+</form>
+</div>
+ 
+{% endblock %}

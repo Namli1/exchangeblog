@@ -1,0 +1,60 @@
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#main {
+    flex: 1 0 auto;
+}
+
+#bottom-footer {
+   font-family: 'Montserrat', sans-serif;
+   font-weight: 200;
+   font-size: 1rem;
+   flex-shrink: 0;
+   margin: 0;
+}
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+}
+
+#logo-header {
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+#copyright {
+    font-size: 0.8rem
+}
+
+#country-guide-header {
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 900;
+    font-size: 9vh;
+}
+
+#country-guide-header-small {
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 200;
+    font-size: 1.9rem;
+}
+
+/* For crispy form to not use asterisk for required fields */
+.asteriskField {
+    display: none;
+}

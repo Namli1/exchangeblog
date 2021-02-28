@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 9e733913025d51e830b044160aaac3faade3adca Tilman <tilmanherz03@gmail.com> 1570880391 +0800	branch: Created from HEAD
+9e733913025d51e830b044160aaac3faade3adca 4ae353d9ea8d691646136c6313cd4b3830a86e9c Tilman <tilmanherz03@gmail.com> 1570880771 +0800	commit: Second attempt to get a WYSIWYG editor running, this time with django-ckeditor
+4ae353d9ea8d691646136c6313cd4b3830a86e9c 889e805169f82ad55fb8c5a7a3e4ab3026149029 Tilman <tilmanherz03@gmail.com> 1570936761 +0800	commit: Deleted some TinyMCE references

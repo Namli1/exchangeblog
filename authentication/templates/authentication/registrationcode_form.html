@@ -1,0 +1,17 @@
+{% extends 'base_generic.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title>{% trans "Create a new registration code" %}</title>{% endblock %}
+
+{% block content %}
+
+<h2 class="mx-3">{% trans 'Create a new Registration Code' %}</h2>
+
+<form method="post" class="mx-lg-5">
+{% csrf_token %}
+{{ form|crispy }}
+<input type=submit class="btn btn-primary mt-3 mb-3">
+</form>
+
+{% endblock %}

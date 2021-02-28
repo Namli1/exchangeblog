@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title%}<title> {% trans "Blog Authors" %}</title> {% endblock %}
+
+{% block meta %} <link rel=stylesheet href="{% static 'css/authorlist_styles.css'%}"> {% endblock %}
+
+{% block blogauthors-active %}active{% endblock %}
+
+{% block content %}
+<h1>{% trans "All Blog Authors" %}</h1>
+{% if blogauthor_list %}
+<ul class="authorlist-ul">
+{% for author in blogauthor_list %}
+<a id="author-link" href="{{ author.get_absolute_url }}">
+    <div class="list-item-container">
+        <li>
+            <h3 id="authorname">{{ author.name }}</h3>
+        </li>
+    </div>
+    </a>
+{% endfor %}
+</ul>
+{% else%}
+<p>There are no authors</p>
+{% endif %}
+{% endblock %}

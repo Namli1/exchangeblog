@@ -1,0 +1,74 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title%} <title>{{ blogpost.title }}</title>{% endblock %}
+
+{% block meta %} 
+    <link rel="stylesheet" href="{% static 'css/blogpost_styles.css' %}">
+{% endblock %}
+
+{% block content%}
+<div class="row mb-5">
+    <div class="col-md-9">
+        <div class="mr-auto">
+            <h1 class="text-center"> {{ blogpost.title }}</h1>
+        </div>
+        <div class="row justify-content-center mb-4">
+            <button class="btn btn-light disabled mx-2">{{ blogpost.date_of_creation }}</button>
+            <a href="{% url 'post-list' %}?country={{ blogpost.country }}"><button class="btn btn-light mx-2">{{ blogpost.get_country_display }}</button></a>
+            <a href="{% url 'post-list' %}?language={{ blogpost.language }}"><button class="btn btn-light mx-2 my-1">{% comment %}Translators: In meaning e.g. In English/In Chinese/...{% endcomment %}{% trans "In" %} {{ blogpost.get_language_display }}</button></a>
+            {% if is_author %}
+            <a class="btn btn-primary mx-2 mt-2" href="{% url 'post-update' blogpost.author.slug blogpost.slug %}" role="button">{% trans "Update Post" %}</a>
+            <a class="btn btn-danger mx-2 mt-2" href="{% url 'post-delete' blogpost.author.slug blogpost.slug %}" role="button">{% trans "Delete Post" %}</a>
+            {% endif %}
+        </div>
+        <div id="image-container" class="container mx-auto">
+            <img src="{{ blogpost.thumbnail_picture.url }}">
+        </div>
+
+        <p>{{ blogpost.blogcontent | safe }}</p>
+
+        <div class="text-center justify-content-between d-block">
+        <!-- AddToAny BEGIN -->
+        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+            <a class="a2a_button_facebook mt-1"></a>
+            <a class="a2a_button_twitter mt-1"></a>
+            <a class="a2a_button_reddit mt-1"></a>
+            <a class="a2a_button_email mt-1"></a>
+            <a class="a2a_button_whatsapp mt-1"></a>
+            <a class="a2a_button_wechat mt-1"></a>
+            <a class="a2a_button_line mt-1"></a>
+            <a class="a2a_button_print mt-1"></a>
+            <a class="a2a_dd mt-1" href="https://www.addtoany.com/share"></a>
+        </div>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+        <!-- AddToAny END -->
+        </div>
+
+
+        {% if next_post %}
+        <hr />
+        <div class="jumbotron bg-secondary mt-5">
+            <div class="row">
+                <h1 class="col-md-6 display-3 text-white text-center">{% trans "Next Post:" %}</h1>
+                <div class="col-md-6">{% include "exchangeblog/post_list_snippet.html" with list=next_post deck=True%}</div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="col-md-3 mt-5">
+        <hr class="d-block d-lg-none d-xl-block" />
+            <h4>{% trans "About this Author" %}</h4>
+            <p>{{ blogpost.author.bio|truncatechars:200 }}</p>
+            <a href="{{ blogpost.author.get_absolute_url }}"><button class="btn btn-secondary">{{ blogpost.author }} <span class="badge badge-light">{{ num_authors_posts }}</span></button></a>
+
+            <hr />
+            <h4>{% trans "More from this author:" %}</h4>
+            {% include "exchangeblog/post_list_snippet.html" with list=more_posts_from_author deck=True %}
+
+    </div>
+</div>
+
+{% endblock%}

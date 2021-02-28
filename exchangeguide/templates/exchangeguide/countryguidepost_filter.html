@@ -1,0 +1,55 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}<title>{% trans "Country guides" %}</title>{% endblock%}
+
+{% block guides-active %}active text-dark{% endblock %}
+
+
+{% block content %}
+<h1>{% trans "Country guides" %}</h1>
+
+<div class="row">
+        <div class="col-md-6">
+                <form action="" method="get">
+                        <div class="card card-body mb-3">
+                                <div class="form-row justify-content-between">
+                                        <div class="col-md-8 mb-1">
+                                                {{ country_guide_list.form.country }}
+                                        </div>
+                                        <button id="filter-submit" class="btn btn-primary col-md-4 mb-2" type="submit">{% trans "Filter" %}</button>
+                                </div>
+                        </div>
+                </form>
+        </div>
+</div>
+
+{% if user.is_authenticated and is_author %}
+<div class="row my-4">
+
+    <div class="col-12 text-center">
+        <a href="{% url 'countryguide-create' %}" class="text-white text-decoration-none"><button class="btn btn-success btn-lg">{% trans 'Add country guide post' %}</button></a>
+    </div>
+
+</div>
+{% endif %}
+
+<div class="container">
+{% include "country_guide_snippet.html" with list=object_list queryset=queryset pagination=True %}
+</div>
+
+{% endblock %}
+
+{% block body-meta %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+    $('.js-filter-multiple').select2({
+        placeholder: "Select country",
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title> {% trans "All Guide Posts"%}</title>{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Explore how you can go on an exchange:" %}</h1>
+
+<p class="bg-dark text-white p-3 rounded">{% trans "See how you can start your exchange journey and what steps you have to take to go abroad. The tutorials guide you along the way." %}</p>
+
+{% if user.is_authenticated and is_author %}
+<div class="row my-4">
+
+    <div class="col-12 text-center">
+        <a href="{% url 'guide-create' %}" class="text-white text-decoration-none"><button class="btn btn-success btn-lg">{% trans 'Add guide post' %}</button></a>
+    </div>
+
+</div>
+{% endif %}
+
+{% include "guide_post_snippet.html" with list=guidepost_list pagination=True %}
+
+
+{% endblock %}

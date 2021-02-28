@@ -1,0 +1,2 @@
+0000000000000000000000000000000000000000 8c93e81450d2dfb0789a0c9d0abfdb974d8c83cf Tilman <tilmanherz03@gmail.com> 1573196998 +0800	branch: Created from New-Tinymce
+8c93e81450d2dfb0789a0c9d0abfdb974d8c83cf 0adae944e897ebb82391038c107361b2262a7f83 Tilman <tilmanherz03@gmail.com> 1573375344 +0800	commit: django-tinymce with django-filebrowser and thumbnail_picture field but only in admin

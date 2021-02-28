@@ -1,0 +1,147 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}<title>{{ countryguidepost.get_country_display }}</title>{% endblock %}
+
+{% block full-width %}
+<h1 class="text-center display-2">
+<strong>{{ countryguidepost.get_country_display }}</strong>
+{% if is_author %}
+<a class="btn btn-primary mx-1 mt-2" href="{% url 'countryguide-update' countryguidepost.slug %}" role="button">{% trans "Update Post" %}</a>
+<a class="btn btn-danger mt-2" href="{% url 'countryguide-delete' countryguidepost.slug %}" role="button">{% trans "Delete Post" %}</a>
+{% endif %}
+</h1>
+
+
+    <div id="carouselCountryImage" class="carousel slide mb-4" data-ride="carousel">
+        <ol class="carousel-indicators">
+        {% for image in countryguidepost.slideshowimages_set.all %}
+                <li data-target="#carouselCountryImage" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner m-0">
+            {% for slideShowImage in countryguidepost.slideshowimages_set.all %}
+            <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                <img src="{{ slideShowImage.image.url }}" class="d-block w-100 m-auto" style="object-fit: cover;" alt="{{ slideShowImage.image_description }}">
+                <div class="carousel-caption d-none d-md-block rounded-lg" style="background: rgba(0,0,0,0.25);">
+                    <p>{{ slideShowImage.image_description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% if countryguidepost.slideshowimages_set.all.count > 1 %}
+        <a class="carousel-control-prev" href="#carouselCountryImage" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">{% trans "Previous" %}</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselCountryImage" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">{% trans "Next" %}</span>
+        </a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block content %}
+
+{% if is_author %}
+<div class="row">
+        <a class="btn btn-primary mx-2 mt-2" href="{% url 'post-update' countryguidepost.author.slug countryguidepost.slug %}" role="button">{% trans "Update Post" %}</a>
+        <a class="btn btn-danger mx-2 mt-2" href="{% url 'post-delete' countryguidepost.author.slug countryguidepost.slug %}" role="button">{% trans "Delete Post" %}</a>
+</div>
+{% endif %}
+
+<div class="row">
+
+    <div class="col-md-9">
+
+        <div class="p-md-5 p-3 rounded-lg bg-dark col-12 w-100 text-light align-center">
+                <h1 class="display-4">{% trans "Brief overview" %}</h1>
+                <hr />
+
+            <div class="row justify-content-around p-1">
+                <div class="col-md-5 p-1 border-left border-info rounded-sm bg-light mb-3 text-dark" style="border-width: 5px !important; font-family: Roboto, sans-serif;">
+                    <div class="row d-flex align-items-center justify-content-center">
+                        <div class="col-2 p-2 mx-2">
+                            <img class="rounded-circle bg-info d-block p-1" src="{% static 'icons/geo.svg' %}">
+                        </div>
+                        <div class="col-9">
+                            <p style="font-size: 1rem;">{{ countryguidepost.capital_city }} <small class="text-muted d-block" style="font-size: 0.8rem;">{% trans "Capital City" %}</small></p>
+                        </div>
+                    </div> 
+                </div>
+
+                <div class="col-md-5 p-1 border-left border-danger rounded-sm bg-light mb-3 text-dark" style="border-width: 5px !important; font-family: Roboto, sans-serif;">
+                    <div class="row d-flex align-items-center justify-content-center">
+                        <div class="col-2 p-2 mx-2">
+                            <img class="rounded-circle bg-danger my-auto d-block p-1" src="{% static 'icons/chat-fill.svg' %}">
+                        </div>
+                        <div class="col-9">
+                            <p style="font-size: 1rem;">{{ countryguidepost.spoken_language }} <small class="text-muted d-block" style="font-size: 0.8rem;">{% trans "Spoken Language(s)" %}</small></p>
+                        </div>
+                    </div> 
+                </div>
+
+                <div class="col-md-5 p-1 border-left border-success rounded-sm bg-light mb-3 text-dark" style="border-width: 5px !important; font-family: Roboto, sans-serif;">
+                    <div class="row d-flex align-items-center justify-content-center">
+                        <div class="col-2 p-2 mx-2">
+                            <img class="rounded-circle bg-success my-auto d-block p-1" src="{% static 'icons/Cash.png' %}">
+                        </div>
+                        <div class="col-9">
+                            <p style="font-size: 1rem;">{{ countryguidepost.currency }} <small class="text-muted d-block" style="font-size: 0.8rem;">{% trans "Currency" %}</small></p>
+                        </div>
+                    </div> 
+                </div>
+
+                <div class="col-md-5 p-1 border-left border-warning rounded-sm bg-light mb-3 text-dark" style="border-width: 5px !important; font-family: Roboto, sans-serif;">
+                    <div class="row d-flex align-items-center justify-content-center">
+                        <div class="col-2 p-2 mx-2">
+                            <img class="rounded-circle bg-warning my-auto d-block p-1" src="{% static 'icons/people-fill.svg' %}">
+                        </div>
+                        <div class="col-9">
+                            <p style="font-size: 1rem;">{{ countryguidepost.population }} <small class="text-muted d-block" style="font-size: 0.8rem;">{% trans "Population" %}</small></p>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container mb-5">
+            {{ countryguidepost.country_guide_content|safe }}
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mt-5">
+            <hr class="d-block d-lg-none d-xl-block" />
+                <h4>{% trans "About this Author" %}</h4>
+                <p>{{ countryguidepost.author.bio|truncatechars:200 }}</p>
+                <a href="{{ countryguidepost.author.get_absolute_url }}"><button class="btn btn-secondary">{{ countryguidepost.author }} <span class="badge badge-light">{{ num_authors_posts }}</span></button></a>
+
+
+        {% if more_posts_from_country %}
+            <hr />
+            <h4>{% trans "See blog posts from this country" %}</h4>
+            {% include "exchangeblog/post_list_snippet.html" with list=more_posts_from_country deck=True%}
+
+        {% else %}
+            <hr />
+            <h4>{% trans "More from this author:" %}</h4>
+            {% include "exchangeblog/post_list_snippet.html" with list=more_posts_from_author deck=True %}
+       {% endif %} 
+    </div>
+
+</div>
+
+<hr /> 
+
+{% if other_country_guides %}
+<div class="container mb-5">
+    <h1>{% trans "Check out these other countries:" %}</h1>
+    {% include "country_guide_snippet.html" with list=other_country_guides teaser=True small_list=True %}
+    {% endif %}
+</div>
+
+{% endblock %}

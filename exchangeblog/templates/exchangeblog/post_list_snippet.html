@@ -1,0 +1,95 @@
+{% load i18n %}
+{% load static %}
+
+{% block meta %}
+    <link rel="stylesheet" href="{% static 'css/blogpost_styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+{% endblock %}
+
+{% if list %}
+{% if deck == True %}<div class="mb-5">
+{% else %}<div class="card-columns mb-5">{% endif%}
+    {% for post in list %}
+    
+    <div id="post-card" class="card bg-light shadow mb-3">
+        <img class="card-img-top" src="{{ post.thumbnail_picture.url }}">
+        <div class="card-body">
+            <strong class="d-inline-block mb-2 text-primary">{{ post.get_country_display }}</strong>
+            <a href="{{ post.get_absolute_url }}" class="stretched-link"><h2 id="post-title" class="card-title text-left"> {{ post.title }}</h2></a>
+            <p class="card-text text-right"><small class="text-muted">-{{ post.date_of_creation }}</small></p>
+            <p>{{ post.short_description }} </p>
+            <p>{% trans "Author:" %} <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
+            <div class="card-footer">
+                <small class="text-muted text-left">{% trans "Language:" %} {{ post.get_language_display }}</small>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% if teaser == True %}
+    {% if list.count > 1 %}
+    <div id="post-card" class="card bg-light mb-5 mt-3 shadow-sm aniview" data-av-animation="slideInLeft">
+            <div class="card-body">
+                <a href="{% url 'post-list'%}" class="text-decoration-none text-secondary"><h2 class="text-dark">{% trans "See more" %} &rarr;</h2></a>
+            </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    {% if author_more == True %}
+    {% if list.count > 9 %}
+    <div id="post-card" class="card bg-light mb-5 mt-3">
+            <div class="card-body">
+                <a href="{% url 'post-list'%}?author={{ blogauthor.id }}" class="text-decoration-none text-secondary"><h2 class="text-monospace">{% trans "See all posts" %} -></h2></a>
+            </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+</div>
+
+    {% if pagination == True %}
+    <nav aria-label="Blog list navigation">
+<ul class="pagination mb-5">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+            <a class="page-link" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+            <a class="page-link" href="?{% if querystring %}&amp;{{ querystring }}{% endif %}page=1" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+    </li>
+    {% endif %}
+
+    {% for page_number in page_obj.paginator.page_range %}
+    {% if forloop.counter < 7 %}
+    {% if page_number == page_obj.number %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_number }}">{{ page_number }}<span class="sr-only">(current)</span></a>
+        </li>
+    {% else %}
+        <li class="page-item"><a class="page-link" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_number }}">{{ page_number }}</a></li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?{% if querystring %}{{ querystring }}&amp;{% endif %}page={{ page_obj.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+{% else %}
+<p>{% trans "Sorry, no blog posts found." %}</p>
+{% endif %}

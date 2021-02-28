@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+
+<html lang="en">
+<head>
+  {% block title %}<title>Explore-Exchange</title>{% endblock %}
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:600,200|Raleway|Roboto:500|Archivo+Black&display=swap" rel="stylesheet">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async type="opt-in" data-type="application/javascript" type="text/plain" data-name="google-analytics" data-src="https://www.googletagmanager.com/gtag/js?id=UA-178031048-1"></script>
+    <script type="opt-in" data-type="application/javascript" type="text/plain" data-name="google-analytics">
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-178031048-1');
+    </script>
+
+
+
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static '/favicons/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static '/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static '/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static '/site.webmanifest' %}">
+  <link rel="mask-icon" href="{% static '/safari-pinned-tab.svg' %}" color="#27438c">
+  <meta name="apple-mobile-web-app-title" content="Explore-Exchange">
+  <meta name="application-name" content="Explore-Exchange">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="theme-color" content="#ffffff">
+
+
+    {% block meta %}{% endblock %}
+</head>
+
+<body>
+<style>
+
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#main {
+    flex: 1 0 auto;
+}
+
+#bottom-footer {
+   font-family: 'Montserrat', sans-serif;
+   font-weight: 200;
+   font-size: 1rem;
+   flex-shrink: 0;
+   margin: 0;
+}
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+}
+
+#logo-header {
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+#copyright {
+    font-size: 0.8rem
+}
+
+.django-ckeditor-widget{
+  width: 100%;
+}
+
+</style>
+
+<header>
+  <nav class="navbar navbar-expand-md navbar-light bg-white absolute-top mt-3">
+    <div class="container">
+        <button class="navbar-toggler order-2 order-md-1" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-left navbar-right" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse order-3 order-md-2 float-left" id="navbar-left">
+            <ul class="navbar-nav mr-auto">
+              
+              <li class="nav-item">
+                <a class="nav-link {% block home-active %}{% endblock %}" href="{% url 'home' %}">{% trans "Home" %}</a>
+              </li>
+
+              <li class="nav-item dropdown">
+                <div class="btn-group">
+                  <button type="button" class="btn dropdown-toggle nav-link {% block guides-active %}{% endblock %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {% trans "Guide" %}
+                  </button>
+                    
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{% url 'guide-list' %}"><img src="{% static 'icons/compass.svg' %}" width="30em" height="30em">{% trans "Guide Posts" %}</a>
+                      <a class="dropdown-item" href="{% url 'countryguide-list' %}"><img src="{% static 'icons/flag.svg' %}" width="30em" height="30em">{% trans "Country Guides" %}</a>
+                    </div>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link mr-3 {% block blogposts-active %}{% endblock %}" href="{% url 'post-list' %}?language={% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|upper }}">{% trans "Blog" %}</a>
+              </li>
+
+          </div>
+
+              <a class="navbar-brand order-1 order-md-3 text-center" id="logo-header" href="{% url 'home' %}">Explore-Exchange</a>
+
+              <div class="collapse navbar-collapse order-4 order-md-4" id="navbar-right">
+                <ul class="navbar-nav ml-auto">
+                  
+                  <li class="nav-item">
+                    <a class="nav-link {% block about-active %}{% endblock %}" href="{% url 'about' %}">{% trans "About" %}</a>
+                  </li>
+
+                  
+
+                  <li class="nav-item dropdown">
+                      <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                          <input name="next" type="hidden" value="{{ request.path }}">
+                          
+                              {% get_current_language as LANGUAGE_CODE %}
+                              {% get_available_languages as LANGUAGES %}
+                              {% get_language_info_list for LANGUAGES as languages %}
+                              <div class="btn-group">
+                                  <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      {% trans "Languages" %}<img src="{% static 'icons/arrow-repeat.svg' %}">
+                                    </button>
+                                  <div class="dropdown-menu dropdown-menu-right">
+                                    {% for language in languages %}
+                                        <button type="submit" name="language" value="{{ language.code }}" class="dropdown-item {% if language.code == LANGUAGE_CODE %}active{% endif %}">
+                                            {{ language.name_local }}
+                                        </button>
+                                    {% endfor %}
+                                  </div>
+                              </div>
+                      </form>
+                  </li>
+
+    </div>
+  </nav>
+<hr />
+</header>
+
+{% block full-width %}{% endblock %}
+  
+<div id="main" class="container mb-5">
+{% block content %}
+{% endblock %}
+</div>
+
+<footer class="footer" style="bottom: 0%;">
+  <div id="bottom-footer" class="container-fluid bg-dark">
+    <div class="row d-flex">
+      <div class="col-lg-7">
+      <ul class="nav text-lg-left text-sm-center">
+
+        {% if user.is_authenticated %}
+          <li class="nav-item pt-3 pb-1 mx-1"><a href="{% url 'logout' %}?next={{request.path}}"><button type="button" class="btn btn-danger">{% trans "Logout" %}</button></a></li>
+
+        {% else %}
+          <li class="nav-item pt-3 pb-1 mx-1"><a href="{% url 'login' %}?next={{request.path}}"><button type="button" class="btn btn-success">{% trans "Login" %}</button></a></li>
+        {% endif %}
+
+
+        <li class="nav-item mx-1">
+          <a class="nav-link text-white pt-4 pb-1" href="{% url 'about' %}">{% trans "About us" %}</a>
+        </li>
+        
+        <li class="nav-item pt-3 pb-1 mx-1">
+          <a><button type="button" class="btn btn-info" onClick="return klaro.show(klaroConfig, true);">&#127850; {% trans "settings" %}</button></a>
+        </li>
+        
+        <li class="nav-item pt-4 pb-1 mx-1">
+          <a class="nav-link d-inline text-white" target="_blank" href="https://www.instagram.com/explore_exchange/">{% trans "Follow us on" %}<img src="{% static 'instagram-logo.png' %}" alt="Instagram Site Button" width="15%"></a>
+        </li>
+
+      </ul>
+    </div>
+      <div class="col-lg-5">
+        <ul class="nav text-lg-left text-sm-center">
+
+            <li class="nav-item">
+              <p><a class="nav-link text-white pt-4 pb-1" href="{% url 'privacy-policy' %}">Privacy Policy</a></p>
+            </li>
+
+            <li class="nav-item">
+              <p id="copyright" class="text-white pt-4 pb-1"> 
+              <!-- Filled automatically using jquery, see below --></p>
+            </li>
+      </div>
+      </div>
+  </div>
+</footer>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script defer type="application/javascript" src="{% static 'config.js' %}"></script>
+    <script defer data-config="klaroConfig" type="text/javascript" src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js"></script>
+    {% block body-meta %}{% endblock %}
+    <script>
+    var year = new Date().getFullYear();
+    $('#copyright').html(`&copy; ${year}, Explore-Exchange.com`);
+    </script>
+</body>
+</html>

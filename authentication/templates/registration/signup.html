@@ -1,0 +1,44 @@
+{% extends 'base_generic.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title>{% trans "Sign Up" %}</title>{% endblock %}
+
+{% block content %}
+  <h1>{% trans "Sign up" %}</h1>
+  <form method="post" id="submit-form">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="row">
+      <button id="signup-submit" 
+              type="submit" 
+              class="btn btn-success mb-5 mx-3"
+              data-sitekey="{{ recaptcha_key }}" 
+              data-callback='onSubmit'
+              data-action='submit'>{% trans "Sign up" %}</button>
+      <div class="spinner-border d-none" role="status" id="loading-spinner">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </form>
+{% endblock %}
+
+{% block body-meta %}
+
+<script src="https://www.recaptcha.net/recaptcha/api.js?render={{ recaptcha_key }}"></script>
+<script>
+grecaptcha.ready(function() {
+    $('#submit-form').submit(function(e) {
+      $('#loading-spinner').removeClass('d-none');
+      console.log('hello2?');
+        var form = this;
+        e.preventDefault();
+        grecaptcha.execute('{{ recaptcha_key }}', {action: 'submit'}).then(function(token) {
+          $('input#id_recaptcha').val(token);
+          console.log(token);
+          form.submit();
+      });
+    })
+  });
+</script>
+{% endblock %}

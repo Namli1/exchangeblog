@@ -1,0 +1,46 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title>{% trans "Edit Country Guide" %}</title>{% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-3">{% trans "Edit Country Guide" %}</h1>
+
+<form method="post" class="form-horizontal" action="" enctype='multipart/form-data'>
+    {% csrf_token %}
+    <table class="mx-auto">
+        {{ form.media }}
+        {{ form|crispy }}
+
+    {{ formset.management_form }}
+    <div class="form-row justify-content-between border rounded bg-light p-3">
+    <h2>Choose up to 10 pictures for a picture slideshow.</h2>
+    {% for form in formset.forms %}
+        <div class="col-auto m-3" id="slideshowForm">
+            {{ form|crispy }}
+            <div class="w-100 d-none d-md-block"></div>
+        </div>
+    {% endfor %}
+    </div>
+    </table>
+    <input type=submit class="btn btn-secondary mt-3 mb-5">
+</form>
+
+{% endblock %}
+
+{% block body-meta %}
+<script src="{% static 'jquery.formset.js' %}"></script>
+<script type="text/javascript">
+    $(function() {
+        $('#slideshowForm').formset({
+            prefix: '{{ formset.prefix }}',
+            {% comment %} addText: '{% trans "add another" %}',
+            deleteText: "{% trans 'remove' %}",  {% endcomment %}
+            addCssClass: 'btn btn-success btn-small m-auto',
+            deleteCssClass: 'btn btn-danger btn-small',
+        });
+    });
+</script>
+{% endblock %}

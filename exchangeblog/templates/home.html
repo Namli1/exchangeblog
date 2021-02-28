@@ -1,0 +1,237 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}<title>{% trans "Explore-Exchange | Home" %}</title> {% endblock%}
+
+{% block home-active %}active{% endblock %}
+
+{% block meta %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+.toBeSlidden {
+    visibility: hidden;
+}
+
+.slide-in-left {
+    animation-duration: 1.5s;
+    animation-name: slideinLeft;
+    animation-direction: alternate;
+}
+.slide-in-right {
+    animation-duration: 1.5s;
+    animation-name: slideinRight;
+    animation-direction: alternate;
+}
+
+@keyframes slideinLeft {
+    0% {
+        transform: translateX(-900px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideinRight {
+    0% {
+        transform: translateX(900px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+</style>
+
+{% if request.user.is_superuser %}
+<div class="container d-flex flex-row flex-wrap justify-content-center">
+    <div class="card shadow-lg m-3">
+        <div class="card-body">
+            <h5 class="card-text">Registration codes</h5>
+        </div>
+        <div class="btn-group btn-group-lg m-1" role="group">
+            <a class="btn btn-primary" href="{% url 'code-list' %}">List</a>
+            <a class="btn btn-secondary" href="{% url 'code-create' %}">Create</a>
+        </div>
+    </div>
+
+    <div class="card shadow-lg m-3">
+        <div class="card-body">
+            <h5 class="card-text">Admin Site</h5>
+        </div>
+        <div class="btn-group btn-group-lg m-1" role="group">
+            <a href="{% url 'admin:index' %}" class="btn btn-info text-decoration-none">Admin</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if needs_author_registration and not request.user.is_superuser %}
+<div class="d-flex justify-content-between alert alert-danger alert-dismissible fade show" role="alert">
+  <p class="m-1"> <strong>{% trans "Hi there! " %}</strong> {%trans "It seems that you just signed up. Go ahead and set up your author profile by clicking the button." %}</small></p>
+  <a class="text-white text-decoration-none" href="{% url 'author-create' %}"><button type="button" class="btn btn-success m-1">{% trans "Create Profile" %}</button></a>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+
+<div class="row justify-content-center my-3">
+    {% if username %}
+        <h2 class="text-center display-4 col-md-6 animated pulse delay-1s"><strong>{% trans "Welcome back, " %} {{ username }}!</strong></h2>
+    {% else %}
+        <h2 class="text-center display-4 col-md-6 animated pulse delay-1s"><strong>{% trans "Welcome to Explore Exchange!" %}</strong></h2>
+    {% endif %}
+</div>
+
+{% if author_name %}
+<div class="text-center">
+    <a href="{% url 'author-detail' author_name %}"><button class="btn btn-success btn-lg">{% trans "Go to my author page" %}</button></a>
+</div>
+{% endif %}
+
+<div class="panel">
+
+
+<div class="row toBeSlidden right">
+    <div class="col-md-6">
+        <div class="text-center">
+            <img width=300 src="{% static 'images/Signpost.jpg'%}">
+        </div>
+    </div>
+
+    <div class="col-md-6 align-self-center">
+        <h1 class="align-middle">{% trans "Exchange Guide" %}</h1>
+        <p class="small">{% trans "See how you can start your exchange year journey by looking at our guide." %}</p>
+        <a href="{% url 'guide-list' %}"><button class="btn btn-info shadow-lg" href="">{% trans "Start your journey" %}</button></a>
+    </div>
+</div>
+
+<div class="row mb-5 mx-md-5 aniview toBeSlidden left">
+    <div class="col-md-7 order-md-12">
+        <div class="text-center">
+            <img width=300 src="{% static 'images/blogPen.jpg' %}">
+        </div>
+    </div>
+
+    <div class="col-md-5 align-self-center oder-md-1">
+        <h1 class="align-middle">{% trans "Blog" %}</h1>
+        <p class="small">{% trans "Explore how exchange students around the world are spending their time and what experiences they make." %}</p>
+        <a href="{% url 'post-list' %}"><button class="btn btn-info shadow-lg">{% trans "Explore" %}</button></a>
+    </div>
+</div>
+
+<div class="row mx-md-5 aniview toBeSlidden right">
+    <div class="col-md-6">
+        <div class="text-center">
+            <img width=200 src="{% static 'images/FlagHeart.jpg' %}">
+        </div>
+    </div>
+
+    <div class="col-md-6 align-self-center">
+        <h1 class="align-middle">{% trans "Country Guides" %}</h1>
+        <p class="small">{% trans "See how you can start your exchange year journey by looking at our guide." %}</p>
+        <a href="{% url 'countryguide-list' %}"><button class="btn btn-info shadow-lg">{% trans "See the countries" %}</button></a>
+    </div>
+</div>
+</div>
+
+</div>
+
+<div class="panel">
+
+<h1 class="display-4 mt-5 p-3">{% trans "Start your exchange journey here:"%}</h1>
+<div class="container col-md-11 float-left">
+    {% include "guide_post_snippet.html" with list=guide_teaser teaser=True %}
+</div>
+
+
+<h1 class="display-4 p-3">{% trans "Look at the most recent blog posts:" %}</h1>
+    <div class="container col-md-11 float-left">
+        {% include "exchangeblog/post_list_snippet.html" with list=latest_posts teaser=True %}
+    </div>
+
+</div>
+{% endblock %}
+
+{% block body-meta %}
+<script src="https://unpkg.com/jquery-aniview/dist/jquery.aniview.js"></script>
+<script type="text/javascript">
+(function($) {
+
+  /**
+   * Copyright 2012, Digital Fusion
+   * Licensed under the MIT license.
+   * http://teamdf.com/jquery-plugins/license/
+   *
+   * @author Sam Sehnert
+   * @desc A small plugin that checks whether elements are within
+   *     the user visible viewport of a web browser.
+   *     only accounts for vertical position, not horizontal.
+   */
+
+  $.fn.visible = function(partial) {
+    
+      var $t            = $(this),
+          $w            = $(window),
+          viewTop       = $w.scrollTop(),
+          viewBottom    = viewTop + $w.height(),
+          _top          = $t.offset().top,
+          _bottom       = _top + $t.height(),
+          compareTop    = partial === true ? _bottom : _top,
+          compareBottom = partial === true ? _top : _bottom;
+    
+    return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+
+  };
+    
+})(jQuery);
+
+$(document).ready(function() {
+    $(function() {
+
+  var allSliders = $(".toBeSlidden");
+
+  allSliders.each(function(i, el) {
+  var el = $(el);
+  if (el.visible(true)) {
+    if (el.hasClass("right")) {
+        el.addClass("slide-in-right");
+        el.removeClass("toBeSlidden");
+    } else if (el.hasClass("left")) {
+        el.addClass("slide-in-left");
+        el.removeClass("toBeSlidden");
+    } 
+  }; 
+});
+
+  $(window).scroll(function(event) {
+  
+  allSliders.each(function(i, el) {
+    var el = $(el);
+    if (el.visible(true)) {
+        setTimeout(() => {
+            if (el.hasClass("right")) {
+                el.addClass("slide-in-right");
+                el.removeClass("toBeSlidden");
+            } else if (el.hasClass("left")) {
+                el.addClass("slide-in-left");
+                el.removeClass("toBeSlidden");
+            };
+        }, 300);
+  };
+  
+        });
+    })
+});
+
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+0000000000000000000000000000000000000000 b4df0b18b279638e534bad8cfa90897a7e1eca0a Tilman <tilmanherz03@gmail.com> 1566309773 +0200	commit (initial): First commit
+b4df0b18b279638e534bad8cfa90897a7e1eca0a 4996b1af86311e5629ed63bfabffde0a353865d9 Tilman <tilmanherz03@gmail.com> 1566310076 +0200	pull origin master --allow-unrelated-histories: Merge made by the 'recursive' strategy.
+4996b1af86311e5629ed63bfabffde0a353865d9 a2caa016b5cff68bc00ae5fc72dffdadbc0e04b8 Tilman <tilmanherz03@gmail.com> 1566373525 +0200	commit: Made secret key an evironment variable
+a2caa016b5cff68bc00ae5fc72dffdadbc0e04b8 826b33154f9caf96f01bcb5f7f9ce04f17cef4ff Tilman <tilmanherz03@gmail.com> 1567516924 +0800	commit: Added ALLOWED_HOSTS variable value
+826b33154f9caf96f01bcb5f7f9ce04f17cef4ff efb638b506834881dfaac32004cd349cb0f426b1 Tilman <tilmanherz03@gmail.com> 1567518190 +0800	commit: Imported load_dotenv
+efb638b506834881dfaac32004cd349cb0f426b1 1e114522421b3a8a150a2bc88295d44d4a60c901 Tilman <tilmanherz03@gmail.com> 1567519517 +0800	commit: environment variable trough os.environ.get instead of os.getenv
+1e114522421b3a8a150a2bc88295d44d4a60c901 c1dd181bc4252a9f5747457892f24cbefca08b8c Tilman <tilmanherz03@gmail.com> 1567519640 +0800	commit: Deleted dotenv import line
+c1dd181bc4252a9f5747457892f24cbefca08b8c d49f337cb9c2585b4fb947c39c1d4a19f1db599d Tilman <tilmanherz03@gmail.com> 1571567572 +0800	commit: Added CKeditor with image upload, but cant delete images
+d49f337cb9c2585b4fb947c39c1d4a19f1db599d c85c27336f04c9a85086f77360a02a4197258fbd Tilman <tilmanherz03@gmail.com> 1571568518 +0800	commit: Added .gitignore
+c85c27336f04c9a85086f77360a02a4197258fbd 63089385bc6bf42c477feca4f5a46d1213288bfe Tilman <tilmanherz03@gmail.com> 1571656798 +0800	commit: Last stable version before trying to implement django-filer intor ckeditor
+63089385bc6bf42c477feca4f5a46d1213288bfe 8ef862e8efbce8a93b98bd5073110c037f0b2a74 Tilman <tilmanherz03@gmail.com> 1572656941 +0800	commit: Trying to implement django-filer
+8ef862e8efbce8a93b98bd5073110c037f0b2a74 0b8804a18257c001bd79eeef9eb5db0a961961e9 Tilman <tilmanherz03@gmail.com> 1572657007 +0800	pull origin master: Merge made by the 'recursive' strategy.
+0b8804a18257c001bd79eeef9eb5db0a961961e9 931141ce5b31f8edda2ad3bc50b073e1d0f3139b Tilman <tilmanherz03@gmail.com> 1573120077 +0800	commit: Updated Version without any wysiwyg editor
+931141ce5b31f8edda2ad3bc50b073e1d0f3139b 736a5910946db25be498374c4b440b19bd900a42 Tilman <tilmanherz03@gmail.com> 1576995177 +0800	merge updated-ckeditor: Fast-forward
+736a5910946db25be498374c4b440b19bd900a42 ff87fb0c3e235eb45f0bf45333e3cd837ec32a18 Tilman <tilmanherz03@gmail.com> 1576995700 +0800	commit: Updated requirements.txt and settings.py
+ff87fb0c3e235eb45f0bf45333e3cd837ec32a18 adef8d3bfb64d60ed313051607c823885ff7ee97 Tilman <tilmanherz03@gmail.com> 1576996486 +0800	commit: No django-guardian
+adef8d3bfb64d60ed313051607c823885ff7ee97 f6bfafb6c6e71982e028120c1ee8a995c3600e56 Tilman <tilmanherz03@gmail.com> 1576996542 +0800	commit: No django-guardian
+f6bfafb6c6e71982e028120c1ee8a995c3600e56 b9342963ee5152bbb1733f28c98673ef8370f8e9 Tilman <tilmanherz03@gmail.com> 1576996979 +0800	commit: Forgot import
+b9342963ee5152bbb1733f28c98673ef8370f8e9 f8188537fc05b6325783a5773236876cdd6e9d12 Tilman <tilmanherz03@gmail.com> 1576997264 +0800	commit: Deleted unused commits
+f8188537fc05b6325783a5773236876cdd6e9d12 d7a21a9b1c6f644fad4af36d8188b97bfdf1755c Tilman <tilmanherz03@gmail.com> 1576997845 +0800	commit: Corrected import statement
+d7a21a9b1c6f644fad4af36d8188b97bfdf1755c 84fa0947429135393fc7965d4100bc5ca2182e69 Tilman <tilmanherz03@gmail.com> 1576998209 +0800	commit: Deleted django-guardian import
+84fa0947429135393fc7965d4100bc5ca2182e69 b899e7b27b52564d892e7a18005d08d0ff521b2f Tilman <tilmanherz03@gmail.com> 1576999308 +0800	commit: Resolved error
+b899e7b27b52564d892e7a18005d08d0ff521b2f a2967642262b78951793ef3615c168eba7d9e14e Tilman <tilmanherz03@gmail.com> 1576999509 +0800	commit: Small improvement
+a2967642262b78951793ef3615c168eba7d9e14e 790786ecf04d73a013c875796b57c404f223d1ea Tilman <tilmanh0000000000000000000000000000000000000000 0c95a86defa14ec55f225269b1098999c6682717 Tilman <tilmanherz03@gmail.com> 1566309970 +0200	pull: storing head
+0c95a86defa14ec55f225269b1098999c6682717 4996b1af86311e5629ed63bfabffde0a353865d9 Tilman <tilmanherz03@gmail.com> 1566310105 +0200	update by push
+4996b1af86311e5629ed63bfabffde0a353865d9 a2caa016b5cff68bc00ae5fc72dffdadbc0e04b8 Tilman <tilmanherz03@gmail.com> 1566373535 +0200	update by push
+a2caa016b5cff68bc00ae5fc72dffdadbc0e04b8 826b33154f9caf96f01bcb5f7f9ce04f17cef4ff Tilman <tilmanherz03@gmail.com> 1567516939 +0800	update by push
+826b33154f9caf96f01bcb5f7f9ce04f17cef4ff efb638b506834881dfaac32004cd349cb0f426b1 Tilman <tilmanherz03@gmail.com> 1567518204 +0800	update by push
+efb638b506834881dfaac32004cd349cb0f426b1 1e114522421b3a8a150a2bc88295d44d4a60c901 Tilman <tilmanherz03@gmail.com> 1567519536 +0800	update by push
+1e114522421b3a8a150a2bc88295d44d4a60c901 c1dd181bc4252a9f5747457892f24cbefca08b8c Tilman <tilmanherz03@gmail.com> 1567519655 +0800	update by push
+c1dd181bc4252a9f5747457892f24cbefca08b8c d49f337cb9c2585b4fb947c39c1d4a19f1db599d Tilman <tilmanherz03@gmail.com> 1571567589 +0800	update by push
+d49f337cb9c2585b4fb947c39c1d4a19f1db599d 63089385bc6bf42c477feca4f5a46d1213288bfe Tilman <tilmanherz03@gmail.com> 1571656816 +0800	update by push
+63089385bc6bf42c477feca4f5a46d1213288bfe 98b015342a1881586c1ca33e92fa4f43d41c1f29 Tilman <tilmanherz03@gmail.com> 1572656965 +0800	pull origin master: fast-forward
+98b015342a1881586c1ca33e92fa4f43d41c1f29 0b8804a18257c001bd79eeef9eb5db0a961961e9 Tilman <tilmanherz03@gmail.com> 1572657030 +0800	update by push
+0b8804a18257c001bd79eeef9eb5db0a961961e9 931141ce5b31f8edda2ad3bc50b073e1d0f3139b Tilman <tilmanherz03@gmail.com> 1573120092 +0800	update by push
+931141ce5b31f8edda2ad3bc50b073e1d0f3139b 736a5910946db25be498374c4b440b19bd900a42 Tilman <tilmanherz03@gmail.com> 1576995198 +0800	update by push
+736a5910946db25be498374c4b440b19bd900a42 ff87fb0c3e235eb45f0bf45333e3cd837ec32a18 Tilman <tilmanherz03@gmail.com> 1576995718 +0800	update by push
+ff87fb0c3e235eb45f0bf45333e3cd837ec32a18 adef8d3bfb64d60ed313051607c823885ff7ee97 Tilman <tilmanherz03@gmail.com> 1576996503 +0800	update by push
+adef8d3bfb64d60ed313051607c823885ff7ee97 f6bfafb6c6e71982e028120c1ee8a995c3600e56 Tilman <tilmanherz03@gmail.com> 1576996550 +0800	update by push
+f6bfafb6c6e71982e028120c1ee8a995c3600e56 b9342963ee5152bbb1733f28c98673ef8370f8e9 Tilman <tilmanherz03@gmail.com> 1576996989 +0800	update by push
+b9342963ee5152bbb1733f28c98673ef8370f8e9 f8188537fc05b6325783a5773236876cdd6e9d12 Tilman <tilmanherz03@gmail.com> 1576997273 +0800	update by push
+f8188537fc05b6325783a5773236876cdd6e9d12 d7a21a9b1c6f644fad4af36d8188b97bfdf1755c Tilman <tilmanherz03@gmail.com> 1576997854 +0800	update by push
+d7a21a9b1c6f644fad4af36d8188b97bfdf1755c 84fa0947429135393fc7965d4100bc5ca2182e69 Tilman <tilmanherz03@gmail.com> 1576998218 +0800	update by push
+84fa0947429135393fc7965d4100bc5ca2182e69 b899e7b27b52564d892e7a18005d08d0ff521b2f Tilman <tilmanherz03@gmail.com> 1576999323 +0800	update by push
+b899e7b27b52564d892e7a18005d08d0ff521b2f a2967642262b78951793ef3615c168eba7d9e14e Tilman <tilmanherz03@gmail.com> 1576999519 +0800	update by push
+a2967642262b78951793ef3615c168eba7d9e14e 790786ecf04d73a013c875796b57c404f223d1ea Tilman <tilmanherz03@gmail.com> 1577011091 +0800	update by push
+790786ecf04d73a013c875796b57c404f223d1ea 25349a8a13fdf712234adfd31417d4fe6e064e0f Tilman <tilmanherz03@gmail.com> 1577103986 +0800	update by push
+25349a8a13fdf712234adfd31417d4fe6e064e0f a7c35cb14e9a61bb7ee4d59facccb6b6f6f14364 Tilman <tilmanherz03@gmail.com> 1577146739 +0800	update by push
+a7c35cb14e9a61bb7ee4d59facccb6b6f6f14364 90dca7c6a9e3465657ea5353dbce159e45271712 Tilman <tilmanherz03@gmail.com> 1577360110 +0800	update by push
+90dca7c6a9e3465657ea5353dbce159e45271712 a541ee74ad8d7fd7be065d338a0984722929e4a1 Tilman <tilmanherz03@gmail.com> 1577360957 +0800	update by push
+a541ee74ad8d7fd7be065d338a0984722929e4a1 c8c0a3bca44d5ca5906babcac93c800c45bd8af7 Tilman <tilmanherz03@gmail.com> 1578311898 +0800	ufpmc   Û	      x^•ïmO€0«ﬂﬂßåÑ:¡ã< ÖikCJ;JMÀ`<)§ÅFk”(	ìˆ·gﬂ%±Kb¢Ruıœˇ;üˇvRŒπ≥à≥‹èÛå˘ÒÑÕ√˘]òf”(ayò	xøHY”s∫]L˝‘r1À9Ëè{L~Ãx2∆÷ÿÕWMÑMFÁ
+Z[‡Í–FËÄ;)∏Ö ‹˛©Ç€]h:G
+Ó lCÀ’Z™#<Ññ«‹EÿÅQ≥•‡¬.tFlˆ⁄Ù~É~Ôx¶ßﬂ!<Ç∂û ÏÅ3‘‡·±∞NÉ!¬>x]ﬁ#¿Aœ≠†IŒü¿Åc*HŒü
+h)HŒ¥$Á=∑$ÁG–o*ìMr~ﬁE_Ar˛Lú¶Ú”$ÁøÉ”‘î‰¸9∏«jG&ô|ﬁXK'?ÄÎ9
+íüó–÷N”$?Ø‡Pá‰Á5uH~ﬁ¿Xá‰Á-x'
+ZËgñ¯A⁄u™£xŒ¬<qû.f±?31}	\<|ìqqˇ1åŒepã0aËü  nÆ‚ÆÚM‡-OÔå0Ù⁄Œh‘¶ë3ƒ‡(teö∏≤à8t
+õ¬ñ‚∞ïã>µ“íy‚HptLµ∆-yémjÂê¬ê¬ÿìiﬁ	ákÄIxœnÉ|’Çèü@Z›≥¸wä1k4Ë'Á≈ú¸§a˛ò∆lëNÑi8À¬ï˘ÄjGô?ãÁ≤z9#Q2ıÂ‚EeìË! e≠ROìö˛1I¬¥“œøpTÍ≥ ätΩ¡>7™=…ﬂ¶Ug’gçÌâw3?˛©'V9QÃj{õÃ∂ 5q7fØÆaõ≤πä4p’"ª‹`ïΩµ˚<}ª‘>§~2’µ∂Ω∫ùùB\:Qâ˜Í´b´'i/ua[ˇÆú<∆¡íXuÜˇ)Ò"◊é∂H¬GÏ5CMC|MÒµƒ◊÷.O∏J›Ÿ~ﬁ‹ûQhüV¸TÀC∏¬´X[≠P7pæˆÇKÜ:Í◊OZÙ\ÁaætM+Õ<zTUwÛû¨`ö÷™bÎ¯¢zÂ9{¶§uÀMºkYÛÕÀö≈≤˛,◊™D≠]„-´ííVïWU€Ó]îÀx)-õ!LÔ}Ωn"¥¸füãFÍQ¡å¬ˇÁ≤m}˛≈ñ©4g(Ø-%‡,q!7(.µπéª[Ÿ=ˇ kâ∫†A9¸$~&                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

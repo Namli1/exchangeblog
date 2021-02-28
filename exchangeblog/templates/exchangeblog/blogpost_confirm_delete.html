@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}<title>{% trans "Delete Post?" %}</title>{% endblock %}
+
+{% block content %}
+
+<h1>Delete Post</h1>
+
+<p>{% blocktrans with title=blogpost.title %}Are you sure you want to delete the blogpost: {{ blogpost.title }}{% endblocktrans %}</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <button class="btn btn-danger mb-2" type="submit">Yes, delete</button>
+</form>
+
+{% endblock %}

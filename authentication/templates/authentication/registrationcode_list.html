@@ -1,0 +1,169 @@
+{% extends 'base_generic.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}<title>Registration Code List</title>{% endblock %}
+
+{% block content %}
+
+<h2 class="my-3">{% trans 'Registration Code List' %}
+    <a href="{% url 'code-create' %}" class="m-1"><button class="btn btn-secondary">Create Code</button></a>
+</h2>
+
+{% if registrationcode_list %}
+
+<table class="table table-bordered table-responsive">
+    <colgroup>
+        <col style="width: 10%;">
+        <col style="width: 50%;">
+        <col style="width: 40%;">
+     </colgroup>
+
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Code</th>
+            <th scope="col">User</th>
+            <th scope="col">Expiry Date</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for code in registrationcode_list %}
+        <script type="application/javascript">
+            window.onload = function() {
+                var id = {{ forloop.counter }} {% if previous_codes_count %} + {{ previous_codes_count }} {% endif %};
+                document.getElementById('code-counter-{{forloop.counter}}').innerHTML = id;
+            };
+        </script>
+        <tr>
+            <th scope="row" id="code-counter-{{forloop.counter}}">{{ forloop.counter }}</th>
+
+            <td>
+                <div class="btn-group mb-3 mr-md-3" role="group">
+                    <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapse-code-info-{{forloop.counter}}" role="button" aria-expanded='false' aria-controls="collapse-code-info-{{forloop.counter}}">
+                        {{ code.code }}
+                    </a>
+                    <button id="copyToClip-{{code.code}}" onclick="copyToClipboard('{{code.code}}');" type="button" class="btn btn-dark" data-trigger="hover" data-toggle="tooltip" data-placement="right" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy to Clipboard">&#x2398</button>
+                </div>
+                <div class="collapse" id="collapse-code-info-{{forloop.counter}}">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-12">
+                                Blog Posts: {% if code.has_blogauthor_permission %}
+                                <spann style="color: green; font-size: 1.5em;">&#10003;</spann>{% else %}&#10060;{% endif %}
+                            </div>
+                            <div class="col-12">
+                                Guide Posts: {% if code.has_guidepost_permission %}
+                                <spann style="color: green; font-size: 1.5em;">&#10003;</spann>{% else %}&#10060;{% endif %}
+                            </div>
+                            <div class="col-12">
+                                Country Guide Posts: {% if code.has_guidepost_permission %}
+                                <spann style="color: green; font-size: 1.5em;">&#10003;</spann>{% else %}&#10060;{% endif %}
+                            </div>
+                        </div>
+                </div>
+            </td>
+
+            <td class="text-center align-items-center">
+                {% if code.used_by %}
+                    {{ code.used_by }}
+                {% else %}
+                    <small>No user registered</small>
+                {% endif %}
+            </td>
+
+            <td style="min-width: 130px;">
+                {% if code.is_past_due %}
+                    <span style="color: red;">{{ code.expiry_date|date }}</span>
+                    <span class="badge bg-danger text-white">Past due</span>
+                {% else %}
+                    {{ code.expiry_date|date }}
+                {% endif %}
+            </td>
+
+            <td>
+                <a class="btn btn-danger" href="{% url 'code-delete' code.pk %}?next={{request.path}}">Delete?</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+<nav aria-label="Registration code list navigation">
+<ul class="pagination mb-5">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+            <a class="page-link" href="?page=1" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+    </li>
+    {% endif %}
+
+    {% for page_number in page_obj.paginator.page_range %}
+    {% if forloop.counter < 7 %}
+    {% if page_number == page_obj.number %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="page={{ page_number }}">{{ page_number }}<span class="sr-only">(current)</span></a>
+        </li>
+    {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% else %}
+
+<p>{% trans 'It seems like there aren\'t any registration codes.' %}</p>
+
+{% endif %}
+
+{% endblock%}
+
+{% block body-meta %}
+<script type="application/javascript">
+$( document ).ready(function() {
+        $("[data-toggle='tooltip']").tooltip();
+        //$("[data-toggle='tooltip']").attr('data-original-title', 'tool tip has been changed.')
+});
+
+function copyToClipboard(value) {
+            //Get code text
+            var copyText = value
+
+            //Create temporary input for copying
+            var tempInput = document.createElement("input");
+            tempInput.value = copyText;
+            document.body.appendChild(tempInput);
+            tempInput.focus();
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            $(`#copyToClip-${value}[data-toggle='tooltip']`).tooltip('hide');
+            $(`#copyToClip-${value}[data-toggle='tooltip']`).attr("data-original-title", 'Success!');
+            $(`#copyToClip-${value}[data-toggle='tooltip']`).tooltip('show');
+            setInterval(function(){
+                $(`#copyToClip-${value}[data-toggle='tooltip']`).attr("data-original-title", 'Copy to Clipboard');
+            },3000);
+}
+</script>
+{% endblock %}
