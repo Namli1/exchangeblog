@@ -1,6 +1,6 @@
 # exchangeblog
 
-<img src="https://github.com/Namli1/exchangeblog/blob/master/static/favicons/android-chrome-512x512.png" width="50">
+<img src="https://github.com/Namli1/exchangeblog/blob/master/static/favicons/android-chrome-512x512.png" width="300" style="margin: 0 auto;">
 
 ![alt text](https://github.com/Namli1/exchangeblog/blob/master/static/favicons/android-chrome-512x512.png)
 
