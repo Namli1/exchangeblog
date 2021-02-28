@@ -7,3 +7,5 @@
 
 
 The code for my blog about everything related to going on an exchange year.
+
+Visit it here: <a href="https://www.explore-exchange.com">Explore-Exchange</a>
