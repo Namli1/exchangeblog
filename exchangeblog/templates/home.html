@@ -29,6 +29,10 @@
     animation-direction: alternate;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 @keyframes slideinLeft {
     0% {
         transform: translateX(-900px);
@@ -49,6 +53,7 @@
 
 </style>
 
+<<<<<<< HEAD
 {% if request.user.is_superuser %}
 <div class="container d-flex flex-row flex-wrap justify-content-center">
     <div class="card shadow-lg m-3">
@@ -76,6 +81,12 @@
 <div class="d-flex justify-content-between alert alert-danger alert-dismissible fade show" role="alert">
   <p class="m-1"> <strong>{% trans "Hi there! " %}</strong> {%trans "It seems that you just signed up. Go ahead and set up your author profile by clicking the button." %}</small></p>
   <a class="text-white text-decoration-none" href="{% url 'author-create' %}"><button type="button" class="btn btn-success m-1">{% trans "Create Profile" %}</button></a>
+=======
+{% if needs_author_registration %}
+<div class="d-flex justify-content-between alert alert-danger alert-dismissible fade show" role="alert">
+  <p class="m-1"> <strong>{% trans "Hi there! " %}</strong> {%trans "It seems that you just signed up. Go ahead and set up your author profile by clicking the button." %}</small></p>
+  <button type="button" class="btn btn-success m-1"><a class="stretched-link text-white text-decoration-none" href="{% url 'author-create' %}">{% trans "Create Profile" %}</a></button>
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>

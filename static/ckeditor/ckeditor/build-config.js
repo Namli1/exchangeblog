@@ -77,7 +77,11 @@ var CKBUILDER_CONFIG = {
 		'horizontalrule' : 1,
 		'htmlwriter' : 1,
 		'iframe' : 1,
+<<<<<<< HEAD
 		'image2' : 1,
+=======
+		'image' : 1,
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 		'indentblock' : 1,
 		'indentlist' : 1,
 		'justify' : 1,

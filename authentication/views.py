@@ -2,12 +2,16 @@ import requests
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
+<<<<<<< HEAD
 from django.utils.translation import ugettext_lazy as _
+=======
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 from django.views import generic
 from django.contrib.auth.models import Permission
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
+<<<<<<< HEAD
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.forms import ValidationError
 from django.core.exceptions import PermissionDenied
@@ -18,6 +22,14 @@ from authentication.models import RegistrationCode
 # Create your views here.
 
 class SignUpView(UserPassesTestMixin, generic.CreateView):
+=======
+
+from authentication.forms import SignUpWithCodeForm, PasswordResetFormWithReCaptcha
+
+# Create your views here.
+
+class SignUpView(generic.CreateView):
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
     form_class = SignUpWithCodeForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
@@ -27,6 +39,7 @@ class SignUpView(UserPassesTestMixin, generic.CreateView):
         context["recaptcha_key"] = settings.RECAPTCHA_PUBLIC_KEY
         return context
 
+<<<<<<< HEAD
     def test_func(self):
         try:
             if self.request.user.is_authenticated():
@@ -61,6 +74,12 @@ class SignUpView(UserPassesTestMixin, generic.CreateView):
             raise ValidationError(_("Invalid registration code. This code might not exist or is turned invalid. Please make sure you spelled it correctly. If it's not working, contact the admin via Instagram."), code='invalid')
         # blogauthor_create_permission = Permission.objects.get(codename="add_blogauthor")
         # user.user_permissions.add(blogauthor_create_permission)
+=======
+    def form_valid(self, form):
+        user = form.save()
+        blogauthor_create_permission = Permission.objects.get(codename="add_blogauthor")
+        user.user_permissions.add(blogauthor_create_permission)
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
         return super(SignUpView, self).form_valid(form)
 
 class ReCaptchaPasswordResetView(PasswordResetView):
@@ -69,6 +88,7 @@ class ReCaptchaPasswordResetView(PasswordResetView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["recaptcha_key"] = settings.RECAPTCHA_PUBLIC_KEY
+<<<<<<< HEAD
         return context
 
 class RegistrationCodeCreate(UserPassesTestMixin, generic.CreateView):
@@ -104,3 +124,6 @@ class RegistrationCodeDelete(UserPassesTestMixin, generic.DeleteView):
 
     def test_func(self):
         return self.request.user.is_superuser
+=======
+        return context
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43

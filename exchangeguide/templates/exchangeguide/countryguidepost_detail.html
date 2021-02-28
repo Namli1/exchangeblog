@@ -5,6 +5,7 @@
 {% block title %}<title>{{ countryguidepost.get_country_display }}</title>{% endblock %}
 
 {% block full-width %}
+<<<<<<< HEAD
 <h1 class="text-center display-2">
 <strong>{{ countryguidepost.get_country_display }}</strong>
 {% if is_author %}
@@ -12,6 +13,9 @@
 <a class="btn btn-danger mt-2" href="{% url 'countryguide-delete' countryguidepost.slug %}" role="button">{% trans "Delete Post" %}</a>
 {% endif %}
 </h1>
+=======
+<h1 class="text-center display-2"><strong>{{ countryguidepost.get_country_display }}</strong></h1>
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 
 
     <div id="carouselCountryImage" class="carousel slide mb-4" data-ride="carousel">
@@ -30,7 +34,10 @@
             </div>
             {% endfor %}
         </div>
+<<<<<<< HEAD
         {% if countryguidepost.slideshowimages_set.all.count > 1 %}
+=======
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
         <a class="carousel-control-prev" href="#carouselCountryImage" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">{% trans "Previous" %}</span>
@@ -39,11 +46,15 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">{% trans "Next" %}</span>
         </a>
+<<<<<<< HEAD
         {% endif %}
+=======
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
     </div>
 {% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
 
 {% if is_author %}
 <div class="row">
@@ -52,12 +63,21 @@
 </div>
 {% endif %}
 
+=======
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 <div class="row">
 
     <div class="col-md-9">
 
+<<<<<<< HEAD
         <div class="p-md-5 p-3 rounded-lg bg-dark col-12 w-100 text-light align-center">
                 <h1 class="display-4">{% trans "Brief overview" %}</h1>
+=======
+        <div class="jumbotron bg-dark col-12 w-100 text-light align-center">
+                <h1 class="display-4">{% trans "Brief overview" %}</h1>
+                {% for country in countryguidepost.slideshowimages_set.all|slice:':1' %} {{ country.image_description }} {% endfor %}
+
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
                 <hr />
 
             <div class="row justify-content-around p-1">

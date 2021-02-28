@@ -1,14 +1,20 @@
 import requests
+<<<<<<< HEAD
 import string
+=======
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.forms import ValidationError
 from django.conf import settings
+<<<<<<< HEAD
 from django.utils.crypto import get_random_string
 
 from authentication.models import RegistrationCode
+=======
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 
 class SignUpWithCodeForm(UserCreationForm):
     registration_code = forms.CharField(label=_("Registration Code"), max_length=7, required=True, help_text=_("Please enter the registration code given to you to register your account. (You cannot sign up without a registration code. Contact us on Instagram to request a code.)"))
@@ -20,6 +26,7 @@ class SignUpWithCodeForm(UserCreationForm):
 
     def clean_registration_code(self):
         registration_code = self.cleaned_data['registration_code']
+<<<<<<< HEAD
         if RegistrationCode.objects.filter(code=registration_code).exists():
             if RegistrationCode.objects.filter(code=registration_code).first().check_if_valid():
                     return registration_code
@@ -31,6 +38,15 @@ class SignUpWithCodeForm(UserCreationForm):
 
     def clean(self):
         #ReCaptcha implementation
+=======
+        if registration_code == '1':
+            return True
+        else:
+            raise ValidationError(_("Invalid registration code. Please make sure you spelled it correctly. Otherwise contact the admin."), code='invalid')
+        return False
+
+    def clean(self):
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
         cleaned_data = super(SignUpWithCodeForm, self).clean()
         recaptcha_token = cleaned_data.get('recaptcha')
         recaptcha_data = {
@@ -85,6 +101,7 @@ class PasswordResetFormWithReCaptcha(PasswordResetForm):
 
     class Meta:
         model = User
+<<<<<<< HEAD
         fields = ('email', 'recaptcha',)
 
 class RegistrationCodeForm(forms.ModelForm):
@@ -102,3 +119,6 @@ class RegistrationCodeForm(forms.ModelForm):
     class Meta:
         model = RegistrationCode
         fields = ('code', 'has_blogauthor_permission', 'has_guidepost_permission', 'has_countryguide_permission', 'expiry_date',)
+=======
+        fields = ('email', 'recaptcha',)
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43

@@ -9,6 +9,7 @@
   <form method="post" id="submit-form">
     {% csrf_token %}
     {{ form|crispy }}
+<<<<<<< HEAD
     <div class="row">
       <button id="signup-submit" 
               type="submit" 
@@ -20,6 +21,14 @@
         <span class="sr-only">Loading...</span>
       </div>
     </div>
+=======
+    <button id="signup-submit" 
+            type="submit" 
+            class="btn btn-success mb-5"
+            data-sitekey="{{ recaptcha_key }}" 
+            data-callback='onSubmit'
+            data-action='submit'>{% trans "Sign up" %}</button>
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
   </form>
 {% endblock %}
 
@@ -29,7 +38,10 @@
 <script>
 grecaptcha.ready(function() {
     $('#submit-form').submit(function(e) {
+<<<<<<< HEAD
       $('#loading-spinner').removeClass('d-none');
+=======
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
       console.log('hello2?');
         var form = this;
         e.preventDefault();

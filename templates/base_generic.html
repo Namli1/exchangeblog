@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 {% load i18n %}
 {% load static %}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 <html lang="en">
 <head>
   {% block title %}<title>Explore-Exchange</title>{% endblock %}
@@ -23,6 +26,7 @@
 
 
 
+<<<<<<< HEAD
   
   <link rel="apple-touch-icon" sizes="180x180" href="{% static '/favicons/apple-touch-icon.png' %}">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static '/favicon-32x32.png' %}">
@@ -32,6 +36,12 @@
   <meta name="apple-mobile-web-app-title" content="Explore-Exchange">
   <meta name="application-name" content="Explore-Exchange">
   <meta name="msapplication-TileColor" content="#2b5797">
+=======
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+  <meta name="msapplication-TileColor" content="#da532c">
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
   <meta name="theme-color" content="#ffffff">
 
 
@@ -85,10 +95,13 @@ h1 {
     font-size: 0.8rem
 }
 
+<<<<<<< HEAD
 .django-ckeditor-widget{
   width: 100%;
 }
 
+=======
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 </style>
 
 <header>
@@ -119,7 +132,11 @@ h1 {
               </li>
 
               <li class="nav-item">
+<<<<<<< HEAD
                 <a class="nav-link mr-3 {% block blogposts-active %}{% endblock %}" href="{% url 'post-list' %}?language={% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|upper }}">{% trans "Blog" %}</a>
+=======
+                <a class="nav-link {% block blogposts-active %}{% endblock %}" href="{% url 'post-list' %}?language={% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|upper }}">{% trans "Blog" %}</a>
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
               </li>
 
           </div>
@@ -207,7 +224,11 @@ h1 {
 
             <li class="nav-item">
               <p id="copyright" class="text-white pt-4 pb-1"> 
+<<<<<<< HEAD
               <!-- Filled automatically using jquery, see below --></p>
+=======
+              &copy; <script>document.write(new Date().getFullYear())</script>, Explore-Exchange.com</p>
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
             </li>
       </div>
       </div>
@@ -221,9 +242,12 @@ h1 {
     <script defer type="application/javascript" src="{% static 'config.js' %}"></script>
     <script defer data-config="klaroConfig" type="text/javascript" src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js"></script>
     {% block body-meta %}{% endblock %}
+<<<<<<< HEAD
     <script>
     var year = new Date().getFullYear();
     $('#copyright').html(`&copy; ${year}, Explore-Exchange.com`);
     </script>
+=======
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 </body>
 </html>

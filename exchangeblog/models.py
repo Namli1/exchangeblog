@@ -6,7 +6,10 @@ from django.contrib.auth.models import User
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 from ckeditor_uploader.fields import RichTextUploadingField
+<<<<<<< HEAD
 from django_ckeditor_5.fields import CKEditor5Field
+=======
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 
 # Create your models here.
 
@@ -34,7 +37,11 @@ class BlogPost(models.Model):
     ]
     country = models.CharField(max_length=2, help_text=_("Select the exchange country."), choices=COUNTRY_CHOICES, default='CH')
     short_description = models.TextField(max_length=150, help_text=_("Enter a short description of what the blog post is about."))
+<<<<<<< HEAD
     blogcontent = CKEditor5Field(config_name='blogpost-editor')
+=======
+    blogcontent = RichTextUploadingField(config_name='blogpost-editor')
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
     thumbnail_picture = ProcessedImageField(upload_to='thumbnails/', processors=[ResizeToFill(300, 200)], options={'quality': 80}, max_length=100, null=True)
 
     class Meta:
@@ -53,9 +60,15 @@ class BlogPost(models.Model):
 
 
 class BlogAuthor(models.Model):
+<<<<<<< HEAD
     user = models.OneToOneField(User, unique=True, on_delete=models.PROTECT, null=True)
     name = models.CharField(help_text=_("Please enter your author name (It will be displayed in articles you write)."), max_length=19, unique=True)
     social_media_link = models.URLField(help_text=_("Please paste the url of your social media page (optional)."), blank=True, null=True, max_length=300)
+=======
+    user = models.OneToOneField(User, unique=True, on_delete=models.SET_NULL, null=True)
+    name = models.CharField(help_text=_("Please enter your author name (It will be displayed in articles you write)."), max_length=15, unique=True)
+    social_media_link = models.CharField(help_text="Please paste the url of your social media page (optional).", blank=True, null=True, max_length=300)
+>>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
     slug = models.SlugField(null=False, unique=True)
     bio = models.TextField(help_text=_("Please enter a short description of yourself."), max_length=400)
     allowed_posts = models.PositiveSmallIntegerField(default=1)
