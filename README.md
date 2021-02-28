@@ -1,6 +1,8 @@
 # exchangeblog
 <p align="center">
-  <img src="https://github.com/Namli1/exchangeblog/blob/master/static/favicons/android-chrome-512x512.png" width="300" style="width: 50%;">
+  <a href="https://www.explore-exchange.com">
+    <img src="https://github.com/Namli1/exchangeblog/blob/master/static/favicons/android-chrome-512x512.png" width="300" style="width: 50%;">
+  </a>
 </p>
 
 
