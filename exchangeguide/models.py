@@ -12,10 +12,7 @@ from uuslug import slugify
 class GuidePost(models.Model):
     title = models.CharField(_("Please enter the title of the Post"), max_length=50)
     slug = models.SlugField(_("Slug consisting of title of guide post."), unique=True, null=False, default="guidePost")
-<<<<<<< HEAD
     author = models.ForeignKey("exchangeblog.BlogAuthor", on_delete=models.SET_NULL, null=True)
-=======
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
     guide_content = RichTextUploadingField(config_name='blogpost-editor')
     short_description = models.TextField(_("Enter a short description about what this tutorial is about."), max_length=250)
     thumbnail_picture = ProcessedImageField(upload_to='guide_thumbnails/', processors=[ResizeToFill(500, 300)], options={'quality': 80}, max_length=100)
@@ -47,11 +44,7 @@ class CountryGuidePost(models.Model):
     ]
     country = models.CharField(max_length=2, help_text=_("Select the country you want to present."), choices=COUNTRY_CHOICES, default='CH')
     slug = models.SlugField(_("Slug consisting of country"), unique=True, null=False, default="countryguide")
-<<<<<<< HEAD
     author = models.ForeignKey("exchangeblog.BlogAuthor", on_delete=models.SET_NULL, null=True)
-=======
-    author = models.ForeignKey("exchangeblog.BlogAuthor", on_delete=models.CASCADE)
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
     last_updated = models.DateField(help_text=_("Date guide was last updated."), auto_now=True)
     spoken_language = models.CharField(help_text=_("Enter the languages spoken in this country."), max_length=50)
     population = models.CharField(help_text=_("Enter the population of this country."), max_length=15)

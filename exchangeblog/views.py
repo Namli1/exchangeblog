@@ -15,10 +15,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from exchangeblog.filters import BlogPostFilter
 from django_filters.views import FilterView
 from exchangeguide.models import GuidePost, CountryGuidePost
-<<<<<<< HEAD
 from exchangeblog.forms import BlogAuthorCreateForm
-=======
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -54,11 +51,7 @@ class AboutPageView(TemplateView):
 class PrivacyPolicyView(TemplateView):
     template_name = "privacy-policy.html"
 
-<<<<<<< HEAD
 class BlogPostListView(LoginRequiredMixin, FilterView):
-=======
-class BlogPostListView(FilterView):
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
     model = BlogPost
     filterset_class = BlogPostFilter
     order_by = ['-date_of_creation'] 
@@ -71,15 +64,12 @@ class BlogPostListView(FilterView):
             del query['page']
         context['querystring'] = query.urlencode()
         context['posts_filtered'] = BlogPostFilter(self.request.GET, queryset=self.get_queryset())
-<<<<<<< HEAD
         if self.request.user.is_authenticated:
             try:
                 if BlogAuthor.objects.get(user=self.request.user):
                     context["is_author"] = BlogAuthor.objects.get(user=self.request.user).slug
             except:
                 pass
-=======
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
         return context
 
 class BlogPostDetailView(generic.DetailView):
@@ -118,13 +108,8 @@ class BlogAuthorDetailView(generic.DetailView):
         return context
 
 class BlogAuthorCreate(UserPassesTestMixin, LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
-<<<<<<< HEAD
     form_class = BlogAuthorCreateForm
     template_name = 'exchangeblog/blogauthor_form.html'
-=======
-    model = BlogAuthor
-    fields = ['name',  'social_media_link', 'bio']
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
     permission_object = None
     permission_required = "exchangeblog.add_blogauthor"
     permission_denied_message = _('Permission Denied, ask the site admin if you are allowed to become an author. If you are an author already, you also can\'t access this site.')
@@ -141,11 +126,6 @@ class BlogAuthorCreate(UserPassesTestMixin, LoginRequiredMixin, PermissionRequir
         form.instance.user = self.request.user
         form.instance.slug = slugify(form.instance.name)
         self.request.user.user_permissions.add(Permission.objects.get(codename="add_blogpost"))
-<<<<<<< HEAD
-=======
-        if form.instance.social_media_link[:3] != 'http' or form.instance.social_media_link[:4] != 'http' or form.instance.social_media_link[:5] != 'https':
-            form.instance.social_media_link = "http://%s" % form.instance.social_media_link
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
         return super().form_valid(form)
 
 class BlogAuthorUpdate(UserPassesTestMixin, LoginRequiredMixin, generic.UpdateView):
@@ -155,11 +135,6 @@ class BlogAuthorUpdate(UserPassesTestMixin, LoginRequiredMixin, generic.UpdateVi
     
     def form_valid(self, form):
         form.instance.slug = slugify(form.instance.name)
-<<<<<<< HEAD
-=======
-        if form.instance.social_media_link[:3] != 'http' or form.instance.social_media_link[:4] != 'http':
-            form.instance.social_media_link = "http://%s" % form.instance.social_media_link
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
         return super().form_valid(form)
 
     def test_func(self):

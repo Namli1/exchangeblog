@@ -139,13 +139,10 @@ LOGOUT_REDIRECT_URL = '/'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-<<<<<<< HEAD
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-=======
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -210,11 +207,7 @@ CKEDITOR_CONFIGS = {
         'extraPlugins': ','.join([
             'uploadimage', # the upload image feature
             # your extra plugins here
-<<<<<<< HEAD
             #'image',
-=======
-            'image',
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
             'image2',
             'imageresize',
             'div',

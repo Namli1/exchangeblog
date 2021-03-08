@@ -41,19 +41,12 @@ urlpatterns = [
     #path('accounts/', include('django.contrib.auth.urls')),
     path('ckeditor/upload/', permission_required('exchangeblog.add_blogpost')(ckeditor_views.upload), name='ckeditor_upload'),
     path('ckeditor/browse/', permission_required('exchangeblog.add_blogpost')(ckeditor_views.browse), name='ckeditor_browse'),
-<<<<<<< HEAD
     path("ckeditor5/", include('django_ckeditor_5.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
      name='sitemap'),
 
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicons/favicon.ico'))),
     path('browserconfig.xml', RedirectView.as_view(url=staticfiles_storage.url('favicons/browserconfig.xml'))),
-=======
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
-     name='sitemap'),
-
-    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('images/favicon.ico'))),
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(

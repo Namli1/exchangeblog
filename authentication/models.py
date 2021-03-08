@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from datetime import datetime, timedelta
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -34,8 +33,3 @@ class RegistrationCode(models.Model):
 
     def __str__(self):
             return self.code
-=======
-from django.db import models
-
-# Create your models here.
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43

@@ -1,5 +1,4 @@
 from django.contrib import admin
-<<<<<<< HEAD
 from authentication.models import RegistrationCode
 from datetime import datetime
 
@@ -15,7 +14,3 @@ class RegistrationCodeAdmin(admin.ModelAdmin):
     actions = [delete_past_due_codes]
 
 admin.site.register(RegistrationCode, RegistrationCodeAdmin)
-=======
-
-# Register your models here.
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
