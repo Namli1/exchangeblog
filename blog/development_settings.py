@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'django_ckeditor_5',
+    'multiselectfield',
     'captcha',
     'imagekit',
     'django_filters',
@@ -189,6 +190,17 @@ CKEDITOR_FORCE_JPEG_COMPRESSION = True
 CKEDITOR_IMAGE_QUALITY = 60
 
 CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ]
+    },
+
+
     'blogpost-editor': {
         'toolbar_Basic': [
             ['Source', '-', 'Bold', 'Italic']
@@ -258,15 +270,10 @@ CKEDITOR_CONFIGS = {
 ###################################
 # CKEDITOR 5 Configuration
 
-CKEDITOR_5_FORCE_JPEG_COMPRESSION = True
 CKEDITOR_5_UPLOADS_FOLDER = "media/uploads/"
+CKEDITOR5_MAX_FILE_SIZE = 3145728
 
 CKEDITOR_5_CONFIGS = {
-    'default': {
-        'toolbar': ['heading', '|', 'bold', 'italic', 'link',
-                    'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', ],
-
-    },
     'blogpost-editor': {
         'blockToolbar': [
             'paragraph', 'heading1', 'heading2', 'heading3',
@@ -289,8 +296,13 @@ CKEDITOR_5_CONFIGS = {
                 'alignLeft',
                 'alignRight',
                 'alignCenter',
+                {'className': 'image-responsive'},
             ]
 
+        },
+        'imageresize': {
+            'maxWidth': 800,
+            'maxHeight': 800,
         },
         'table': {
             'contentToolbar': [ 'tableColumn', 'tableRow', 'mergeTableCells',
@@ -303,7 +315,7 @@ CKEDITOR_5_CONFIGS = {
                 { 'model': 'heading2', 'view': 'h2', 'title': 'Heading 2', 'class': 'ck-heading_heading2' },
                 { 'model': 'heading3', 'view': 'h3', 'title': 'Heading 3', 'class': 'ck-heading_heading3' }
             ]
-        }
+        },
     }
 }
 

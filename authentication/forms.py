@@ -101,4 +101,4 @@ class RegistrationCodeForm(forms.ModelForm):
 
     class Meta:
         model = RegistrationCode
-        fields = ('code', 'has_blogauthor_permission', 'has_guidepost_permission', 'has_countryguide_permission', 'expiry_date',)
+        fields = ('code', 'has_blogauthor_permission', 'has_guidepost_permission', 'has_countryguide_permission', 'allowed_countries', 'expiry_date',)

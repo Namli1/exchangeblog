@@ -9,7 +9,6 @@
 <div class="row">
     <div class="col-md-9">
         <h1 class="text-center">{{ guidepost.title }}</h1>
-<<<<<<< HEAD
         <div class="row">
         {% if is_author %}
             <a class="btn btn-primary mx-2 mt-2" href="{% url 'countryguide-update' blogpost.author.slug blogpost.slug %}" role="button">{% trans "Update Post" %}</a>
@@ -17,8 +16,6 @@
         {% endif %}
         </div>
 
-=======
->>>>>>> 35d2739b1827ff3da2a5b12e6021f53fb0de5e43
         <div class="container bg-light m-4 p-3">
             {{ guidepost.short_description }}
         </div>

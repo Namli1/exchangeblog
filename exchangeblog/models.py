@@ -7,6 +7,8 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 from ckeditor_uploader.fields import RichTextUploadingField
 from django_ckeditor_5.fields import CKEditor5Field
+from multiselectfield import MultiSelectField
+from blog.general import COUNTRY_CHOICES, LANGUAGE_CHOICES
 
 # Create your models here.
 
@@ -16,22 +18,7 @@ class BlogPost(models.Model):
     date_of_creation = models.DateField(help_text=_("Enter date of creation of post."), default=datetime.date.today)
     author = models.ForeignKey('BlogAuthor', on_delete=models.CASCADE)
     slug = models.SlugField(help_text=_("Enter a slug according to the title of the post"), unique=True, null=False)
-    LANGUAGE_CHOICES = [
-        ('EN', 'English'),
-        ('DE', 'Deutsch'),
-        ('IT', 'Italiano'),
-        ('FR', 'Français'),
-    ]
     language = models.CharField(help_text=_('Please enter the language you will use for the post.'), max_length=2, choices=LANGUAGE_CHOICES, default='EN')
-    COUNTRY_CHOICES = [
-        ('CH', _('🇨🇳China')),
-        ('US', _('🇺🇸USA')),
-        ('UK', _('🇬🇧United Kingdom')),
-        ('DE', _('🇩🇪Germany')),
-        ('IT', _('🇮🇹Italy')),
-        ('FR', _('🇫🇷France')),
-        ('TH', _('🇹🇭Thailand')),
-    ]
     country = models.CharField(max_length=2, help_text=_("Select the exchange country."), choices=COUNTRY_CHOICES, default='CH')
     short_description = models.TextField(max_length=150, help_text=_("Enter a short description of what the blog post is about."))
     blogcontent = CKEditor5Field(config_name='blogpost-editor')
@@ -59,6 +46,7 @@ class BlogAuthor(models.Model):
     slug = models.SlugField(null=False, unique=True)
     bio = models.TextField(help_text=_("Please enter a short description of yourself."), max_length=400)
     allowed_posts = models.PositiveSmallIntegerField(default=1)
+    allowed_countries = MultiSelectField(choices=COUNTRY_CHOICES, blank=True, null=True, help_text=_('The countries this author can write about in a country guide post.'))
 
     class Meta:
         ordering = ['name']
@@ -68,4 +56,14 @@ class BlogAuthor(models.Model):
 
     def get_absolute_url(self):
         return reverse("author-detail", kwargs={'slug': self.slug})
+
+    def get_allowed_countries_choices(self):
+        countries = self.allowed_countries
+        tempDict = dict(COUNTRY_CHOICES)
+        choices = []
+        for country in self.allowed_countries:
+            if country in tempDict:
+                country_tuple = (country, tempDict.get(country))
+                choices.append(country_tuple)
+        return choices
         

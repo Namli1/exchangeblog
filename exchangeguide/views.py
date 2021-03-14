@@ -18,7 +18,7 @@ from exchangeguide.filters import CountryGuidePostFilter
 from django_filters.views import FilterView
 from exchangeblog.models import BlogAuthor, BlogPost
 from django.db.models import F 
-from .forms import CountryGuidePostForm, SlideShowImageForm, SlideShowImagesFormSet
+from .forms import SlideShowImageForm, SlideShowImagesFormSet, CountryGuidePostCreateForm
 
 # Create your views here.
 
@@ -149,8 +149,9 @@ class CountryGuideListView(FilterView):
         return context
 
 class CountryGuidePostCreate(LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin, generic.CreateView):
-    model = CountryGuidePost
-    fields = ['guide_language', 'country', 'country_guide_content', 'spoken_language', 'population', 'capital_city', 'currency']
+    form_class = CountryGuidePostCreateForm
+    # fields = ['guide_language', 'country', 'country_guide_content', 'spoken_language', 'population', 'capital_city', 'currency']
+    template_name = 'exchangeguide/countryguidepost_form.html'
     permission_required = 'exchangeguide.add_countryguidepost'
     permission_denied_message = _("It seems like you don't have the permission to add a country guide post. Ask the admin via Instagram if you can get the permission to add a country guide post.")
     success_url = reverse_lazy('countryguide-list')
@@ -162,9 +163,15 @@ class CountryGuidePostCreate(LoginRequiredMixin, UserPassesTestMixin, Permission
         else:
             context["formset"] = SlideShowImagesFormSet()
         return context
+    
+    def get_form_kwargs(self):
+        kwargs = super(CountryGuidePostCreate, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def test_func(self):
-        if not BlogAuthor.objects.filter(user=self.request.user).exists():
+        author = BlogAuthor.objects.filter(user=self.request.user)
+        if not author.exists():
             raise PermissionDenied(_("You have to create a blog author profile before you can create any posts."))
         max_posts = get_object_or_404(BlogAuthor, user=self.request.user).allowed_posts
         if CountryGuidePost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() + BlogPost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() >= max_posts:

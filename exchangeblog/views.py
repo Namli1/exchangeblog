@@ -16,6 +16,7 @@ from exchangeblog.filters import BlogPostFilter
 from django_filters.views import FilterView
 from exchangeguide.models import GuidePost, CountryGuidePost
 from exchangeblog.forms import BlogAuthorCreateForm
+from authentication.models import RegistrationCode
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -51,7 +52,7 @@ class AboutPageView(TemplateView):
 class PrivacyPolicyView(TemplateView):
     template_name = "privacy-policy.html"
 
-class BlogPostListView(LoginRequiredMixin, FilterView):
+class BlogPostListView(FilterView):
     model = BlogPost
     filterset_class = BlogPostFilter
     order_by = ['-date_of_creation'] 
@@ -121,10 +122,21 @@ class BlogAuthorCreate(UserPassesTestMixin, LoginRequiredMixin, PermissionRequir
                     return False
             except:
                 return True
+    
+    def get_form_kwargs(self):
+        kwargs = super(BlogAuthorCreate, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.slug = slugify(form.instance.name)
+        registration_code = form.cleaned_data.get('registration_code')
+        if RegistrationCode.objects.filter(code=registration_code).first().check_if_used_by_this_user(user=self.request.user):
+            used_code = RegistrationCode.objects.filter(code=registration_code).first()
+            form.instance.allowed_countries = used_code.allowed_countries
+            #TODO: Maybe delete the code after having been used here???
+            # RegistrationCode.objects.filter(code=registration_code).first().delete()
         self.request.user.user_permissions.add(Permission.objects.get(codename="add_blogpost"))
         return super().form_valid(form)
 

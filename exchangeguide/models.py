@@ -6,6 +6,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 from uuslug import slugify
+from blog.general import COUNTRY_CHOICES, LANGUAGE_CHOICES
 
 # Create your models here.
 
@@ -26,22 +27,7 @@ class GuidePost(models.Model):
 
 
 class CountryGuidePost(models.Model):
-    LANGUAGE_CHOICES = [
-        ('EN', 'English'),
-        ('DE', 'Deutsch'),
-        ('IT', 'Italiano'),
-        ('FR', 'Français'),
-    ]
     guide_language = models.CharField(help_text=_('Please select the language you will use for the post.'), max_length=2, choices=LANGUAGE_CHOICES, default='EN')
-    COUNTRY_CHOICES = [
-        ('CH', _('🇨🇳China')),
-        ('US', _('🇺🇸USA')),
-        ('UK', _('🇬🇧United Kingdom')),
-        ('DE', _('🇩🇪Germany')),
-        ('IT', _('🇮🇹Italy')),
-        ('FR', _('🇫🇷France')),
-        ('TH', _('🇹🇭Thailand')),
-    ]
     country = models.CharField(max_length=2, help_text=_("Select the country you want to present."), choices=COUNTRY_CHOICES, default='CH')
     slug = models.SlugField(_("Slug consisting of country"), unique=True, null=False, default="countryguide")
     author = models.ForeignKey("exchangeblog.BlogAuthor", on_delete=models.SET_NULL, null=True)

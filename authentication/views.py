@@ -39,11 +39,8 @@ class SignUpView(UserPassesTestMixin, generic.CreateView):
             return True
 
     def form_valid(self, form):
-        # This strangely returns true but not the code
-        print(form.save())
         registration_code = form.cleaned_data.get('registration_code')
         if RegistrationCode.objects.filter(code=registration_code).first().code_exists_and_valid():
-            print('We reached this!!!')
             user = form.save()
             used_code = RegistrationCode.objects.filter(code=registration_code).first()
             used_code.used_by = user

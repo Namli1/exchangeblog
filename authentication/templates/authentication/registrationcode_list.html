@@ -24,6 +24,7 @@
             <th scope="col">#</th>
             <th scope="col">Code</th>
             <th scope="col">User</th>
+            <th scope="col">Countries</th>
             <th scope="col">Expiry Date</th>
             <th scope="col">Actions</th>
         </tr>
@@ -39,6 +40,7 @@
         <tr>
             <th scope="row" id="code-counter-{{forloop.counter}}">{{ forloop.counter }}</th>
 
+            {% comment %} Code column{% endcomment %}
             <td>
                 <div class="btn-group mb-3 mr-md-3" role="group">
                     <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapse-code-info-{{forloop.counter}}" role="button" aria-expanded='false' aria-controls="collapse-code-info-{{forloop.counter}}">
@@ -64,6 +66,7 @@
                 </div>
             </td>
 
+            {% comment %} User column {% endcomment %}
             <td class="text-center align-items-center">
                 {% if code.used_by %}
                     {{ code.used_by }}
@@ -72,6 +75,11 @@
                 {% endif %}
             </td>
 
+            <td>
+                {{ code.allowed_countries }}
+            </td>
+
+            {% comment %} Expiry date column{% endcomment %}
             <td style="min-width: 130px;">
                 {% if code.is_past_due %}
                     <span style="color: red;">{{ code.expiry_date|date }}</span>
@@ -81,6 +89,7 @@
                 {% endif %}
             </td>
 
+            {% comment %} Actions column {% endcomment %}
             <td>
                 <a class="btn btn-danger" href="{% url 'code-delete' code.pk %}?next={{request.path}}">Delete?</button>
             </td>
