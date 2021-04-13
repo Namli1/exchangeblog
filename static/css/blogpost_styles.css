@@ -63,3 +63,25 @@ li.timeline-item::before {
     z-index: 400;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+
+figure {
+    margin: 1.5em;
+}
+
+.image-style-side {
+    float: right;
+}
+
+.image-style-align-right {
+    float: right;
+}
+
+.image-style-align-left {
+    float: left;
+}
+
+.image-style-align-center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

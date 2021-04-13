@@ -13,7 +13,7 @@ class SlideShowImageForm(forms.ModelForm):
 class CountryGuidePostCreateForm(forms.ModelForm):
     class Meta:
         model = CountryGuidePost
-        fields = ['guide_language', 'country', 'country_guide_content', 'spoken_language', 'population', 'capital_city', 'currency']
+        fields = ['guide_language', 'country', 'spoken_language', 'population', 'capital_city', 'currency', 'country_guide_content',]
 
     def __init__(self, *args, **kwargs):
          self.user = kwargs.pop('user')

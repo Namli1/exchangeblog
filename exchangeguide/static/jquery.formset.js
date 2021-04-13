@@ -162,11 +162,23 @@
                 template.find(childElementSelector).not(options.keepFieldValues).each(function() {
                     var elem = $(this);
                     // If this is a checkbox or radiobutton, uncheck it.
-                    // This fixes Issue 1, reported by Wilson.Andrew.J:
+                    // This fixes Issue 1, reported by Wilson.Andrew.J:x
                     if (elem.is('input:checkbox') || elem.is('input:radio')) {
                         elem.attr('checked', false);
                     } else {
                         elem.val('');
+                    }
+
+
+                    //If this is an UpdateForm with a Filefield, clear the "Currently"-div from the cloned form
+                    if (elem.find('div:contains("Currently")')) {
+                        var divWithCurrently = elem.find('div:contains("Currently")').first();
+                        //Removing all html elements
+                        divWithCurrently.contents(':not(input)').remove();
+                        //Removing the text inside the div
+                        divWithCurrently.contents().filter(function(){
+                            return this.nodeType === 3;
+                        }).remove();
                     }
                 });
             }

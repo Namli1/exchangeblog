@@ -1,6 +1,7 @@
 {% extends "base_generic.html" %}
+{% load i18n %}
 
 {% block content %}
-<h1>403 Forbidden</h1>
+<h1>{% trans '403 Forbidden' %}</h1>
 <p>{{ exception }}</p>
 {% endblock %}

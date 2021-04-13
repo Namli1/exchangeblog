@@ -2,10 +2,10 @@ from django.db import models
 from django.urls import reverse
 import random, datetime
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import pgettext
 from django.contrib.auth.models import User
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
-from ckeditor_uploader.fields import RichTextUploadingField
 from django_ckeditor_5.fields import CKEditor5Field
 from multiselectfield import MultiSelectField
 from blog.general import COUNTRY_CHOICES, LANGUAGE_CHOICES
@@ -14,15 +14,15 @@ from blog.general import COUNTRY_CHOICES, LANGUAGE_CHOICES
 
 class BlogPost(models.Model):
     """A model representing the blog posts for the Exchange-Blog"""
-    title = models.CharField(help_text=_("Please enter the title of the Blog Post."), max_length=50)
-    date_of_creation = models.DateField(help_text=_("Enter date of creation of post."), default=datetime.date.today)
-    author = models.ForeignKey('BlogAuthor', on_delete=models.CASCADE)
-    slug = models.SlugField(help_text=_("Enter a slug according to the title of the post"), unique=True, null=False)
-    language = models.CharField(help_text=_('Please enter the language you will use for the post.'), max_length=2, choices=LANGUAGE_CHOICES, default='EN')
-    country = models.CharField(max_length=2, help_text=_("Select the exchange country."), choices=COUNTRY_CHOICES, default='CH')
-    short_description = models.TextField(max_length=150, help_text=_("Enter a short description of what the blog post is about."))
-    blogcontent = CKEditor5Field(config_name='blogpost-editor')
-    thumbnail_picture = ProcessedImageField(upload_to='thumbnails/', processors=[ResizeToFill(300, 200)], options={'quality': 80}, max_length=100, null=True)
+    title = models.CharField(verbose_name=_("Title"), help_text=_("Please enter the title of the Blog Post."), max_length=50)
+    date_of_creation = models.DateField(verbose_name=_("Date of creation"), help_text=_("Enter date of creation of post."), default=datetime.date.today)
+    author = models.ForeignKey('BlogAuthor', on_delete=models.CASCADE, verbose_name=_("Blog Author"))
+    slug = models.SlugField(verbose_name=_("Slug"), help_text=_("Enter a slug according to the title of the post"), unique=True, null=False)
+    language = models.CharField(verbose_name=_("Language"), help_text=_('Please enter the language you will use for the post.'), max_length=2, choices=LANGUAGE_CHOICES, default='EN')
+    country = models.CharField(verbose_name=_("Country"), max_length=2, help_text=_("Select the exchange country."), choices=COUNTRY_CHOICES, default='CH')
+    short_description = models.TextField(verbose_name=_("Short description"), max_length=150, help_text=_("Enter a short description of what the blog post is about."))
+    blogcontent = CKEditor5Field(verbose_name=_("Blog content"), config_name='blogpost-editor')
+    thumbnail_picture = ProcessedImageField(verbose_name=_("Thumbnail picture"), upload_to='thumbnails/', processors=[ResizeToFill(600, 400)], options={'quality': 80}, max_length=100, null=True)
 
     class Meta:
         verbose_name_plural = ('blog posts')
@@ -41,12 +41,12 @@ class BlogPost(models.Model):
 
 class BlogAuthor(models.Model):
     user = models.OneToOneField(User, unique=True, on_delete=models.PROTECT, null=True)
-    name = models.CharField(help_text=_("Please enter your author name (It will be displayed in articles you write)."), max_length=19, unique=True)
-    social_media_link = models.URLField(help_text=_("Please paste the url of your social media page (optional)."), blank=True, null=True, max_length=300)
-    slug = models.SlugField(null=False, unique=True)
-    bio = models.TextField(help_text=_("Please enter a short description of yourself."), max_length=400)
-    allowed_posts = models.PositiveSmallIntegerField(default=1)
-    allowed_countries = MultiSelectField(choices=COUNTRY_CHOICES, blank=True, null=True, help_text=_('The countries this author can write about in a country guide post.'))
+    name = models.CharField(verbose_name=_("Name"), help_text=_("Please enter your author name (It will be displayed in articles you write)."), max_length=19, unique=True)
+    social_media_link = models.URLField(verbose_name=_("Social Media Link"), help_text=_("Please paste the url of your social media page (optional)."), blank=True, null=True, max_length=300)
+    slug = models.SlugField(verbose_name=_("Slug"), null=False, unique=True)
+    bio = models.TextField(verbose_name=pgettext("Bio", "as in biography"), help_text=_("Please enter a short description of yourself."), max_length=400)
+    allowed_posts = models.PositiveSmallIntegerField(default=1, verbose_name=_("Allowed posts"),)
+    allowed_countries = MultiSelectField(verbose_name=_("Allowed countries"), choices=COUNTRY_CHOICES, blank=True, null=True, help_text=_('The countries this author can write about in a country guide post.'))
 
     class Meta:
         ordering = ['name']

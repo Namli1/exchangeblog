@@ -6,6 +6,31 @@
 {% block title %}<title> {{ guidepost.title }}</title>{% endblock %}
 
 {% block content %}
+
+<style>
+figure {
+    margin: 1.5em;
+}
+
+.image-style-side {
+    float: right;
+}
+
+.image-style-align-right {
+    float: right;
+}
+
+.image-style-align-left {
+    float: left;
+}
+
+.image-style-align-center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+</style>
+
 <div class="row">
     <div class="col-md-9">
         <h1 class="text-center">{{ guidepost.title }}</h1>
@@ -42,4 +67,21 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block body-meta %}
+<script>
+$( document ).ready(function() {
+    var figureClasses = $('figure').className;
+    $('figure').each(function( index ) {
+        var imageChild = $(this).find('img');
+        var figureWidthPercentage = $(this).css('width');
+        imageChild.width(figureWidthPercentage);
+        imageChild.addClass('img-responsive');
+        imageChild.addClass($(this).attr('class'));
+    });
+
+
+});
+</script>
 {% endblock %}

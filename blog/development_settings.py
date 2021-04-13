@@ -25,7 +25,7 @@ SECRET_KEY = "vsjiu*6ip8-ifx4w)y27f%-5+2+li2@&7t-eyxo+7stw^x3^r$"
 # os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG =  os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = ['.explore-exchange.com', '127.0.0.1']
 
@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
-    'ckeditor',
-    'ckeditor_uploader',
     'django_ckeditor_5',
     'multiselectfield',
     'captcha',
@@ -51,6 +49,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'exchangeblog',
     'exchangeguide',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -176,6 +175,39 @@ RECAPTCHA_PRIVATE_KEY = '6LfiFBkaAAAAADI3nOf3YUARDPitcS5eAnuqzeVr'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
+#################################################
+    ##  DJANGO-SUMMERNOTE CONFIGURATION ##
+#################################################
+
+def uploadTestFunc(request):
+    return request.user.has_perm('exchangeblog.add_blogpost')
+
+def generateFilePath(instance, filename):
+    print('Instance:')
+    print(instance.user)
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+SUMMERNOTE_THEME = 'bs4'
+SUMMERNOTE_CONFIG = {
+    'iframe': False,
+
+    'summernote': {
+        'width': '100%',
+
+        'callbacks': {
+            #'onMediaDelete': test_func,
+        },
+    },
+
+    'test_func_upload_view': uploadTestFunc,
+    'attachment_filesize_limit': 3145728,
+
+    #'attachment_upload_to': generateFilePath,
+}
+
+
+
+
 ####################################
     ##  CKEDITOR CONFIGURATION ##
 ####################################
@@ -203,7 +235,7 @@ CKEDITOR_CONFIGS = {
 
     'blogpost-editor': {
         'toolbar_Basic': [
-            ['Source', '-', 'Bold', 'Italic']
+            ['Source', '-', 'Bold', 'Italic', 'FilerImage',]
         ],
         'toolbar_YourCustomToolbarConfig': [
             {'name': 'document', 'items': ['-', 'Preview', 'Print', '-', 'Templates']},
@@ -230,7 +262,7 @@ CKEDITOR_CONFIGS = {
             {'name': 'Maximize', 'items': ['Maximize']},
             
         ],
-        'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
+        'toolbar': 'toolbar_Basic',  # put selected toolbar config here
         'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
         #'height': 500,
         #'width': 900,
@@ -243,6 +275,7 @@ CKEDITOR_CONFIGS = {
             'uploadimage', # the upload image feature
             # your extra plugins here
             # 'image',
+            'filerimage'
             'image2',
             'imageresize',
             'div',
@@ -259,6 +292,9 @@ CKEDITOR_CONFIGS = {
             'elementspath',
             'preview',
             ]),
+        'removePlugins': ','.join([
+            'image',
+            ]),
         'templates_files': [
             '/static/ckeditor/my_templates.js',
         ],
@@ -272,6 +308,7 @@ CKEDITOR_CONFIGS = {
 
 CKEDITOR_5_UPLOADS_FOLDER = "media/uploads/"
 CKEDITOR5_MAX_FILE_SIZE = 3145728
+CKEDITOR_5_UPLOAD_PERMISSION = 'exchangeblog.add_blogpost'
 
 CKEDITOR_5_CONFIGS = {
     'blogpost-editor': {
@@ -282,7 +319,7 @@ CKEDITOR_5_CONFIGS = {
             '|',
             'blockQuote', 'imageUpload'
         ],
-        'toolbar': ['heading', '|', 'outdent', 'indent', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
+        'toolbar': ['heading', '|', 'outdent', 'indent', 'alignment', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
         'code','subscript', 'superscript', 'highlight', '|',
                     'bulletedList', 'numberedList', 'todoList', '|',  'blockQuote', 'imageUpload', '|',
                     'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'mediaEmbed', 'removeFormat',

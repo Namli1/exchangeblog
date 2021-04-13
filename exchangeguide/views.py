@@ -19,6 +19,7 @@ from django_filters.views import FilterView
 from exchangeblog.models import BlogAuthor, BlogPost
 from django.db.models import F 
 from .forms import SlideShowImageForm, SlideShowImagesFormSet, CountryGuidePostCreateForm
+from blog.helpers import max_posts_test_func_create, is_author_test_func
 
 # Create your views here.
 
@@ -70,20 +71,13 @@ class GuidePostCreate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTes
         form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
         form.instance.author = get_object_or_404(BlogAuthor, user=self.request.user)
         max_posts = get_object_or_404(BlogAuthor, user=self.request.user).allowed_posts
+        print(CountryGuidePost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() + BlogPost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() >= max_posts)
         if CountryGuidePost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() + BlogPost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() >= max_posts:
-            raise PermissionDenied(_("You are not allowed to write more than {} posts").format(max_posts))
+            raise PermissionDenied(_("You are not allowed to write more than {} posts. Please contact the admin via Instagram to ask if you can write more.").format(max_posts))
         return super().form_valid(form)
 
     def test_func(self):
-        try:
-            if not BlogAuthor.objects.filter(user=self.request.user).exists():
-                raise PermissionDenied(_("You have to appy as a blog author before you can create any posts."))
-        except:
-            raise PermissionDenied(_("You have to apply for a user account to get the permission to add any posts."))
-        max_posts = get_object_or_404(BlogAuthor, user=self.request.user).allowed_posts
-        if CountryGuidePost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() + BlogPost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() >= max_posts:
-            raise PermissionDenied(_("You are not allowed to write more than {} posts, sorry.").format(max_posts))
-        return True
+        return max_posts_test_func_create(self)
 
 class GuidePostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = GuidePost
@@ -92,13 +86,7 @@ class GuidePostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTes
     permission_denied_message = 'Permission denied. Please make sure you have permission to create and update a guide post.'
 
     def test_func(self):
-        try:
-            if not BlogAuthor.objects.filter(user=self.request.user).exists():
-                raise PermissionDenied(_("You have to create a blog author profile before you can create or update any posts."))
-        except:
-            raise PermissionDenied(_("You have to apply for a user account to get the permission to add any posts."))
-        obj = self.get_object()
-        return obj.author == BlogAuthor.objects.get(user=self.request.user)
+        return is_author_test_func(self)
 
 class GuidePostDelete(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     model = GuidePost
@@ -148,7 +136,7 @@ class CountryGuideListView(FilterView):
                 pass
         return context
 
-class CountryGuidePostCreate(LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin, generic.CreateView):
+class CountryGuidePostCreate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin, generic.CreateView):
     form_class = CountryGuidePostCreateForm
     # fields = ['guide_language', 'country', 'country_guide_content', 'spoken_language', 'population', 'capital_city', 'currency']
     template_name = 'exchangeguide/countryguidepost_form.html'
@@ -170,13 +158,7 @@ class CountryGuidePostCreate(LoginRequiredMixin, UserPassesTestMixin, Permission
         return kwargs
 
     def test_func(self):
-        author = BlogAuthor.objects.filter(user=self.request.user)
-        if not author.exists():
-            raise PermissionDenied(_("You have to create a blog author profile before you can create any posts."))
-        max_posts = get_object_or_404(BlogAuthor, user=self.request.user).allowed_posts
-        if CountryGuidePost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() + BlogPost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() >= max_posts:
-            raise PermissionDenied(_("You are not allowed to write more than {} posts, sorry.").format(max_posts))
-        return True
+        return max_posts_test_func_create(self)
      
     def form_valid(self, form):
         context = self.get_context_data()
@@ -190,8 +172,8 @@ class CountryGuidePostCreate(LoginRequiredMixin, UserPassesTestMixin, Permission
                 formset.instance = self.object
                 formset.save()
         max_posts = get_object_or_404(BlogAuthor, user=self.request.user).allowed_posts
-        if CountryGuidePost.objects.filter(author=form.instance.author).count() + BlogPost.objects.filter(author=form.instance.author).count() >= max_posts:
-            raise PermissionDenied(_("You are not allowed to write more than {} posts").format(max_posts))
+        if CountryGuidePost.objects.filter(author=form.instance.author).count() + BlogPost.objects.filter(author=form.instance.author).count() >= max_posts + 1:
+            raise PermissionDenied(_("You are not allowed to write more than {} posts. Please contact the admin via Instagram to ask if you can write more.").format(max_posts))
         return super().form_valid(form)
 
 class CountryGuidePostUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
@@ -200,10 +182,7 @@ class CountryGuidePostUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.Up
     permission_required = 'exchangeguide.add_countryguidepost'
 
     def test_func(self):
-        if not BlogAuthor.objects.filter(user=self.request.user).exists():
-            raise PermissionDenied(_("You have to create a blog author profile before you can create or update any posts."))
-        obj = self.get_object()
-        return obj.author == BlogAuthor.objects.get(user=self.request.user)
+        return is_author_test_func(self)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -216,6 +195,7 @@ class CountryGuidePostUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.Up
      
     def form_valid(self, form):
         context = self.get_context_data()
+        form.instance.slug = slugify(form.instance.get_country_display().encode('ascii', 'ignore').decode('ascii'))
         formset = context["formset"]
         with transaction.atomic():
             self.object = form.save()
@@ -224,13 +204,10 @@ class CountryGuidePostUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.Up
                 formset.save()
         return super().form_valid(form)
 
-class CountryGuidePostDelete(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
+class CountryGuidePostDelete(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = CountryGuidePost
-    permission_required = 'exchangeguide.add_countryguidepost'
-    success_url = reverse_lazy('blog')
+    permission_required = 'exchangeguide.countryguidepost_confirm_delete.html'
+    success_url = reverse_lazy('home')
 
     def test_func(self):
-        if not BlogAuthor.objects.filter(user=self.request.user).exists():
-            raise PermissionDenied(_("You have to create a blog author profile before you can create any posts which you might then delete."))
-        obj = self.get_object()
-        return obj.author == BlogAuthor.objects.get(user=self.request.user)
+        return is_author_test_func(self)

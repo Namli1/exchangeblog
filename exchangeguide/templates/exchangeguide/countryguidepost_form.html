@@ -8,7 +8,7 @@
 {% block content %}
 <h1 class="text-center mt-3">{% trans "Edit Country Guide" %}</h1>
 
-<form method="post" class="form-horizontal" action="" enctype='multipart/form-data'>
+<form method="post" class="form-horizontal" action="" enctype='multipart/form-data' >
     {% csrf_token %}
     <table class="mx-auto">
         {{ form.media }}
@@ -17,12 +17,14 @@
     {{ formset.management_form }}
     <div class="form-row justify-content-between border rounded bg-light p-3">
     <h2>Choose up to 10 pictures for a picture slideshow.</h2>
-    {% for form in formset.forms %}
-        <div class="col-auto m-3" id="slideshowForm">
-            {{ form|crispy }}
-            <div class="w-100 d-none d-md-block"></div>
-        </div>
-    {% endfor %}
+        <form method="post" action="" enctype='multipart/form-data'>
+            {% for form in formset.forms %}
+                <div class="col-auto m-3 slideshowForm">
+                    {{ form|crispy }}
+                    <div class="w-100 d-none d-md-block"></div>
+                </div>
+            {% endfor %}
+        <form>
     </div>
     </table>
     <input type="submit" class="btn btn-secondary mt-3 mb-5">
@@ -34,7 +36,7 @@
 <script src="{% static 'jquery.formset.js' %}"></script>
 <script type="text/javascript">
     $(function() {
-        $('#slideshowForm').formset({
+        $('.slideshowForm').formset({
             prefix: '{{ formset.prefix }}',
             {% comment %} addText: '{% trans "add another" %}',
             deleteText: "{% trans 'remove' %}",  {% endcomment %}

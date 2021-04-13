@@ -78,7 +78,6 @@ class PasswordResetFormWithReCaptcha(PasswordResetForm):
         result = response.json()
         if result.get('success') and result.get('score') > 0.8 and result['action'] == 'submit':
             # client is human
-            print(result)
             pass
         else:
             raise forms.ValidationError(_('We couldn\'t verify that you are not a robot. Please try again.'))

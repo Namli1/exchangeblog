@@ -122,6 +122,8 @@ class BlogAuthorCreate(UserPassesTestMixin, LoginRequiredMixin, PermissionRequir
                     return False
             except:
                 return True
+        else:
+            return False
     
     def get_form_kwargs(self):
         kwargs = super(BlogAuthorCreate, self).get_form_kwargs()
@@ -168,13 +170,13 @@ class BlogPostCreate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTest
         form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
         max_posts = get_object_or_404(BlogAuthor, user=self.request.user).allowed_posts
         if CountryGuidePost.objects.filter(author=form.instance.author).count() + BlogPost.objects.filter(author=form.instance.author).count() >= max_posts:
-            raise PermissionDenied(_("You are not allowed to write more than {} posts, sorry.").format(max_posts))
+            raise PermissionDenied(_("You are not allowed to write more than {} posts, sorry. Please contact the admin via Instagram to ask if you can write more.").format(max_posts))
         return super().form_valid(form)
 
     def test_func(self):
         max_posts = get_object_or_404(BlogAuthor, user=self.request.user).allowed_posts
         if CountryGuidePost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() + BlogPost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() >= max_posts:
-            raise PermissionDenied(_("You are not allowed to write more than {} posts, sorry.").format(max_posts))
+            raise PermissionDenied(_("You are not allowed to write more than {} posts, sorry. Please contact the admin via Instagram to ask if you can write more.").format(max_posts))
         return True
             
 

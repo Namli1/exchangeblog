@@ -32,10 +32,8 @@ class SignUpView(UserPassesTestMixin, generic.CreateView):
             if self.request.user.is_authenticated():
                 raise PermissionDenied(_("You can't sign-up if you are already logged in :-)."))
             else:
-                print("hi")
                 return True
         except:
-            print("hi1")
             return True
 
     def form_valid(self, form):
@@ -55,6 +53,7 @@ class SignUpView(UserPassesTestMixin, generic.CreateView):
                 countryguide_create_permission = Permission.objects.get(codename="add_countryguidepost")
                 user.user_permissions.add(countryguide_create_permission)
         else:
+            print("hello")
             raise ValidationError(_("Invalid registration code. This code might not exist or is turned invalid. Please make sure you spelled it correctly. If it's not working, contact the admin via Instagram."), code='invalid')
         # blogauthor_create_permission = Permission.objects.get(codename="add_blogauthor")
         # user.user_permissions.add(blogauthor_create_permission)

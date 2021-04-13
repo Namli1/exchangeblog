@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}<title>{% trans "Delete Country Guide?" %}</title>{% endblock %}
+
+{% block content %}
+
+<h1>Delete country guide</h1>
+
+<p>{% blocktrans with country=countryguidepost.country %}Are you sure you want to delete the country guide for {{ country }}{% endblocktrans %}</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input class="btn btn-danger mb-2" type="submit" value="Yes, delete.">
+</form>
+
+{% endblock %}

@@ -27,7 +27,11 @@
             <img src="{{ blogpost.thumbnail_picture.url }}">
         </div>
 
-        <p>{{ blogpost.blogcontent | safe }}</p>
+        <div class="d-block p-4 blogpost-content">
+            {{ blogpost.blogcontent | safe }}
+        </div>
+
+        <div style="clear:both;"></div>
 
         <div class="text-center justify-content-between d-block">
         <!-- AddToAny BEGIN -->
@@ -72,3 +76,20 @@
 </div>
 
 {% endblock%}
+
+{% block body-meta %}
+<script>
+$( document ).ready(function() {
+    var figureClasses = $('figure').className;
+    $('figure').each(function( index ) {
+        var imageChild = $(this).find('img');
+        var figureWidthPercentage = $(this).css('width');
+        imageChild.width(figureWidthPercentage);
+        imageChild.addClass('img-responsive');
+        imageChild.addClass($(this).attr('class'));
+    });
+
+
+});
+</script>
+{% endblock %}

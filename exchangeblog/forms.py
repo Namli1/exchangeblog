@@ -15,6 +15,7 @@ class BlogAuthorCreateForm(forms.ModelForm):
                     print("Passed test")
                     return registration_code
             else:
+                print(self.user)
                 raise ValidationError(_("Invalid registration code. This code has probably expired. Please make sure you spelled it correctly. If it's not working, contact the admin via Instagram."), code='invalid')
         else:
             raise ValidationError(_("Invalid registration code. This code does not exist. Please make sure you've spelled it correctly. If it's still not working, contact the admin via Instagram."), code='invalid')

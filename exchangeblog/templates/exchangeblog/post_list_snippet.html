@@ -30,7 +30,9 @@
     {% if list.count > 1 %}
     <div id="post-card" class="card bg-light mb-5 mt-3 shadow-sm aniview" data-av-animation="slideInLeft">
             <div class="card-body">
-                <a href="{% url 'post-list'%}" class="text-decoration-none text-secondary"><h2 class="text-dark">{% trans "See more" %} &rarr;</h2></a>
+                <a href="{% url 'post-list'%}" class="text-decoration-none text-secondary">
+                    <h2 class="text-dark">{% trans "See more" %} &rarr;</h2>
+                </a>
             </div>
     </div>
     {% endif %}
