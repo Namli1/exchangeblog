@@ -158,8 +158,8 @@ LOCALE_PATHS = (
 )
 
 #ReCaptcha Configuration
-RECAPTCHA_PUBLIC_KEY = '6LfiFBkaAAAAAG_2J5fXAqsVI3aFfOdjjcrXUcnu'
-RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
+RECAPTCHA_PUBLIC_KEY = str('6LfiFBkaAAAAAG_2J5fXAqsVI3aFfOdjjcrXUcnu')
+RECAPTCHA_PRIVATE_KEY = str(os.environ.get("RECAPTCHA_PRIVATE_KEY"))
 
 
 ####################################
