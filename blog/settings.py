@@ -160,3 +160,65 @@ LOCALE_PATHS = (
 #ReCaptcha Configuration
 RECAPTCHA_PUBLIC_KEY = '6LfiFBkaAAAAAG_2J5fXAqsVI3aFfOdjjcrXUcnu'
 RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
+
+
+####################################
+    ##  CRISPY FORMS CONFIGURATION ##
+####################################
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+###################################
+# CKEDITOR 5 Configuration
+
+CKEDITOR_5_UPLOADS_FOLDER = "media/uploads/"
+CKEDITOR5_MAX_FILE_SIZE = 3145728
+CKEDITOR_5_UPLOAD_PERMISSION = 'exchangeblog.add_blogpost'
+
+CKEDITOR_5_CONFIGS = {
+    'blogpost-editor': {
+        'blockToolbar': [
+            'paragraph', 'heading1', 'heading2', 'heading3',
+            '|',
+            'bulletedList', 'numberedList',
+            '|',
+            'blockQuote', 'imageUpload'
+        ],
+        'toolbar': ['heading', '|', 'outdent', 'indent', 'alignment', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
+        'code','subscript', 'superscript', 'highlight', '|',
+                    'bulletedList', 'numberedList', 'todoList', '|',  'blockQuote', 'imageUpload', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'mediaEmbed', 'removeFormat',
+                    'insertTable',],
+        'image': {
+            'toolbar': ['imageTextAlternative', 'imageTitle', '|', 'imageStyle:alignLeft', 'imageStyle:full',
+                        'imageStyle:alignRight', 'imageStyle:alignCenter', 'imageStyle:side',  '|'],
+            'styles': [
+                'full',
+                'side',
+                'alignLeft',
+                'alignRight',
+                'alignCenter',
+                {'className': 'image-responsive'},
+            ]
+
+        },
+        'imageresize': {
+            'maxWidth': 800,
+            'maxHeight': 800,
+        },
+        'table': {
+            'contentToolbar': [ 'tableColumn', 'tableRow', 'mergeTableCells',
+            'tableProperties', 'tableCellProperties' ],
+        },
+        'heading' : {
+            'options': [
+                { 'model': 'paragraph', 'title': 'Paragraph', 'class': 'ck-heading_paragraph' },
+                { 'model': 'heading1', 'view': 'h1', 'title': 'Heading 1', 'class': 'ck-heading_heading1' },
+                { 'model': 'heading2', 'view': 'h2', 'title': 'Heading 2', 'class': 'ck-heading_heading2' },
+                { 'model': 'heading3', 'view': 'h3', 'title': 'Heading 3', 'class': 'ck-heading_heading3' }
+            ]
+        },
+    }
+}
+
+###################################
