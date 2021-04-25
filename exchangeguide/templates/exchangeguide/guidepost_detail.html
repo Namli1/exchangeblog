@@ -33,13 +33,12 @@ figure {
 
 <div class="row">
     <div class="col-md-9">
-        <h1 class="text-center">{{ guidepost.title }}</h1>
-        <div class="row">
-        {% if is_author %}
-            <a class="btn btn-primary mx-2 mt-2" href="{% url 'countryguide-update' blogpost.author.slug blogpost.slug %}" role="button">{% trans "Update Post" %}</a>
-            <a class="btn btn-danger mx-2 mt-2" href="{% url 'countryguide-delete' blogpost.author.slug blogpost.slug %}" role="button">{% trans "Delete Post" %}</a>
-        {% endif %}
-        </div>
+        <h1 class="text-center">{{ guidepost.title }}
+            {% if is_author %}
+                <a class="btn btn-primary mx-2 mt-2" href="{% url 'guide-update' guidepost.slug %}" role="button">{% trans "Update Post" %}</a>
+                <a class="btn btn-danger mx-2 mt-2" href="{% url 'guide-delete' guidepost.slug %}" role="button">{% trans "Delete Post" %}</a>
+            {% endif %}
+        </h1>
 
         <div class="container bg-light m-4 p-3">
             {{ guidepost.short_description }}
@@ -48,21 +47,30 @@ figure {
         <div class="container">
             {{ guidepost.guide_content|safe }}
         </div>
+
+        <div class="row">
+            <div class="col-md-12 my-md-5">
+                {% if next_posts %}
+                    <div class="container">
+                        <h3>{% trans "Next guide posts:" %}</h3>
+                        {% include 'guide_post_snippet.html' with list=next_posts %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
 
     <div class="col-md-3 mt-md-5">
-    {% if next_post %}
-        <div class="container">
-            <h3>{% trans "Next guide post:" %}</h3>
-            {% include 'guide_post_snippet.html' with list=next_post vertical_list=True %}
-        </div>
-
-    {% else %}
+    {% if country_post %}
         <div class="container">
             <h3>{% trans "See these interesting countries:" %}</h3>
             {% include 'country_guide_snippet.html' with list=country_post small_list=True vertical_list=True %}
         </div>
-
+    {% elif blog_post %}
+        <div class="container">
+            <h3>{% trans "See these blog post:" %}</h3>
+            {% include 'exchangeblog/post_list_snippet.html' with list=blog_post deck=True %}
+        </div>
     {% endif %}
     </div>
 </div>

@@ -5,9 +5,9 @@
 
 {% block content %}
 
-<h1>Delete country guide</h1>
+<h1>{% trans "Delete country guide" %}</h1>
 
-<p>{% blocktrans with country=countryguidepost.country %}Are you sure you want to delete the country guide for {{ country }}{% endblocktrans %}</p>
+<p>{% blocktrans with country=countryguidepost.get_country_display %}Are you sure you want to delete the country guide for {{ country }}?{% endblocktrans %}</p>
 
 <form action="" method="POST">
   {% csrf_token %}

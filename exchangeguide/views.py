@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django import forms
+from itertools import chain
 import random
 from django.forms import modelformset_factory
 from django.contrib.auth.decorators import login_required
@@ -17,7 +18,7 @@ from django.urls import reverse_lazy
 from exchangeguide.filters import CountryGuidePostFilter
 from django_filters.views import FilterView
 from exchangeblog.models import BlogAuthor, BlogPost
-from django.db.models import F 
+from django.db.models import F
 from .forms import SlideShowImageForm, SlideShowImagesFormSet, CountryGuidePostCreateForm
 from blog.helpers import max_posts_test_func_create, is_author_test_func
 
@@ -35,13 +36,35 @@ class GuidePostDetailView(generic.DetailView):
         #     context['country_post'] = CountryGuidePost.objects.all().order_by('?')[0:2]
 
         try:
-            if GuidePost.objects.filter(main_guide_post_number__gt=self.get_object().main_guide_post_number).order_by('main_guide_post_number')[0:1]:
-                context["next_post"] = GuidePost.objects.filter(main_guide_post_number__gt=self.get_object().main_guide_post_number).order_by('main_guide_post_number')[0:1]
+            #Pass the next two ordered posts if they exist
+            if GuidePost.objects.filter(main_guide_post_number__gt=self.get_object().main_guide_post_number).count() >= 2:
+                context["next_posts"] = GuidePost.objects.filter(main_guide_post_number__gt=self.get_object().main_guide_post_number).order_by('main_guide_post_number')[0:2]
+            #If there are no two ordered posts, look if there is one ordered post and one unordered post
+            elif GuidePost.objects.filter(main_guide_post_number__gt=self.get_object().main_guide_post_number).exists() and GuidePost.objects.filter(main_guide_post_number__isnull=True).exists():
+                guide_post = GuidePost.objects.filter(main_guide_post_number__gt=self.get_object().main_guide_post_number).order_by('main_guide_post_number')[0:1]
+                unordered_post = GuidePost.objects.filter(main_guide_post_number__isnull=True).order_by('?')[0:1]
+                context["next_posts"] = list(chain(guide_post, unordered_post))
+            #If there are no two posts, pass only the next one 
+            elif GuidePost.objects.filter(main_guide_post_number__gt=self.get_object().main_guide_post_number).count() >= 1:
+                context["next_posts"] = GuidePost.objects.filter(main_guide_post_number__gt=self.get_object().main_guide_post_number).order_by('main_guide_post_number')[0:1]
             else:
                 context['country_post'] = CountryGuidePost.objects.all().order_by('?')[0:2]
         except:
+             pass
+
+        if CountryGuidePost.objects.all().count() > 0:
             context['country_post'] = CountryGuidePost.objects.all().order_by('?')[0:2]
-        
+        elif BlogPost.objects.all().count() >= 2:
+            context['blog_post'] = BlogPost.objects.all().order_by('?')[0:2]
+        elif BlogPost.objects.all().count() >= 1:
+            print("hi there")
+            context['blog_post'] = BlogPost.objects.all().order_by('?')[0:1]
+        if self.request.user.is_authenticated:
+            try:
+                if BlogAuthor.objects.get(user=self.request.user):
+                    context["is_author"] = BlogAuthor.objects.get(user=self.request.user).slug
+            except:
+                pass
         return context
     
 
