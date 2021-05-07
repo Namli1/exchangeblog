@@ -33,6 +33,8 @@ sitemaps = {
     'static': StaticViewSitemap,
 }
 
+handler404 = 'authentication.views.handler404'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),

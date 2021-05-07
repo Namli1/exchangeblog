@@ -100,3 +100,11 @@ class RegistrationCodeDelete(UserPassesTestMixin, generic.DeleteView):
 
     def test_func(self):
         return self.request.user.is_superuser
+
+
+from exchangeblog.models import BlogPost
+from exchangeguide.models import GuidePost
+
+def handler404(request, exception, template_name="404.html"):
+    response = render(request, template_name, {'latest_posts': BlogPost.objects.all()[:3], 'guide_teaser': GuidePost.objects.all()[:3]}, status=404)
+    return response

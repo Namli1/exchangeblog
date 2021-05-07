@@ -10,12 +10,12 @@
 <p>{% trans 'Sorry, this page does not exist.' %}</p>
 
 
-<h2 class="p-3 font-weight-light">{% trans "But you might want to have a look at the most recent blog posts:" %}</h1>
-    <div class="container col-md-11 float-left">
+<h2 class="p-3 font-weight-light">{% trans "But you might want to have a look at the most recent blog posts:" %}</h2>
+    <div class="container col-md-11 d-block">
         {% include "exchangeblog/post_list_snippet.html" with list=latest_posts teaser=True %}
     </div>
 
-<h2 class="mt-5 p-3 font-weight-light">{% trans "Or maybe start your exchange journey here:"%}</h1>
+<h2 class="mt-5 p-3 font-weight-light">{% trans "Or maybe start your exchange journey here:"%}</h2>
 <div class="container col-md-11 float-left">
     {% include "guide_post_snippet.html" with list=guide_teaser teaser=True %}
 </div>
