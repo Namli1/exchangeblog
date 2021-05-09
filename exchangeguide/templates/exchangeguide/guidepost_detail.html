@@ -5,6 +5,15 @@
 
 {% block title %}<title> {{ guidepost.title }}</title>{% endblock %}
 
+{% block meta %}
+    <meta name="description" property="og:description" content="{{ guidepost.short_description }}">
+    <meta name="author" content="{{ guidepost.author }}">
+    <meta name="keywords" content="exchangeyear, exchange, auslandsjahr, austauschjahr, guidepost, guide, beratung, hilfe">
+    <meta property="og:url" content="{{ guidepost.get_absolute_url }}"/>
+    <meta property="og:title" content="{{ guidepost.title }}" />
+    <meta property="og:image" content="{{ guidepost.thumbnail_picture.url }}" />
+{% endblock %}
+
 {% block content %}
 
 <style>

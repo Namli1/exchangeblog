@@ -4,6 +4,17 @@
 
 {% block title %}<title>{{ countryguidepost.get_country_display }}</title>{% endblock %}
 
+{% block meta %}
+    <meta name="description" property="og:description" content="{{ countryguidepost.short_description }}">
+    <meta name="author" content="{{ countryguidepost.author }}">
+    <meta name="keywords" content="exchangeyear, exchange, auslandsjahr, austauschjahr, guidepost, guide, beratung, hilfe, {{ countryguidepost.capital_city }}, {{ countryguidepost.currency }}, {{countryguidepost.get_country_display}},{{countryguidepost.spoken_language}}  ">
+    <meta property="og:url" content="{{ countryguidepost.get_absolute_url }}"/>
+    <meta property="og:title" content="{{ countryguidepost.title }}" />
+    <meta property="og:image" content="{{ countryguidepost.thumbnail_picture.url }}" />
+{% endblock %}
+
+
+
 {% block full-width %}
 <h1 class="text-center display-2">
 <strong>{{ countryguidepost.get_country_display }}</strong>
@@ -67,6 +78,8 @@ figure {
         {% endif %}
     </div>
 {% endblock %}
+
+
 
 {% block content %}
 

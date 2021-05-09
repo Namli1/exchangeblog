@@ -6,6 +6,12 @@
 
 {% block meta %} 
     <link rel="stylesheet" href="{% static 'css/blogpost_styles.css' %}">
+    <meta name="description" property="og:description" content="{{ blogpost.short_description }}">
+    <meta name="author" content="{{ blogpost.author }}">
+    <meta name="keywords" content="exchangeyear, exchange, auslandsjahr, austauschjahr, {{ blogpost.get_country_display }}, {{ blogpost.get_language_display }}">
+    <meta property="og:url" content="{{ blogpost.get_absolute_url }}"/>
+    <meta property="og:title" content="{{ blogpost.title }}" />
+    <meta property="og:image" content="{{ blogpost.thumbnail_picture.url }}" />
 {% endblock %}
 
 {% block content%}
