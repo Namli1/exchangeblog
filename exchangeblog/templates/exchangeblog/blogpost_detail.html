@@ -29,8 +29,8 @@
             <a class="btn btn-danger mx-2 mt-2" href="{% url 'post-delete' blogpost.author.slug blogpost.slug %}" role="button">{% trans "Delete Post" %}</a>
             {% endif %}
         </div>
-        <div id="image-container" class="container mx-auto">
-            <img src="{{ blogpost.thumbnail_picture.url }}">
+        <div id="image-container" class="container mx-auto thumbnail-image">
+            <img src="{{ blogpost.thumbnail_picture.url }}" class="img-fluid">
         </div>
 
         <div class="d-block p-4 blogpost-content">
@@ -91,10 +91,9 @@ $( document ).ready(function() {
         var imageChild = $(this).find('img');
         var figureWidthPercentage = $(this).css('width');
         imageChild.width(figureWidthPercentage);
-        imageChild.addClass('img-responsive');
+        imageChild.addClass('img-fluid');
         imageChild.addClass($(this).attr('class'));
     });
-
 
 });
 </script>
