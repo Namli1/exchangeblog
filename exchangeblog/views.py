@@ -160,12 +160,13 @@ class BlogAuthorUpdate(UserPassesTestMixin, LoginRequiredMixin, generic.UpdateVi
 
 class BlogPostCreate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin, generic.CreateView):
     model = BlogPost
-    fields = ['title', 'date_of_creation', 'language', 'country', 'short_description', 'blogcontent', 'thumbnail_picture'] 
+    fields = ['title', 'language', 'country', 'short_description', 'blogcontent', 'thumbnail_picture'] 
     permission_object = None
     permission_required = 'exchangeblog.add_blogpost'
     permission_denied_message = _("Please make sure you're logged in and have applied as an author.")
     
     def form_valid(self, form):
+        form.instance.date_of_creation = datetime.date.today()
         form.instance.author = get_object_or_404(BlogAuthor, user=self.request.user)
         form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
         max_posts = get_object_or_404(BlogAuthor, user=self.request.user).allowed_posts
