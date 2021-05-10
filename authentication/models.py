@@ -12,6 +12,7 @@ class RegistrationCode(models.Model):
     has_guidepost_permission = models.BooleanField(verbose_name=_("Has guidepost permission"), default=False, null=False, help_text=_('Specify wether the user using this code will be able to add guide posts.'))
     has_countryguide_permission = models.BooleanField(verbose_name=_("Has countryguidepost permission"), default=False, null=False, help_text=_('Specify wether the user using this code will be able to add a country guide about their country.'))
     allowed_countries = MultiSelectField(verbose_name=_("Allowed countries"), choices=COUNTRY_CHOICES, blank=True, null=True, help_text=_('The allowed countries the author can write about when creating a country guide post.'))
+    max_post_count = models.PositiveSmallIntegerField(default=1, verbose_name=_("Max Post Count"), help_text=_("The maximum number of posts this author can write."))
     expiry_date = models.DateField(verbose_name=_("Expiry date"), default=datetime.now() + timedelta(days=30),help_text=_('The date upon which this code will be invalid, is automatically populated, but you can adjust it if you want.'))
     used_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name=_("Used by"), )
 

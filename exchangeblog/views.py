@@ -137,6 +137,7 @@ class BlogAuthorCreate(UserPassesTestMixin, LoginRequiredMixin, PermissionRequir
         if RegistrationCode.objects.filter(code=registration_code).first().check_if_used_by_this_user(user=self.request.user):
             used_code = RegistrationCode.objects.filter(code=registration_code).first()
             form.instance.allowed_countries = used_code.allowed_countries
+            form.instance.allowed_posts = used_code.max_post_count
             #TODO: Maybe delete the code after having been used here???
             # RegistrationCode.objects.filter(code=registration_code).first().delete()
         self.request.user.user_permissions.add(Permission.objects.get(codename="add_blogpost"))

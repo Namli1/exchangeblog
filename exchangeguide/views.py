@@ -181,6 +181,12 @@ class CountryGuidePostCreate(LoginRequiredMixin, PermissionRequiredMixin, UserPa
         return kwargs
 
     def test_func(self):
+        try:
+            allowed_countries = get_object_or_404(BlogAuthor, user=self.request.user).get_allowed_countries_choices()
+            if not allowed_countries:
+                return False
+        except:
+            return max_posts_test_func_create(self)
         return max_posts_test_func_create(self)
      
     def form_valid(self, form):

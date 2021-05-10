@@ -45,7 +45,7 @@ class BlogAuthor(models.Model):
     social_media_link = models.URLField(verbose_name=_("Social Media Link"), help_text=_("Please paste the url of your social media page (optional)."), blank=True, null=True, max_length=300)
     slug = models.SlugField(verbose_name=_("Slug"), null=False, unique=True)
     bio = models.TextField(verbose_name=pgettext("Bio", "as in biography"), help_text=_("Please enter a short description of yourself."), max_length=400)
-    allowed_posts = models.PositiveSmallIntegerField(default=1, verbose_name=_("Allowed posts"),)
+    allowed_posts = models.PositiveSmallIntegerField(default=1, verbose_name=_("Allowed posts"), help_text=_("The maximum number of posts this author can write."))
     allowed_countries = MultiSelectField(verbose_name=_("Allowed countries"), choices=COUNTRY_CHOICES, blank=True, null=True, help_text=_('The countries this author can write about in a country guide post.'))
 
     class Meta:

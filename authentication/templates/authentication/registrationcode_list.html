@@ -24,6 +24,7 @@
             <th scope="col">#</th>
             <th scope="col">Code</th>
             <th scope="col">User</th>
+            <th scope="col">Max posts</th>
             <th scope="col">Countries</th>
             <th scope="col">Expiry Date</th>
             <th scope="col">Actions</th>
@@ -75,9 +76,17 @@
                 {% endif %}
             </td>
 
+            {% comment %} Max posts column {% endcomment %}
+            <td class="text-center align-items-center">
+                {{ code.max_post_count }}
+            </td>
+
+            {% comment %} Countries column {% endcomment %}
             <td>
                 {{ code.allowed_countries }}
             </td>
+
+            
 
             {% comment %} Expiry date column{% endcomment %}
             <td style="min-width: 130px;">
