@@ -11,7 +11,7 @@ from blog.general import COUNTRY_CHOICES, LANGUAGE_CHOICES
 # Create your models here.
 
 class GuidePost(models.Model):
-    title = models.CharField(verbose_name=_("Title"), help_text=_("Please enter the title of the Post"), max_length=50)
+    title = models.CharField(verbose_name=_("Title"), help_text=_("Please enter the title of the Post"), max_length=70)
     slug = models.SlugField(help_text=_("Slug consisting of title of guide post."), unique=True, null=False, default="guidePost")
     author = models.ForeignKey("exchangeblog.BlogAuthor", verbose_name=_("Author"),  on_delete=models.SET_NULL, null=True)
     guide_content = CKEditor5Field(config_name='blogpost-editor', verbose_name=_("Guide content"), help_text=_("Here is the place to write the actual guide itself."))
