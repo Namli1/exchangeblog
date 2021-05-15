@@ -26,6 +26,7 @@ from exchangeblog.views import AboutPageView, HomePageView, PrivacyPolicyView
 from blog.sitemaps import PostSiteMap, AuthorSiteMap, StaticViewSitemap
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
+from django.views.generic.base import TemplateView
 
 sitemaps = {
     'posts': PostSiteMap,
@@ -41,9 +42,8 @@ urlpatterns = [
     path('accounts/', include('authentication.urls')),
     #path('accounts/', include('django.contrib.auth.urls')),
     path("ckeditor5/", include('django_ckeditor_5.urls')),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
-     name='sitemap'),
-
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+    path("robots.txt",TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicons/favicon.ico'))),
     path('browserconfig.xml', RedirectView.as_view(url=staticfiles_storage.url('favicons/browserconfig.xml'))),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

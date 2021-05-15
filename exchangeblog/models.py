@@ -14,7 +14,7 @@ from blog.general import COUNTRY_CHOICES, LANGUAGE_CHOICES
 
 class BlogPost(models.Model):
     """A model representing the blog posts for the Exchange-Blog"""
-    title = models.CharField(verbose_name=_("Title"), help_text=_("Please enter the title of the Blog Post."), max_length=50)
+    title = models.CharField(verbose_name=_("Title"), help_text=_("Please enter the title of the Blog Post."), max_length=70)
     date_of_creation = models.DateField(verbose_name=_("Date of creation"), help_text=_("Enter date of creation of post."), default=datetime.date.today)
     author = models.ForeignKey('BlogAuthor', on_delete=models.CASCADE, verbose_name=_("Blog Author"))
     slug = models.SlugField(verbose_name=_("Slug"), help_text=_("Enter a slug according to the title of the post"), unique=True, null=False)
