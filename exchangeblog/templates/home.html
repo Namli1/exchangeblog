@@ -2,12 +2,13 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}<title>{% trans "Explore-Exchange | Home" %}</title> {% endblock%}
+{% block title %}<title>{% trans "Explore-Exchange | The Home of Exchange Students" %}</title> {% endblock%}
 
 {% block home-active %}active{% endblock %}
 
 {% block meta %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<meta name="description" property="og:description" content="Welcome to Explore-Exchange, the hub where exchange students can share their experiences and help others on their journey!">
+<meta name="keywords" content="exchangeyear, exchange, auslandsjahr, austauschjahr, exchangestudent, exchangestudents, studyabroad, internationalstudents, foreignstudents, hoststudents, hostfamily, foreignexperience">
 {% endblock %}
 
 
@@ -45,6 +46,18 @@
     100% {
         transform: translateX(0);
     }
+}
+
+.bigger-header {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 2.5rem;
+}
+
+.bigger-headline {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 3rem;
 }
 
 </style>
@@ -86,7 +99,7 @@
     {% if username %}
         <h2 class="text-center display-4 col-md-6 animated pulse delay-1s"><strong>{% trans "Welcome back, " %} {{ username }}!</strong></h2>
     {% else %}
-        <h2 class="text-center display-4 col-md-6 animated pulse delay-1s"><strong>{% trans "Welcome to Explore Exchange!" %}</strong></h2>
+        <h2 class="text-center display-4 col-md-6 animated pulse delay-1s"><strong>{% trans "Welcome to Explore Exchange, the home of exchange students!" %}</strong></h2>
     {% endif %}
 </div>
 
@@ -102,42 +115,42 @@
 <div class="row toBeSlidden right">
     <div class="col-md-6">
         <div class="text-center">
-            <img width=300 src="{% static 'images/Signpost.jpg'%}">
+            <img width=300 loading="lazy" src="{% static 'images/Signpost.jp2'%}" alt="A signpost leading the way">
         </div>
     </div>
 
     <div class="col-md-6 align-self-center">
-        <h1 class="align-middle">{% trans "Exchange Guide" %}</h1>
+        <h2 class="align-middle bigger-header">{% trans "Exchange Guide" %}</h2>
         <p class="small">{% trans "See how you can start your exchange year journey by looking at our guide." %}</p>
-        <a href="{% url 'guide-list' %}"><button class="btn btn-info shadow-lg" href="">{% trans "Start your journey" %}</button></a>
+        <a href="{% url 'guide-list' %}" role="button" class="btn btn-info shadow-lg">{% trans "Start your journey" %}</a>
     </div>
 </div>
 
-<div class="row mb-5 mx-md-5 aniview toBeSlidden left">
+<div class="row mb-5 mx-md-5 toBeSlidden left">
     <div class="col-md-7 order-md-12">
         <div class="text-center">
-            <img width=300 src="{% static 'images/blogPen.jpg' %}">
+            <img width=300 loading="lazy" src="{% static 'images/blogPen.jp2' %}" alt="Filler pen writing a blog">
         </div>
     </div>
 
     <div class="col-md-5 align-self-center oder-md-1">
-        <h1 class="align-middle">{% trans "Blog" %}</h1>
+        <h2 class="align-middle bigger-header">{% trans "Blog" %}</h2>
         <p class="small">{% trans "Explore how exchange students around the world are spending their time and what experiences they make." %}</p>
-        <a href="{% url 'post-list' %}"><button class="btn btn-info shadow-lg">{% trans "Explore" %}</button></a>
+        <a href="{% url 'post-list' %}" role="button" class="btn btn-info shadow-lg">{% trans "Explore" %}</a>
     </div>
 </div>
 
-<div class="row mx-md-5 aniview toBeSlidden right">
+<div class="row mx-md-5 toBeSlidden right">
     <div class="col-md-6">
         <div class="text-center">
-            <img width=200 src="{% static 'images/FlagHeart.jpg' %}">
+            <img width=200 loading="lazy" src="{% static 'images/FlagHeart.jp2' %}" alt="A heart made out of the flags of many countries">
         </div>
     </div>
 
     <div class="col-md-6 align-self-center">
-        <h1 class="align-middle">{% trans "Country Guides" %}</h1>
+        <h2 class="align-middle bigger-header">{% trans "Country Guides" %}</h2>
         <p class="small">{% trans "See how you can start your exchange year journey by looking at our guide." %}</p>
-        <a href="{% url 'countryguide-list' %}"><button class="btn btn-info shadow-lg">{% trans "See the countries" %}</button></a>
+        <a href="{% url 'countryguide-list' %}" role="button" class="btn btn-info shadow-lg">{% trans "See the countries" %}</a>
     </div>
 </div>
 </div>
@@ -146,13 +159,13 @@
 
 <div class="panel">
 
-<h1 class="display-4 mt-5 p-3">{% trans "Start your exchange journey here:"%}</h1>
+<h2 class="display-4 mt-5 p-3 bigger-headline">{% trans "Start your exchange journey here:"%}</h2>
 <div class="container col-md-11 float-left">
     {% include "guide_post_snippet.html" with list=guide_teaser teaser=True %}
 </div>
 
 
-<h1 class="display-4 p-3">{% trans "Look at the most recent blog posts:" %}</h1>
+<h2 class="display-4 p-3 bigger-headline">{% trans "Look at the most recent blog posts:" %}</h2>
     <div class="container col-md-11 float-left">
         {% include "exchangeblog/post_list_snippet.html" with list=latest_posts teaser=True %}
     </div>
@@ -161,7 +174,6 @@
 {% endblock %}
 
 {% block body-meta %}
-<script src="https://unpkg.com/jquery-aniview/dist/jquery.aniview.js"></script>
 <script type="text/javascript">
 (function($) {
 

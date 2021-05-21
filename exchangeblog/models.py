@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 import random, datetime
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.utils.translation import pgettext
 from django.contrib.auth.models import User
 from imagekit.models import ProcessedImageField
@@ -22,7 +22,7 @@ class BlogPost(models.Model):
     country = models.CharField(verbose_name=_("Country"), max_length=2, help_text=_("Select the exchange country."), choices=COUNTRY_CHOICES, default='CH')
     short_description = models.TextField(verbose_name=_("Short description"), max_length=150, help_text=_("Enter a short description of what the blog post is about."))
     blogcontent = CKEditor5Field(verbose_name=_("Blog content"), config_name='blogpost-editor')
-    thumbnail_picture = ProcessedImageField(verbose_name=_("Thumbnail picture"), upload_to='thumbnails/', processors=[ResizeToFill(600, 400)], options={'quality': 80}, max_length=100, null=True)
+    thumbnail_picture = ProcessedImageField(verbose_name=_("Thumbnail picture"), upload_to='thumbnails/', format='JPEG', processors=[ResizeToFill(600, 400)], options={'quality': 80}, max_length=100, null=True)
 
     class Meta:
         verbose_name_plural = ('blog posts')

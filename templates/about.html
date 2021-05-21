@@ -7,9 +7,24 @@
 
 {% block content %}
 
+<style>
+.cryptedmail:after {
+  content: attr(data-name) "@" attr(data-domain) "." attr(data-tld); 
+}
+</style>
+
 <h1 class="text-center">{% trans "About Explore-Exchange.com" %}</h1>
 
 <p class="text-center">{% trans "This website is meant to let you explore the world of an exchange student and get an insight look at what life looks like as an exchange student all over the world. We hope to present fascinating stories and maybe we can spark your interest about doing an exchange year." %}
+
+<p>{% trans "If you have any questions, feel free to contact us at: " %}
+    <a href="#" class="cryptedmail"
+   data-name="hello"
+   data-domain="explore-exchange"
+   data-tld="com"
+   onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;"></a>
+</p>
+
 
 <ul class="list-group list-group-horizontal-sm mx-auto my-5 justify-between-content">
     <li class="list-group-item">

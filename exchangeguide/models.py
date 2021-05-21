@@ -1,7 +1,7 @@
 from django.db import models
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
@@ -28,7 +28,7 @@ class GuidePost(models.Model):
 
 class CountryGuidePost(models.Model):
     guide_language = models.CharField(verbose_name=_("Guide language"), help_text=_('Please select the language you will use for the post.'), max_length=2, choices=LANGUAGE_CHOICES, default='EN')
-    country = models.CharField(verbose_name=_("Country"), max_length=2, help_text=_("Select the country you want to present."), choices=COUNTRY_CHOICES, default='CH', unique=True)
+    country = models.CharField(verbose_name=_("Country"), max_length=2, help_text=_("Select the country you want to present."), choices=COUNTRY_CHOICES, default='US', unique=True)
     slug = models.SlugField(verbose_name=_("Slug"), help_text=_("Slug consisting of country"), unique=True, null=False, default="countryguide")
     author = models.ForeignKey("exchangeblog.BlogAuthor", verbose_name=_("Author"), on_delete=models.SET_NULL, null=True)
     last_updated = models.DateField(verbose_name=_("Last updated"), help_text=_("Date guide was last updated."), auto_now=True)

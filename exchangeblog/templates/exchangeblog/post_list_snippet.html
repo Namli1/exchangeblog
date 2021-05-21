@@ -12,13 +12,13 @@
     {% for post in list %}
     
     <div id="post-card" class="card bg-light shadow mb-3">
-        <img class="card-img-top" src="{{ post.thumbnail_picture.url }}">
+        <img class="card-img-top" loading="lazy" src="{{ post.thumbnail_picture.url }}" alt="{% trans 'Post thumbnail picture' %}">
         <div class="card-body">
-            <strong class="d-inline-block mb-2 text-primary">{{ post.get_country_display }}</strong>
+            <strong style="z-index: 2;" class="d-inline-block mb-2 text-primary">{{ post.get_country_display }}</strong>
             <a href="{{ post.get_absolute_url }}" class="stretched-link"><h2 id="post-title" class="card-title text-left"> {{ post.title }}</h2></a>
             <p class="card-text text-right"><small class="text-muted">-{{ post.date_of_creation }}</small></p>
             <p>{{ post.short_description }} </p>
-            <p>{% trans "Author:" %} <a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
+            <p>{% trans "Author:" %} <a style="position: relative;" href="{{ post.author.get_absolute_url }}">{{ post.author }}</a></p>
             <div class="card-footer">
                 <small class="text-muted text-left">{% trans "Language:" %} {{ post.get_language_display }}</small>
             </div>

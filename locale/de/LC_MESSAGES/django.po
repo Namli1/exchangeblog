@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-28 17:06+0100\n"
-"PO-Revision-Date: 2020-12-28 17:07+0100\n"
+"POT-Creation-Date: 2021-05-21 14:57+0200\n"
+"PO-Revision-Date: 2021-05-21 15:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,27 +16,130 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 
-#: authentication/forms.py:8
+#: authentication/forms.py:14 authentication/forms.py:90
+#: authentication/models.py:10 exchangeblog/forms.py:9
 msgid "Registration Code"
 msgstr "Registrierungscode"
 
-#: authentication/forms.py:8
+#: authentication/forms.py:14
 msgid ""
 "Please enter the registration code given to you to register your account. "
-"(Required for signup)"
+"(You cannot sign up without a registration code. Contact us on Instagram to "
+"request a code.)"
 msgstr ""
 "Gib bitte den Registrierungscode ein, der dir gegeben wurde, um deinen "
-"Account zu erstellen. (Code ist erforderlich für Registrierung)"
+"Account zu erstellen. (Code ist erforderlich für Registrierung. Kontaktiere "
+"uns auf Instagram, um einen Code anzufordern)"
 
-#: authentication/forms.py:16
+#: authentication/forms.py:27
+#, fuzzy
+#| msgid ""
+#| "Invalid registration code. Please make sure you spelled it correctly. "
+#| "Otherwise contact the admin."
 msgid ""
-"Invalid registration code. Please make sure you spelled it correctly. "
-"Otherwise contact the admin."
+"Invalid registration code. This code has either been used before or it has "
+"expired. Please make sure you spelled it correctly. If it's not working, "
+"contact the admin via Instagram."
 msgstr ""
 "Ungültiger Registrierungscode. Achte darauf, dass du den Code richtig "
 "geschrieben hast. Wenn es nicht funktioniert, kontaktiere den Admin."
+
+#: authentication/forms.py:29 exchangeblog/forms.py:21
+#, fuzzy
+msgid ""
+"Invalid registration code. This code does not exist. Please make sure you've "
+"spelled it correctly. If it's still not working, contact the admin via "
+"Instagram."
+msgstr ""
+"Ungültiger Registrierungscode. Achte darauf, dass du den Code richtig "
+"geschrieben hast. Wenn es nicht funktioniert, kontaktiere den Admin."
+
+#: authentication/forms.py:49 authentication/forms.py:83
+msgid "We couldn't verify that you are not a robot. Please try again."
+msgstr ""
+
+#: authentication/forms.py:90 authentication/models.py:10
+msgid ""
+"The registration code will be created automatically, so this field is "
+"disabled."
+msgstr ""
+
+#: authentication/models.py:11
+msgid "Has blogauthor permission"
+msgstr ""
+
+#: authentication/models.py:11
+msgid "Specify wether the user using this code will be able to add blog posts."
+msgstr ""
+
+#: authentication/models.py:12
+msgid "Has guidepost permission"
+msgstr ""
+
+#: authentication/models.py:12
+msgid ""
+"Specify wether the user using this code will be able to add guide posts."
+msgstr ""
+
+#: authentication/models.py:13
+msgid "Has countryguidepost permission"
+msgstr "Hat Länder-Guide Erlaubnis"
+
+#: authentication/models.py:13
+msgid ""
+"Specify wether the user using this code will be able to add a country guide "
+"about their country."
+msgstr ""
+
+#: authentication/models.py:14 exchangeblog/models.py:49
+msgid "Allowed countries"
+msgstr "Erlaubte Länder"
+
+#: authentication/models.py:14
+msgid ""
+"The allowed countries the author can write about when creating a country "
+"guide post."
+msgstr ""
+
+#: authentication/models.py:15
+msgid "Max Post Count"
+msgstr ""
+
+#: authentication/models.py:15 exchangeblog/models.py:48
+msgid "The maximum number of posts this author can write."
+msgstr ""
+
+#: authentication/models.py:16
+msgid "Expiry date"
+msgstr ""
+
+#: authentication/models.py:16
+msgid ""
+"The date upon which this code will be invalid, is automatically populated, "
+"but you can adjust it if you want."
+msgstr ""
+
+#: authentication/models.py:17
+msgid "Used by"
+msgstr ""
+
+#: authentication/templates/authentication/registrationcode_form.html:5
+msgid "Create a new registration code"
+msgstr "Neuen Registrierungscode erstellen"
+
+#: authentication/templates/authentication/registrationcode_form.html:9
+msgid "Create a new Registration Code"
+msgstr "Neuen Registrierungscode erstellen"
+
+#: authentication/templates/authentication/registrationcode_list.html:9
+msgid "Registration Code List"
+msgstr "Registrierungscode Liste"
+
+#: authentication/templates/authentication/registrationcode_list.html:160
+msgid "It seems like there aren\\"
+msgstr ""
 
 #: authentication/templates/registration/login.html:5
 msgid "Log in"
@@ -45,13 +148,17 @@ msgstr "Einloggen"
 #: authentication/templates/registration/login.html:8
 #: authentication/templates/registration/login.html:12
 #: authentication/templates/registration/password_reset_complete.html:11
-#: templates/base_generic.html:173
+#: templates/base_generic.html:182
 msgid "Login"
 msgstr "Einloggen"
 
 #: authentication/templates/registration/login.html:13
 msgid "Forgot password?"
 msgstr "Passwort vergessen?"
+
+#: authentication/templates/registration/login.html:18
+msgid "Go to Sign-Up"
+msgstr "Zur Registrierung"
 
 #: authentication/templates/registration/password_reset_complete.html:5
 msgid "Password reset complete"
@@ -125,7 +232,7 @@ msgid "Password reset"
 msgstr "Passwort zurücksetzen"
 
 #: authentication/templates/registration/password_reset_form.html:8
-msgid "Forgotten your password?"
+msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
 #: authentication/templates/registration/password_reset_form.html:9
@@ -145,91 +252,1113 @@ msgid "Sign Up"
 msgstr "Registrieren"
 
 #: authentication/templates/registration/signup.html:8
-#: authentication/templates/registration/signup.html:12
+#: authentication/templates/registration/signup.html:18
 msgid "Sign up"
 msgstr "Registrieren"
 
-#: blog/urls.py:52
-msgid "about"
-msgstr "über"
+#: authentication/views.py:33
+msgid "You can't sign-up if you are already logged in :-)."
+msgstr ""
 
-#: blog/urls.py:53
-msgid "privacy-policy"
-msgstr "datenschutzerklärung"
+#: authentication/views.py:57
+#, fuzzy
+#| msgid ""
+#| "Invalid registration code. Please make sure you spelled it correctly. "
+#| "Otherwise contact the admin."
+msgid ""
+"Invalid registration code. This code might not exist or is turned invalid. "
+"Please make sure you spelled it correctly. If it's not working, contact the "
+"admin via Instagram."
+msgstr ""
+"Ungültiger Registrierungscode. Achte darauf, dass du den Code richtig "
+"geschrieben hast. Wenn es nicht funktioniert, kontaktiere den Admin."
 
-#: blog/urls.py:54
-msgid "blog/"
-msgstr "blog/"
+#: authentication/views.py:74 authentication/views.py:81
+#: authentication/views.py:98
+msgid "This page is only available to site admins"
+msgstr ""
 
-#: blog/urls.py:55
-msgid "guide/"
-msgstr "guide"
+# ALL COUNTRY TRANSLATIONS
+#: blog/general.py:31
+msgid "🇦🇫Afghanistan"
+msgstr "🇦🇫Afghanistan"
 
-#: exchangeblog/models.py:14
-msgid "Please enter the title of the Blog Post."
-msgstr "Geben Sie bitte den Titel des Posts ein."
+#: blog/general.py:32
+msgid "🇦🇱Albania"
+msgstr "🇦🇱Albanien"
 
-#: exchangeblog/models.py:15
-msgid "Enter date of creation of post."
-msgstr "Erstellungsdatum eingeben."
+#: blog/general.py:33
+msgid "🇩🇿Algeria"
+msgstr "🇩🇿Algerien"
 
-#: exchangeblog/models.py:17
-msgid "Enter a slug according to the title of the post"
-msgstr "Geben Sie einen Slug passend zum Titel ein"
+#: blog/general.py:34
+msgid "🇦🇩Andorra"
+msgstr "🇦🇩Andorra"
 
-#: exchangeblog/models.py:24
-msgid "Please enter the language you will use for the post."
-msgstr "Wählen sie die Sprache des Artikels."
+#: blog/general.py:35
+msgid "🇦🇴Angola"
+msgstr "🇦🇴Angola"
 
-#: exchangeblog/models.py:26 exchangeguide/models.py:36
+#: blog/general.py:36
+msgid "🇦🇶Antarctica"
+msgstr "🇦🇶Antarktis"
+
+#: blog/general.py:37
+msgid "🇦🇷Argentina"
+msgstr "🇦🇷Argentinien"
+
+#: blog/general.py:38
+msgid "🇦🇲Armenia"
+msgstr "🇦🇲Armenien"
+
+#: blog/general.py:39
+msgid "🇦🇼Aruba"
+msgstr "🇦🇼Aruba"
+
+#: blog/general.py:40
+msgid "🇦🇺Australia"
+msgstr "🇦🇺Australien"
+
+#: blog/general.py:41
+msgid "🇦🇹Austria"
+msgstr "🇦🇹Österreich"
+
+#: blog/general.py:42
+msgid "🇦🇿Azerbaijan"
+msgstr "🇦🇿Aserbaidschan"
+
+#: blog/general.py:43
+msgid "🇧🇸Bahamas"
+msgstr "🇧🇸Bahamas"
+
+#: blog/general.py:44
+msgid "🇧🇭Bahrain"
+msgstr "🇧🇭Bahrain"
+
+#: blog/general.py:45
+msgid "🇧🇩Bangladesh"
+msgstr "🇧🇩Bangladesch"
+
+#: blog/general.py:46
+msgid "🇧🇧Barbados"
+msgstr "🇧🇧Barbados"
+
+#: blog/general.py:47
+msgid "🇧🇾Belarus"
+msgstr "🇧🇾Belarus"
+
+#: blog/general.py:48
+msgid "🇧🇪Belgium"
+msgstr "🇧🇪Belgien"
+
+#: blog/general.py:49
+msgid "🇧🇿Belize"
+msgstr "🇧🇿Belize"
+
+#: blog/general.py:50
+msgid "🇧🇯Benin"
+msgstr "🇧🇯Benin"
+
+#: blog/general.py:51
+msgid "🇧🇲Bermuda"
+msgstr "🇧🇲Bermuda"
+
+#: blog/general.py:52
+msgid "🇧🇹Bhutan"
+msgstr "🇧🇹Bhutan"
+
+#: blog/general.py:53
+msgid "🇧🇴Bolivia"
+msgstr "🇧🇴Bolivien"
+
+#: blog/general.py:54
+msgid "🇧🇦Bosnia & Herzegovina"
+msgstr "🇧🇦Bosnien und Herzegowina"
+
+#: blog/general.py:55
+msgid "🇧🇼Botswana"
+msgstr "🇧🇼Botsuana"
+
+#: blog/general.py:56
+msgid "🇧🇷Brazil"
+msgstr "🇧🇷Brasilien"
+
+#: blog/general.py:57
+msgid "🇧🇳Brunei"
+msgstr "🇧🇳Brunei Darussalam"
+
+#: blog/general.py:58
+msgid "🇧🇬Bulgaria"
+msgstr "🇧🇬Bulgarien"
+
+#: blog/general.py:59
+msgid "🇧🇫Burkina Faso"
+msgstr "🇧🇫Burkina Faso"
+
+#: blog/general.py:60
+msgid "🇧🇮Burundi"
+msgstr "🇧🇮Burundi"
+
+#: blog/general.py:61
+msgid "🇰🇭Cambodia"
+msgstr "🇰🇭Kambodscha"
+
+#: blog/general.py:62
+msgid "🇨🇲Cameroon"
+msgstr "🇨🇲Kamerun"
+
+#: blog/general.py:63
+msgid "🇨🇦Canada"
+msgstr "🇨🇦Kanada"
+
+#: blog/general.py:64
+msgid "🇨🇻Cape Verde"
+msgstr "🇨🇻Cabo Verde"
+
+#: blog/general.py:65
+msgid "🇨🇫Central African Republic"
+msgstr "🇨🇫Zentralafrikanische Republik"
+
+#: blog/general.py:66
+msgid "🇹🇩Chad"
+msgstr "🇹🇩Tschad"
+
+#: blog/general.py:67
+msgid "🇨🇱Chile"
+msgstr "🇨🇱Chile"
+
+#: blog/general.py:68
 msgid "🇨🇳China"
 msgstr "🇨🇳China"
 
-#: exchangeblog/models.py:27 exchangeguide/models.py:37
-msgid "🇺🇸USA"
-msgstr "🇺🇸USA"
+#: blog/general.py:69
+msgid "🇨🇴Colombia"
+msgstr "🇨🇴Kolumbien"
 
-#: exchangeblog/models.py:28 exchangeguide/models.py:38
-msgid "🇬🇧United Kingdom"
-msgstr "🇬🇧Vereinigtes Königreich"
+#: blog/general.py:70
+msgid "🇰🇲Comoros"
+msgstr "🇰🇲Komoren"
 
-#: exchangeblog/models.py:29 exchangeguide/models.py:39
-msgid "🇩🇪Germany"
-msgstr "🇩🇪Deutschland"
+#: blog/general.py:71
+msgid "🇨🇬Congo - Brazzaville"
+msgstr "🇨🇬Kongo-Brazzaville"
 
-#: exchangeblog/models.py:30 exchangeguide/models.py:40
-msgid "🇮🇹Italy"
-msgstr "🇮🇹Italien"
+#: blog/general.py:72
+msgid "🇨🇩Congo - Kinshasa"
+msgstr "🇨🇩Kongo-Kinshasa"
 
-#: exchangeblog/models.py:31 exchangeguide/models.py:41
+#: blog/general.py:73
+msgid "🇨🇷Costa Rica"
+msgstr "🇨🇷Costa Rica"
+
+#: blog/general.py:74
+msgid "🇨🇮Côte d’Ivoire"
+msgstr "🇨🇮Côte d’Ivoire"
+
+#: blog/general.py:75
+msgid "🇭🇷Croatia"
+msgstr "🇭🇷Kroatien"
+
+#: blog/general.py:76
+msgid "🇨🇺Cuba"
+msgstr "🇨🇺Kuba"
+
+#: blog/general.py:77
+msgid "🇨🇼Curaçao"
+msgstr "🇨🇼Curaçao"
+
+#: blog/general.py:78
+msgid "🇨🇾Cyprus"
+msgstr "🇨🇾Zypern"
+
+#: blog/general.py:79
+msgid "🇨🇿Czechia"
+msgstr "🇨🇿Tschechien"
+
+#: blog/general.py:80
+msgid "🇩🇰Denmark"
+msgstr "🇩🇰Dänemark"
+
+#: blog/general.py:81
+msgid "🇩🇯Djibouti"
+msgstr "🇩🇯Dschibuti"
+
+#: blog/general.py:82
+msgid "🇩🇲Dominica"
+msgstr "🇩🇲Dominica"
+
+#: blog/general.py:83
+msgid "🇩🇴Dominican Republic"
+msgstr "🇩🇴Dominikanische Republik"
+
+#: blog/general.py:84
+msgid "🇪🇨Ecuador"
+msgstr "🇪🇨Ecuador"
+
+#: blog/general.py:85
+msgid "🇪🇬Egypt"
+msgstr "🇪🇬Ägypten"
+
+#: blog/general.py:86
+msgid "🇸🇻El Salvador"
+msgstr "🇸🇻El Salvador"
+
+#: blog/general.py:87
+msgid "🇬🇶Equatorial Guinea"
+msgstr "🇬🇶Äquatorialguinea"
+
+#: blog/general.py:88
+msgid "🇪🇷Eritrea"
+msgstr "🇪🇷Eritrea"
+
+#: blog/general.py:89
+msgid "🇪🇪Estonia"
+msgstr "🇪🇪Estland"
+
+#: blog/general.py:90
+msgid "🇸🇿Eswatini"
+msgstr "🇸🇿Eswatini"
+
+#: blog/general.py:91
+msgid "🇪🇹Ethiopia"
+msgstr "🇪🇹Äthiopien"
+
+#: blog/general.py:92
+msgid "🇫🇰Falkland Islands"
+msgstr "🇫🇰Falklandinseln"
+
+#: blog/general.py:93
+msgid "🇫🇴Faroe Islands"
+msgstr "🇫🇴Färöer"
+
+#: blog/general.py:94
+msgid "🇫🇯Fiji"
+msgstr "🇫🇯Fidschi"
+
+#: blog/general.py:95
+msgid "🇫🇮Finland"
+msgstr "🇫🇮Finnland"
+
+#: blog/general.py:96
 msgid "🇫🇷France"
 msgstr "🇫🇷Frankreich"
 
-#: exchangeblog/models.py:32 exchangeguide/models.py:42
+#: blog/general.py:97
+msgid "🇬🇫French Guiana"
+msgstr "🇬🇫Französisch-Guayana"
+
+#: blog/general.py:98
+msgid "🇵🇫French Polynesia"
+msgstr "🇵🇫Französisch-Polynesien"
+
+#: blog/general.py:99
+msgid "🇬🇦Gabon"
+msgstr "🇬🇦Gabun"
+
+#: blog/general.py:100
+msgid "🇬🇲Gambia"
+msgstr "🇬🇲Gambia"
+
+#: blog/general.py:101
+msgid "🇬🇪Georgia"
+msgstr "🇬🇪Georgien"
+
+#: blog/general.py:102
+msgid "🇩🇪Germany"
+msgstr "🇩🇪Deutschland"
+
+#: blog/general.py:103
+msgid "🇬🇭Ghana"
+msgstr "🇬🇭Ghana"
+
+#: blog/general.py:104
+msgid "🇬🇮Gibraltar"
+msgstr "🇬🇮Gibraltar"
+
+#: blog/general.py:105
+msgid "🇬🇷Greece"
+msgstr "🇬🇷Griechenland"
+
+#: blog/general.py:106
+msgid "🇬🇱Greenland"
+msgstr "🇬🇱Grönland"
+
+#: blog/general.py:107
+msgid "🇬🇩Grenada"
+msgstr "🇬🇩Grenada"
+
+#: blog/general.py:108
+msgid "🇬🇵Guadeloupe"
+msgstr "🇬🇵Guadeloupe"
+
+#: blog/general.py:109
+msgid "🇬🇺Guam"
+msgstr "🇬🇺Guam"
+
+#: blog/general.py:110
+msgid "🇬🇹Guatemala"
+msgstr "🇬🇹Guatemala"
+
+#: blog/general.py:111
+msgid "🇬🇬Guernsey"
+msgstr "🇬🇬Guernsey"
+
+#: blog/general.py:112
+msgid "🇬🇳Guinea"
+msgstr "🇬🇳Guinea"
+
+#: blog/general.py:113
+msgid "🇬🇼Guinea-Bissau"
+msgstr "🇬🇼Guinea-Bissau"
+
+#: blog/general.py:114
+msgid "🇬🇾Guyana"
+msgstr "🇬🇾Guyana"
+
+#: blog/general.py:115
+msgid "🇭🇹Haiti"
+msgstr "🇭🇹Haiti"
+
+#: blog/general.py:116
+msgid "🇭🇳Honduras"
+msgstr "🇭🇳Honduras"
+
+#: blog/general.py:117
+msgid "🇭🇰Hong Kong SAR China"
+msgstr "🇭🇰Sonderverwaltungsregion Hongkong"
+
+#: blog/general.py:118
+msgid "🇭🇺Hungary"
+msgstr "🇭🇺Ungarn"
+
+#: blog/general.py:119
+msgid "🇮🇸Iceland"
+msgstr "🇮🇸Island"
+
+#: blog/general.py:120
+msgid "🇮🇳India"
+msgstr "🇮🇳Indien"
+
+#: blog/general.py:121
+msgid "🇮🇩Indonesia"
+msgstr "🇮🇩Indonesien"
+
+#: blog/general.py:122
+msgid "🇮🇷Iran"
+msgstr "🇮🇷Iran"
+
+#: blog/general.py:123
+msgid "🇮🇶Iraq"
+msgstr "🇮🇶Irak"
+
+#: blog/general.py:124
+msgid "🇮🇪Ireland"
+msgstr "🇮🇪Irland"
+
+#: blog/general.py:125
+msgid "🇮🇲Isle of Man"
+msgstr "🇮🇲Isle of Man"
+
+#: blog/general.py:126
+msgid "🇮🇱Israel"
+msgstr "🇮🇱Israel"
+
+#: blog/general.py:127
+msgid "🇮🇹Italy"
+msgstr "🇮🇹Italien"
+
+#: blog/general.py:128
+msgid "🇯🇲Jamaica"
+msgstr "🇯🇲Jamaika"
+
+#: blog/general.py:129
+msgid "🇯🇵Japan"
+msgstr "🇯🇵Japan"
+
+#: blog/general.py:130
+msgid "🇯🇪Jersey"
+msgstr "🇯🇪Jersey"
+
+#: blog/general.py:131
+msgid "🇯🇴Jordan"
+msgstr "🇯🇴Jordanien"
+
+#: blog/general.py:132
+msgid "🇰🇿Kazakhstan"
+msgstr "🇰🇿Kasachstan"
+
+#: blog/general.py:133
+msgid "🇰🇪Kenya"
+msgstr "🇰🇪Kenia"
+
+#: blog/general.py:134
+msgid "🇰🇮Kiribati"
+msgstr "🇰🇮Kiribati"
+
+#: blog/general.py:135
+msgid "🇰🇼Kuwait"
+msgstr "🇰🇼Kuwait"
+
+#: blog/general.py:136
+msgid "🇰🇬Kyrgyzstan"
+msgstr "🇰🇬Kirgisistan"
+
+#: blog/general.py:137
+msgid "🇱🇦Laos"
+msgstr "🇱🇦Laos"
+
+#: blog/general.py:138
+msgid "🇱🇻Latvia"
+msgstr "🇱🇻Lettland"
+
+#: blog/general.py:139
+msgid "🇱🇧Lebanon"
+msgstr "🇱🇧Libanon"
+
+#: blog/general.py:140
+msgid "🇱🇸Lesotho"
+msgstr "🇱🇸Lesotho"
+
+#: blog/general.py:141
+msgid "🇱🇷Liberia"
+msgstr "🇱🇷Liberia"
+
+#: blog/general.py:142
+msgid "🇱🇾Libya"
+msgstr "🇱🇾Libyen"
+
+#: blog/general.py:143
+msgid "🇱🇮Liechtenstein"
+msgstr "🇱🇮Liechtenstein"
+
+#: blog/general.py:144
+msgid "🇱🇹Lithuania"
+msgstr "🇱🇹Litauen"
+
+#: blog/general.py:145
+msgid "🇱🇺Luxembourg"
+msgstr "🇱🇺Luxemburg"
+
+#: blog/general.py:146
+msgid "🇲🇴Macao SAR China"
+msgstr "🇲🇴Sonderverwaltungsregion Macau"
+
+#: blog/general.py:147
+msgid "🇲🇬Madagascar"
+msgstr "🇲🇬Madagaskar"
+
+#: blog/general.py:148
+msgid "🇲🇼Malawi"
+msgstr "🇲🇼Malawi"
+
+#: blog/general.py:149
+msgid "🇲🇾Malaysia"
+msgstr "🇲🇾Malaysia"
+
+#: blog/general.py:150
+msgid "🇲🇻Maldives"
+msgstr "🇲🇻Malediven"
+
+#: blog/general.py:151
+msgid "🇲🇱Mali"
+msgstr "🇲🇱Mali"
+
+#: blog/general.py:152
+msgid "🇲🇹Malta"
+msgstr "🇲🇹Malta"
+
+#: blog/general.py:153
+msgid "🇲🇭Marshall Islands"
+msgstr "🇲🇭Marshallinseln"
+
+#: blog/general.py:154
+msgid "🇲🇶Martinique"
+msgstr "🇲🇶Martinique"
+
+#: blog/general.py:155
+msgid "🇲🇷Mauritania"
+msgstr "🇲🇷Mauretanien"
+
+#: blog/general.py:156
+msgid "🇲🇺Mauritius"
+msgstr "🇲🇺Mauritius"
+
+#: blog/general.py:157
+msgid "🇾🇹Mayotte"
+msgstr "🇾🇹Mayotte"
+
+#: blog/general.py:158
+msgid "🇲🇽Mexico"
+msgstr "🇲🇽Mexiko"
+
+#: blog/general.py:159
+msgid "🇫🇲Micronesia"
+msgstr "🇫🇲Mikronesien"
+
+#: blog/general.py:160
+msgid "🇲🇩Moldova"
+msgstr "🇲🇩Republik Moldau"
+
+#: blog/general.py:161
+msgid "🇲🇨Monaco"
+msgstr "🇲🇨Monaco"
+
+#: blog/general.py:162
+msgid "🇲🇳Mongolia"
+msgstr "🇲🇳Mongolei"
+
+#: blog/general.py:163
+msgid "🇲🇪Montenegro"
+msgstr "🇲🇪Montenegro"
+
+#: blog/general.py:164
+msgid "🇲🇸Montserrat"
+msgstr "🇲🇸Montserrat"
+
+#: blog/general.py:165
+msgid "🇲🇦Morocco"
+msgstr "🇲🇦Marokko"
+
+#: blog/general.py:166
+msgid "🇲🇿Mozambique"
+msgstr "🇲🇿Mosambik"
+
+#: blog/general.py:167
+msgid "🇲🇲Myanmar (Burma)"
+msgstr "🇲🇲Myanmar"
+
+#: blog/general.py:168
+msgid "🇳🇦Namibia"
+msgstr "🇳🇦Namibia"
+
+#: blog/general.py:169
+msgid "🇳🇷Nauru"
+msgstr "🇳🇷Nauru"
+
+#: blog/general.py:170
+msgid "🇳🇵Nepal"
+msgstr "🇳🇵Nepal"
+
+#: blog/general.py:171
+msgid "🇳🇱Netherlands"
+msgstr "🇳🇱Niederlande"
+
+#: blog/general.py:172
+msgid "🇳🇨New Caledonia"
+msgstr "🇳🇨Neukaledonien"
+
+#: blog/general.py:173
+msgid "🇳🇿New Zealand"
+msgstr "🇳🇿Neuseeland"
+
+#: blog/general.py:174
+msgid "🇳🇮Nicaragua"
+msgstr "🇳🇮Nicaragua"
+
+#: blog/general.py:175
+msgid "🇳🇪Niger"
+msgstr "🇳🇪Niger"
+
+#: blog/general.py:176
+msgid "🇳🇬Nigeria"
+msgstr "🇳🇬Nigeria"
+
+#: blog/general.py:177
+msgid "🇳🇺Niue"
+msgstr "🇳🇺Niue"
+
+#: blog/general.py:178
+msgid "🇳🇫Norfolk Island"
+msgstr "🇳🇫Norfolkinsel"
+
+#: blog/general.py:179
+msgid "🇰🇵North Korea"
+msgstr "🇰🇵Nordkorea"
+
+#: blog/general.py:180
+msgid "🇲🇰North Macedonia"
+msgstr "🇲🇰Nordmazedonien"
+
+#: blog/general.py:181
+msgid "🇳🇴Norway"
+msgstr "🇳🇴Norwegen"
+
+#: blog/general.py:182
+msgid "🇴🇲Oman"
+msgstr "🇴🇲Oman"
+
+#: blog/general.py:183
+msgid "🇵🇰Pakistan"
+msgstr "🇵🇰Pakistan"
+
+#: blog/general.py:184
+msgid "🇵🇼Palau"
+msgstr "🇵🇼Palau"
+
+#: blog/general.py:185
+msgid "🇵🇸Palestinian Territories"
+msgstr "🇵🇸Palästinensische Autonomiegebiete"
+
+#: blog/general.py:186
+msgid "🇵🇦Panama"
+msgstr "🇵🇦Panama"
+
+#: blog/general.py:187
+msgid "🇵🇬Papua New Guinea"
+msgstr "🇵🇬Papua-Neuguinea"
+
+#: blog/general.py:188
+msgid "🇵🇾Paraguay"
+msgstr "🇵🇾Paraguay"
+
+#: blog/general.py:189
+msgid "🇵🇪Peru"
+msgstr "🇵🇪Peru"
+
+#: blog/general.py:190
+msgid "🇵🇭Philippines"
+msgstr "🇵🇭Philippinen"
+
+#: blog/general.py:191
+msgid "🇵🇳Pitcairn Islands"
+msgstr "🇵🇳Pitcairninseln"
+
+#: blog/general.py:192
+msgid "🇵🇱Poland"
+msgstr "🇵🇱Polen"
+
+#: blog/general.py:193
+msgid "🇵🇹Portugal"
+msgstr "🇵🇹Portugal"
+
+#: blog/general.py:194
+msgid "🇵🇷Puerto Rico"
+msgstr "🇵🇷Puerto Rico"
+
+#: blog/general.py:195
+msgid "🇶🇦Qatar"
+msgstr "🇶🇦Katar"
+
+#: blog/general.py:196
+msgid "🇷🇪Réunion"
+msgstr "🇷🇪Réunion"
+
+#: blog/general.py:197
+msgid "🇷🇴Romania"
+msgstr "🇷🇴Rumänien"
+
+#: blog/general.py:198
+msgid "🇷🇺Russia"
+msgstr "🇷🇺Russland"
+
+#: blog/general.py:199
+msgid "🇷🇼Rwanda"
+msgstr "🇷🇼Ruanda"
+
+#: blog/general.py:200
+msgid "🇼🇸Samoa"
+msgstr "🇼🇸Samoa"
+
+#: blog/general.py:201
+msgid "🇸🇲San Marino"
+msgstr "🇸🇲San Marino"
+
+#: blog/general.py:202
+msgid "🇸🇹São Tomé & Príncipe"
+msgstr "🇸🇹São Tomé und Príncipe"
+
+#: blog/general.py:203
+msgid "🇸🇦Saudi Arabia"
+msgstr "🇸🇦Saudi-Arabien"
+
+#: blog/general.py:204
+msgid "🇸🇳Senegal"
+msgstr "🇸🇳Senegal"
+
+#: blog/general.py:205
+msgid "🇷🇸Serbia"
+msgstr "🇷🇸Serbien"
+
+#: blog/general.py:206
+msgid "🇸🇨Seychelles"
+msgstr "🇸🇨Seychellen"
+
+#: blog/general.py:207
+msgid "🇸🇱Sierra Leone"
+msgstr "🇸🇱Sierra Leone"
+
+#: blog/general.py:208
+msgid "🇸🇬Singapore"
+msgstr "🇸🇬Singapur"
+
+#: blog/general.py:209
+msgid "🇸🇽Sint Maarten"
+msgstr "🇸🇽Sint Maarten"
+
+#: blog/general.py:210
+msgid "🇸🇰Slovakia"
+msgstr "🇸🇰Slowakei"
+
+#: blog/general.py:211
+msgid "🇸🇮Slovenia"
+msgstr "🇸🇮Slowenien"
+
+#: blog/general.py:212
+msgid "🇸🇧Solomon Islands"
+msgstr "🇸🇧Salomonen"
+
+#: blog/general.py:213
+msgid "🇸🇴Somalia"
+msgstr "🇸🇴Somalia"
+
+#: blog/general.py:214
+msgid "🇿🇦South Africa"
+msgstr "🇿🇦Südafrika"
+
+#: blog/general.py:215
+msgid "🇰🇷South Korea"
+msgstr "🇰🇷Südkorea"
+
+#: blog/general.py:216
+msgid "🇸🇸South Sudan"
+msgstr "🇸🇸Südsudan"
+
+#: blog/general.py:217
+msgid "🇪🇸Spain"
+msgstr "🇪🇸Spanien"
+
+#: blog/general.py:218
+msgid "🇱🇰Sri Lanka"
+msgstr "🇱🇰Sri Lanka"
+
+#: blog/general.py:219
+msgid "🇸🇭St. Helena"
+msgstr "🇸🇭St. Helena"
+
+#: blog/general.py:220
+msgid "🇱🇨St. Lucia"
+msgstr "🇱🇨St. Lucia"
+
+#: blog/general.py:221
+msgid "🇲🇫St. Martin"
+msgstr "🇲🇫St. Martin"
+
+#: blog/general.py:222
+msgid "🇸🇩Sudan"
+msgstr "🇸🇩Sudan"
+
+#: blog/general.py:223
+msgid "🇸🇷Suriname"
+msgstr "🇸🇷Suriname"
+
+#: blog/general.py:224
+msgid "🇸🇪Sweden"
+msgstr "🇸🇪Schweden"
+
+#: blog/general.py:225
+msgid "🇨🇭Switzerland"
+msgstr "🇨🇭Schweiz"
+
+#: blog/general.py:226
+msgid "🇸🇾Syria"
+msgstr "🇸🇾Syrien"
+
+#: blog/general.py:227
+msgid "🇹🇼Taiwan"
+msgstr "🇹🇼Taiwan"
+
+#: blog/general.py:228
+msgid "🇹🇯Tajikistan"
+msgstr "🇹🇯Tadschikistan"
+
+#: blog/general.py:229
+msgid "🇹🇿Tanzania"
+msgstr "🇹🇿Tansania"
+
+#: blog/general.py:230
 msgid "🇹🇭Thailand"
 msgstr "🇹🇭Thailand"
 
-#: exchangeblog/models.py:34
+#: blog/general.py:231
+msgid "🇹🇱Timor-Leste"
+msgstr "🇹🇱Timor-Leste"
+
+#: blog/general.py:232
+msgid "🇹🇬Togo"
+msgstr "🇹🇬Togo"
+
+#: blog/general.py:233
+msgid "🇹🇰Tokelau"
+msgstr "🇹🇰Tokelau"
+
+#: blog/general.py:234
+msgid "🇹🇴Tonga"
+msgstr "🇹🇴Tonga"
+
+#: blog/general.py:235
+msgid "🇹🇹Trinidad & Tobago"
+msgstr "🇹🇹Trinidad und Tobago"
+
+#: blog/general.py:236
+msgid "🇹🇳Tunisia"
+msgstr "🇹🇳Tunesien"
+
+#: blog/general.py:237
+msgid "🇹🇷Turkey"
+msgstr "🇹🇷Türkei"
+
+#: blog/general.py:238
+msgid "🇹🇲Turkmenistan"
+msgstr "🇹🇲Turkmenistan"
+
+#: blog/general.py:239
+msgid "🇹🇨Turks & Caicos Islands"
+msgstr "🇹🇨Turks- und Caicosinseln"
+
+#: blog/general.py:240
+msgid "🇹🇻Tuvalu"
+msgstr "🇹🇻Tuvalu"
+
+#: blog/general.py:241
+msgid "🇺🇬Uganda"
+msgstr "🇺🇬Uganda"
+
+#: blog/general.py:242
+msgid "🇺🇦Ukraine"
+msgstr "🇺🇦Ukraine"
+
+#: blog/general.py:243
+msgid "🇦🇪United Arab Emirates"
+msgstr "🇦🇪Vereinigte Arabische Emirate"
+
+#: blog/general.py:244
+msgid "🇬🇧United Kingdom"
+msgstr "🇬🇧Vereinigtes Königreich"
+
+#: blog/general.py:245
+msgid "🇺🇸United States"
+msgstr "🇺🇸Vereinigte Staaten"
+
+#: blog/general.py:246
+msgid "🇺🇾Uruguay"
+msgstr "🇺🇾Uruguay"
+
+#: blog/general.py:247
+msgid "🇺🇿Uzbekistan"
+msgstr "🇺🇿Usbekistan"
+
+#: blog/general.py:248
+msgid "🇻🇺Vanuatu"
+msgstr "🇻🇺Vanuatu"
+
+#: blog/general.py:249
+msgid "🇻🇦Vatican City"
+msgstr "🇻🇦Vatikanstadt"
+
+#: blog/general.py:250
+msgid "🇻🇪Venezuela"
+msgstr "🇻🇪Venezuela"
+
+#: blog/general.py:251
+msgid "🇻🇳Vietnam"
+msgstr "🇻🇳Vietnam"
+
+#: blog/general.py:252
+msgid "🇼🇫Wallis & Futuna"
+msgstr "🇼🇫Wallis und Futuna"
+
+#: blog/general.py:253
+msgid "🇪🇭Western Sahara"
+msgstr "🇪🇭Westsahara"
+
+#: blog/general.py:254
+msgid "🇾🇪Yemen"
+msgstr "🇾🇪Jemen"
+
+#: blog/general.py:255
+msgid "🇿🇲Zambia"
+msgstr "🇿🇲Sambia"
+
+#: blog/general.py:256
+msgid "🇿🇼Zimbabwe"
+msgstr "🇿🇼Simbabwe"
+
+#: blog/helpers.py:11
+msgid "You have to appy as a blog author before you can create any posts."
+msgstr ""
+
+#: blog/helpers.py:13 blog/helpers.py:25
+msgid ""
+"You have to apply for a user account to get the permission to add any posts."
+msgstr ""
+
+#: blog/helpers.py:17 exchangeblog/views.py:175 exchangeblog/views.py:181
+#, fuzzy
+#| msgid "You are not allowed to write more than {} posts, sorry."
+msgid ""
+"You are not allowed to write more than {} posts, sorry. Please contact the "
+"admin via Instagram to ask if you can write more."
+msgstr "Du kannst nicht mehr als {} Posts schreiben."
+
+#: blog/helpers.py:23
+msgid ""
+"You have to create a blog author profile before you can create or update any "
+"posts."
+msgstr ""
+
+#: blog/urls.py:53
+msgid "about"
+msgstr "über"
+
+#: blog/urls.py:54
+msgid "privacy-policy"
+msgstr "datenschutzerklärung"
+
+#: blog/urls.py:55
+msgid "blog/"
+msgstr "blog/"
+
+#: blog/urls.py:56
+msgid "guide/"
+msgstr "guide"
+
+#: django-ckeditor-5/django_ckeditor_5/views.py:81
+msgid "Page not found."
+msgstr ""
+
+#: django-ckeditor-5/django_ckeditor_5/views.py:95
+msgid "No file matching the path found on server."
+msgstr ""
+
+#: django-ckeditor-5/django_ckeditor_5/widgets.py:34
+msgid "Check the correct settings.CKEDITOR_5_CONFIGS "
+msgstr ""
+
+#: exchangeblog/forms.py:9
+#, fuzzy
+#| msgid ""
+#| "Please enter the registration code given to you to register your account. "
+#| "(Required for signup)"
+msgid ""
+"Please enter the registration code given to you to register your account "
+"(The one you already used on sign-up)."
+msgstr ""
+"Gib bitte den Registrierungscode ein, der dir gegeben wurde, um deinen "
+"Account zu erstellen. (Code ist erforderlich für Registrierung)"
+
+#: exchangeblog/forms.py:19
+#, fuzzy
+#| msgid ""
+#| "Invalid registration code. Please make sure you spelled it correctly. "
+#| "Otherwise contact the admin."
+msgid ""
+"Invalid registration code. This code has probably expired. Please make sure "
+"you spelled it correctly. If it's not working, contact the admin via "
+"Instagram."
+msgstr ""
+"Ungültiger Registrierungscode. Achte darauf, dass du den Code richtig "
+"geschrieben hast. Wenn es nicht funktioniert, kontaktiere den Admin."
+
+#: exchangeblog/models.py:17 exchangeguide/models.py:14
+msgid "Title"
+msgstr ""
+
+#: exchangeblog/models.py:17
+msgid "Please enter the title of the Blog Post."
+msgstr "Geben Sie bitte den Titel des Posts ein."
+
+#: exchangeblog/models.py:18
+msgid "Date of creation"
+msgstr "Erstellungsdatum"
+
+#: exchangeblog/models.py:18
+msgid "Enter date of creation of post."
+msgstr "Erstellungsdatum eingeben."
+
+#: exchangeblog/models.py:19
+msgid "Blog Author"
+msgstr "Blog Autor"
+
+#: exchangeblog/models.py:20 exchangeblog/models.py:46
+#: exchangeguide/models.py:32
+msgid "Slug"
+msgstr ""
+
+#: exchangeblog/models.py:20
+msgid "Enter a slug according to the title of the post"
+msgstr "Geben Sie einen Slug passend zum Titel ein"
+
+#: exchangeblog/models.py:21
+msgid "Language"
+msgstr "Sprache"
+
+#: exchangeblog/models.py:21
+msgid "Please enter the language you will use for the post."
+msgstr "Wählen sie die Sprache des Artikels."
+
+#: exchangeblog/models.py:22 exchangeguide/models.py:31
+msgid "Country"
+msgstr "Land"
+
+#: exchangeblog/models.py:22
 msgid "Select the exchange country."
 msgstr "Land des Austausches wählen."
 
-#: exchangeblog/models.py:35
+#: exchangeblog/models.py:23 exchangeguide/models.py:18
+#: exchangeguide/models.py:39
+msgid "Short description"
+msgstr ""
+
+#: exchangeblog/models.py:23
 msgid "Enter a short description of what the blog post is about."
 msgstr "Beschreiben sie kurz den Inhalt des Posts."
 
-#: exchangeblog/models.py:56
+#: exchangeblog/models.py:24
+msgid "Blog content"
+msgstr "Blog Inhalt"
+
+#: exchangeblog/models.py:25 exchangeguide/models.py:19
+msgid "Thumbnail picture"
+msgstr ""
+
+#: exchangeblog/models.py:44
+msgid "Name"
+msgstr ""
+
+#: exchangeblog/models.py:44
 msgid ""
 "Please enter your author name (It will be displayed in articles you write)."
 msgstr ""
 "Geben sie den Namen des Autors ein (Er wird mit den Artikel angezeigt)."
 
-#: exchangeblog/models.py:59
+#: exchangeblog/models.py:45
+msgid "Social Media Link"
+msgstr ""
+
+#: exchangeblog/models.py:45
+msgid "Please paste the url of your social media page (optional)."
+msgstr ""
+
+#: exchangeblog/models.py:47
+msgctxt "Bio"
+msgid "as in biography"
+msgstr "Bio"
+
+#: exchangeblog/models.py:47
 msgid "Please enter a short description of yourself."
 msgstr "Stellen sie sich kurz selber vor."
 
+#: exchangeblog/models.py:48
+msgid "Allowed posts"
+msgstr "Erlaubte Blog Posts"
+
+#: exchangeblog/models.py:49
+msgid "The countries this author can write about in a country guide post."
+msgstr "Die Länder, über die der Autor in einem Länder-Guide posten kann."
+
 #: exchangeblog/templates/exchangeblog/blogauthor_detail.html:5
 #: exchangeblog/templates/exchangeblog/blogauthor_list.html:6
-#: templates/about.html:24
+#: templates/about.html:39
 msgid "Blog Authors"
 msgstr "Blog Autoren"
 
@@ -272,25 +1401,29 @@ msgid "Are you sure you want to delete the blogpost: %(blogpost.title)s"
 msgstr ""
 "Bist du sicher, dass du den Blog Post löschen möchtest: %(blogpost.title)s"
 
-#: exchangeblog/templates/exchangeblog/blogpost_detail.html:22
+#: exchangeblog/templates/exchangeblog/blogpost_detail.html:28
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:22
+#: exchangeguide/templates/exchangeguide/guidepost_detail.html:47
 msgid "Update Post"
 msgstr "Beitrag aktualisieren"
 
-#: exchangeblog/templates/exchangeblog/blogpost_detail.html:23
+#: exchangeblog/templates/exchangeblog/blogpost_detail.html:29
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:23
+#: exchangeguide/templates/exchangeguide/guidepost_detail.html:48
 msgid "Delete Post"
 msgstr "Post löschen"
 
-#: exchangeblog/templates/exchangeblog/blogpost_detail.html:54
+#: exchangeblog/templates/exchangeblog/blogpost_detail.html:64
 msgid "Next Post:"
 msgstr "Nächster Post:"
 
-#: exchangeblog/templates/exchangeblog/blogpost_detail.html:63
-#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:105
+#: exchangeblog/templates/exchangeblog/blogpost_detail.html:73
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:151
 msgid "About this Author"
 msgstr "Über diesen Autor"
 
-#: exchangeblog/templates/exchangeblog/blogpost_detail.html:68
-#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:117
+#: exchangeblog/templates/exchangeblog/blogpost_detail.html:78
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:163
 msgid "More from this author:"
 msgstr "Mehr von diesem Autor:"
 
@@ -299,25 +1432,29 @@ msgstr "Mehr von diesem Autor:"
 msgid "All Blog Posts"
 msgstr "Alle Blog Posts"
 
-#: exchangeblog/templates/exchangeblog/blogpost_filter.html:25
-#: exchangeblog/templates/exchangeblog/blogpost_filter.html:59
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:18
+msgid "Add blog post"
+msgstr "Blog Post schreiben"
+
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:34
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:68
 #: exchangeguide/templates/exchangeguide/countryguidepost_filter.html:22
 msgid "Filter"
 msgstr "Filter"
 
-#: exchangeblog/templates/exchangeblog/blogpost_filter.html:37
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:46
 msgid "Select author"
 msgstr "Autor auswählen"
 
-#: exchangeblog/templates/exchangeblog/blogpost_filter.html:43
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:52
 msgid "Select language"
 msgstr "Sprache auswählen"
 
-#: exchangeblog/templates/exchangeblog/blogpost_filter.html:49
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:58
 msgid "Select country"
 msgstr "Land auswählen"
 
-#: exchangeblog/templates/exchangeblog/blogpost_filter.html:56
+#: exchangeblog/templates/exchangeblog/blogpost_filter.html:65
 msgid "Select a year"
 msgstr "Jahr auswählen"
 
@@ -325,31 +1462,41 @@ msgstr "Jahr auswählen"
 msgid "Add Blog Post"
 msgstr "Blog Post schreiben"
 
+#: exchangeblog/templates/exchangeblog/blogpost_form.html:9
+msgid "Edit Blog Post"
+msgstr "Blog Post bearbeiten"
+
+#: exchangeblog/templates/exchangeblog/post_list_snippet.html:15
+msgid "Post thumbnail picture"
+msgstr "Post Thumbnail Foto"
+
 #: exchangeblog/templates/exchangeblog/post_list_snippet.html:23
 msgid "Language:"
 msgstr "Sprache:"
 
-#: exchangeblog/templates/exchangeblog/post_list_snippet.html:33
+#: exchangeblog/templates/exchangeblog/post_list_snippet.html:34
 msgid "See more"
 msgstr "Mehr"
 
-#: exchangeblog/templates/exchangeblog/post_list_snippet.html:43
+#: exchangeblog/templates/exchangeblog/post_list_snippet.html:45
 msgid "See all posts"
 msgstr "Alle Posts"
 
-#: exchangeblog/templates/exchangeblog/post_list_snippet.html:94
+#: exchangeblog/templates/exchangeblog/post_list_snippet.html:96
 msgid "Sorry, no blog posts found."
 msgstr "Sorry, es gibt noch keine Blog Posts."
 
 #: exchangeblog/templates/home.html:5
-msgid "Explore-Exchange | Home"
-msgstr "Explore-Exchange | Startseite"
+#, fuzzy
+#| msgid "Explore the world of exchange students!"
+msgid "Explore-Exchange | The Home of Exchange Students"
+msgstr "Entdecke die Welt eines Austauschschülers!"
 
-#: exchangeblog/templates/home.html:55
+#: exchangeblog/templates/home.html:90
 msgid "Hi there! "
 msgstr "Hallo! "
 
-#: exchangeblog/templates/home.html:55
+#: exchangeblog/templates/home.html:90
 msgid ""
 "It seems that you just signed up. Go ahead and set up your author profile by "
 "clicking the button."
@@ -357,42 +1504,42 @@ msgstr ""
 "Es sieht so aus, dass du dich gerade registriert hast. Jetzt kannst du dein "
 "Autoren-Profile einrichten, indem du auf den Button drückst."
 
-#: exchangeblog/templates/home.html:56
+#: exchangeblog/templates/home.html:91
 msgid "Create Profile"
 msgstr "Profil erstellen"
 
-#: exchangeblog/templates/home.html:65
+#: exchangeblog/templates/home.html:100
 msgid "Welcome back, "
 msgstr "Willkommen zurück, "
 
-#: exchangeblog/templates/home.html:67
-msgid "Welcome to Explore Exchange!"
-msgstr "Wilkommen zu Explore-Exchange!"
+#: exchangeblog/templates/home.html:102
+msgid "Welcome to Explore Exchange, the home of exchange students!"
+msgstr "Willkommen auf Explore Exchange, das Zuhause der Austauschschüler!"
 
-#: exchangeblog/templates/home.html:73
+#: exchangeblog/templates/home.html:108
 msgid "Go to my author page"
 msgstr "Zu meiner Autorenseite gehen"
 
-#: exchangeblog/templates/home.html:88
+#: exchangeblog/templates/home.html:123
 msgid "Exchange Guide"
 msgstr "Austausch-Guide"
 
-#: exchangeblog/templates/home.html:89 exchangeblog/templates/home.html:117
+#: exchangeblog/templates/home.html:124 exchangeblog/templates/home.html:152
 msgid ""
 "See how you can start your exchange year journey by looking at our guide."
 msgstr ""
 "Guck dir unseren Wegweiser an, um zu sehen, wie du dein Austauschjahr "
 "beginnen kannst."
 
-#: exchangeblog/templates/home.html:90
+#: exchangeblog/templates/home.html:125
 msgid "Start your journey"
 msgstr "Hier ist der Beginn deiner Austauschreise"
 
-#: exchangeblog/templates/home.html:102 templates/base_generic.html:112
+#: exchangeblog/templates/home.html:137 templates/base_generic.html:121
 msgid "Blog"
 msgstr "Blog"
 
-#: exchangeblog/templates/home.html:103
+#: exchangeblog/templates/home.html:138
 msgid ""
 "Explore how exchange students around the world are spending their time and "
 "what experiences they make."
@@ -400,23 +1547,23 @@ msgstr ""
 "Entdecke wie Austauschschüler auf der ganzen Welt ihre Zeit verbringen und "
 "welche Erfahrungen sie machen."
 
-#: exchangeblog/templates/home.html:104
+#: exchangeblog/templates/home.html:139
 msgid "Explore"
 msgstr "Erkunden"
 
-#: exchangeblog/templates/home.html:116 templates/base_generic.html:106
+#: exchangeblog/templates/home.html:151 templates/base_generic.html:115
 msgid "Country Guides"
 msgstr "Länder-Guides"
 
-#: exchangeblog/templates/home.html:118
+#: exchangeblog/templates/home.html:153
 msgid "See the countries"
 msgstr "Länder angucken"
 
-#: exchangeblog/templates/home.html:127
+#: exchangeblog/templates/home.html:162
 msgid "Start your exchange journey here:"
 msgstr "Hier ist der Beginn deiner Austauschreise:"
 
-#: exchangeblog/templates/home.html:133
+#: exchangeblog/templates/home.html:168
 msgid "Look at the most recent blog posts:"
 msgstr "Hier sind die letzten Posts:"
 
@@ -428,7 +1575,7 @@ msgstr "posts/"
 msgid "authors/"
 msgstr "autoren/"
 
-#: exchangeblog/views.py:108
+#: exchangeblog/views.py:116
 msgid ""
 "Permission Denied, ask the site admin if you are allowed to become an "
 "author. If you are an author already, you also can't access this site."
@@ -436,34 +1583,45 @@ msgstr ""
 "Zutritt verwehrt, frag den Webseiten-Admin, ob du auch Autor werden kannst. "
 "Wenn du schon ein Autor bist, kannst du diese Seite auch nicht aufrufen."
 
-#: exchangeblog/views.py:129
+#: exchangeblog/views.py:149
 msgid "Permission denied. You don't have access to this site."
 msgstr "Zutritt verwehrt. Du hast keine Berechtigung für diese Seite."
 
-#: exchangeblog/views.py:149
+#: exchangeblog/views.py:167
 msgid "Please make sure you're logged in and have applied as an author."
 msgstr ""
 "Bitte stelle sicher, dass du eingeloggt bist und dich als Autor beworben "
 "hast."
 
-#: exchangeblog/views.py:156 exchangeblog/views.py:162
-#: exchangeguide/views.py:79 exchangeguide/views.py:145
-msgid "You are not allowed to write more than {} posts, sorry."
-msgstr "Du kannst nicht mehr als {} Posts schreiben."
-
-#: exchangeguide/models.py:13
+#: exchangeguide/models.py:14
 msgid "Please enter the title of the Post"
 msgstr "Geben Sie bitte den Titel des Posts ein"
 
-#: exchangeguide/models.py:14
+#: exchangeguide/models.py:15
 msgid "Slug consisting of title of guide post."
 msgstr "Geben Sie einen Slug passend zum Titel ein."
 
-#: exchangeguide/models.py:16
+#: exchangeguide/models.py:16 exchangeguide/models.py:33
+msgid "Author"
+msgstr "Autor"
+
+#: exchangeguide/models.py:17
+msgid "Guide content"
+msgstr "Guide Inhalt"
+
+#: exchangeguide/models.py:17
+msgid "Here is the place to write the actual guide itself."
+msgstr "Hier kannst du den eigentlichen Guide schreiben."
+
+#: exchangeguide/models.py:18
 msgid "Enter a short description about what this tutorial is about."
 msgstr "Beschreiben sie kurz den Inhalt dieses Tutorials."
 
-#: exchangeguide/models.py:18
+#: exchangeguide/models.py:20
+msgid "Main Guide Post Number"
+msgstr "Haupt Guide Post Nummer"
+
+#: exchangeguide/models.py:20
 msgid ""
 "If post is part of the main step by step guide, enter its number in the "
 "order here."
@@ -471,55 +1629,79 @@ msgstr ""
 "Wenn der Post Teil des Haupt-Wegweisers ist, dann gib hier seine Nummer in "
 "der Reihenfolge an."
 
-#: exchangeguide/models.py:34
+#: exchangeguide/models.py:30
+msgid "Guide language"
+msgstr "Guide Sprache"
+
+#: exchangeguide/models.py:30
 msgid "Please select the language you will use for the post."
 msgstr "Wählen sie die Sprache des Artikels."
 
-#: exchangeguide/models.py:44
+#: exchangeguide/models.py:31
 msgid "Select the country you want to present."
 msgstr "Wählen Sie das gewählte Land aus."
 
-#: exchangeguide/models.py:45
+#: exchangeguide/models.py:32
 msgid "Slug consisting of country"
 msgstr "Slug aus dem Land"
 
-#: exchangeguide/models.py:47
+#: exchangeguide/models.py:34
+msgid "Last updated"
+msgstr "Zuletzt aktualisiert"
+
+#: exchangeguide/models.py:34
 msgid "Date guide was last updated."
 msgstr "Datum, an dem Artikel zuletzt aktualisiert wurde."
 
-#: exchangeguide/models.py:48
+#: exchangeguide/models.py:35
+msgid "Spoken language"
+msgstr "Gesprochene Sprache"
+
+#: exchangeguide/models.py:35
 msgid "Enter the languages spoken in this country."
 msgstr "Welche Sprachen werden in diesem Land gesprochen."
 
-#: exchangeguide/models.py:49
+#: exchangeguide/models.py:36
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:135
+msgid "Population"
+msgstr "Bevölkerungsanzahl"
+
+#: exchangeguide/models.py:36
 msgid "Enter the population of this country."
 msgstr "Bevölkerungszahl des Landes angeben."
 
-#: exchangeguide/models.py:50
+#: exchangeguide/models.py:37
+msgid "Capital city"
+msgstr "Hauptstadt"
+
+#: exchangeguide/models.py:37
 msgid "Enter the capital city of this country."
 msgstr "Gib die Hauptstadt des Landes ein."
 
-#: exchangeguide/models.py:51
+#: exchangeguide/models.py:38
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:124
+msgid "Currency"
+msgstr "Währung"
+
+#: exchangeguide/models.py:38
 msgid "Enter what currency (money) is being used in this country."
 msgstr "Gib ein, welche Währung zur Zeit in diesem Land benutzt wird."
 
-#: exchangeguide/models.py:52
+#: exchangeguide/models.py:39
 msgid "Enter a short description about what makes this country special."
 msgstr "Beschreiben sie kurz, was dieses Land so besonders macht."
 
-#: exchangeguide/models.py:52
+#: exchangeguide/models.py:39
 msgid "Check out this amazing country"
 msgstr "Guck dir dieses tolle Land an"
 
-#: exchangeguide/models.py:53
+#: exchangeguide/models.py:40
 msgid ""
-"Please select the Country Guide Template from the template button (Third "
-"symbol at top left)."
+"Describe the most important things and aspects about the country (e.g. food, "
+"people, culture, school, ...)"
 msgstr ""
-"Wähl bitte die „Country Guide Template” von dem Template Button (drittes "
-"Symbol oben links)"
 
-#: exchangeguide/models.py:69
+#: exchangeguide/models.py:56
 msgid "Briefly describe what can be seen in picture."
 msgstr "Beschreibe kurz, was man in dem Bild sehen kann."
 
@@ -531,48 +1713,45 @@ msgstr "Mehr Länder"
 msgid "Sorry, there are no country guides."
 msgstr "Sorry, es gibt noch keine Länder-Guides."
 
-#: exchangeguide/templates/exchangeguide/countryguidepost_confirm.html:4
+#: exchangeguide/templates/exchangeguide/countryguidepost_confirm_delete.html:4
 msgid "Delete Country Guide?"
 msgstr "Länder-Guide löschen?"
 
-#: exchangeguide/templates/exchangeguide/countryguidepost_confirm.html:10
-#, python-format
-msgid "Are you sure you want to delete the country guide for %(country)s"
-msgstr "Bist du sicher, dass du den Länder-Guide löschen möchtest: %(country)s"
+#: exchangeguide/templates/exchangeguide/countryguidepost_confirm_delete.html:8
+msgid "Delete country guide"
+msgstr "Länder-Guide löschen"
 
-#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:29
+#: exchangeguide/templates/exchangeguide/countryguidepost_confirm_delete.html:10
+#, python-format
+msgid "Are you sure you want to delete the country guide for %(country)s?"
+msgstr ""
+"Bist du sicher, dass du den Länder-Guide für %(country)s löschen möchtest?"
+
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:72
 msgid "Previous"
 msgstr "Vorheriges"
 
-#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:33
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:76
 msgid "Next"
 msgstr "Nächstes"
 
-#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:44
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:92
 msgid "Brief overview"
 msgstr "Kurzer Überblick"
 
-#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:56
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:102
 msgid "Capital City"
 msgstr "Hauptstadt"
 
-#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:67
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:113
 msgid "Spoken Language(s)"
 msgstr "Gesprochene Sprache(n)"
 
-#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:78
-msgid "Currency"
-msgstr "Währung"
-
-#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:89
-msgid "Population"
-msgstr "Bevölkerungsanzahl"
-
-#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:112
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:158
 msgid "See blog posts from this country"
 msgstr "Blog Posts aus diesem Land"
 
-#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:128
+#: exchangeguide/templates/exchangeguide/countryguidepost_detail.html:174
 msgid "Check out these other countries:"
 msgstr "Guck dir diese anderen Länder an:"
 
@@ -586,29 +1765,39 @@ msgid "Add country guide post"
 msgstr "Länder-Guide hinzufügen"
 
 #: exchangeguide/templates/exchangeguide/countryguidepost_form.html:6
-msgid "Add Country Guide"
-msgstr "Länder-Guide hinzufügen"
+#: exchangeguide/templates/exchangeguide/countryguidepost_form.html:9
+msgid "Edit Country Guide"
+msgstr "Länder-Guide bearbeiten"
 
-#: exchangeguide/templates/exchangeguide/guidepost_confirm.html:9
+#: exchangeguide/templates/exchangeguide/guidepost_confirm_delete.html:9
 msgid "Delete"
 msgstr "Löschen"
 
-#: exchangeguide/templates/exchangeguide/guidepost_confirm.html:11
+#: exchangeguide/templates/exchangeguide/guidepost_confirm_delete.html:11
 #, python-format
 msgid "Are you sure you want to delete \"%(guide)s\"?"
 msgstr "Bist du sicher, dass du  “%(guide)s” löschen möchtest?"
 
-#: exchangeguide/templates/exchangeguide/guidepost_detail.html:24
-msgid "Next guide post:"
-msgstr "Nächster Guide:"
+#: exchangeguide/templates/exchangeguide/guidepost_confirm_delete.html:15
+msgid "Yes, delete."
+msgstr "Ja, löschen."
 
-#: exchangeguide/templates/exchangeguide/guidepost_detail.html:30
+#: exchangeguide/templates/exchangeguide/guidepost_detail.html:64
+msgid "Next guide posts:"
+msgstr "Nächster Guide Post:"
+
+#: exchangeguide/templates/exchangeguide/guidepost_detail.html:75
 msgid "See these interesting countries:"
 msgstr "Guck dir diese interessanten Länder an:"
 
+#: exchangeguide/templates/exchangeguide/guidepost_detail.html:80
+msgid "See these blog post:"
+msgstr "Sieh dir diese Blog Posts an:"
+
 #: exchangeguide/templates/exchangeguide/guidepost_form.html:6
-msgid "Add Guide Post"
-msgstr "Guide schreiben"
+#: exchangeguide/templates/exchangeguide/guidepost_form.html:10
+msgid "Edit Guide Post"
+msgstr "Guide bearbeiten"
 
 #: exchangeguide/templates/exchangeguide/guidepost_list.html:6
 msgid "All Guide Posts"
@@ -630,23 +1819,61 @@ msgstr ""
 msgid "Add guide post"
 msgstr "Guide hinzufügen"
 
-#: exchangeguide/templates/guide_post_snippet.html:113
+#: exchangeguide/templates/guide_post_snippet.html:14
+#: exchangeguide/templates/guide_post_snippet.html:38
+msgid "Guide post thumbnail picture"
+msgstr "Guide Post Thumbnail Foto"
+
+#: exchangeguide/templates/guide_post_snippet.html:114
 msgid "Sorry, there are no guides yet."
 msgstr "Sorry, es gibt noch keine Guides."
 
-#: exchangeguide/views.py:73 exchangeguide/views.py:161
-msgid "You are not allowed to write more than {} posts"
-msgstr "Du kannst nicht mehr als {} Posts schreiben"
+#: exchangeguide/views.py:99 exchangeguide/views.py:205
+#, fuzzy
+#| msgid "You are not allowed to write more than {} posts, sorry."
+msgid ""
+"You are not allowed to write more than {} posts. Please contact the admin "
+"via Instagram to ask if you can write more."
+msgstr "Du kannst nicht mehr als {} Posts schreiben."
 
-#: templates/about.html:4 templates/base_generic.html:178
+#: exchangeguide/views.py:167
+msgid ""
+"It seems like you don't have the permission to add a country guide post. Ask "
+"the admin via Instagram if you can get the permission to add a country guide "
+"post."
+msgstr ""
+
+#: templates/403.html:5
+msgid "403 Forbidden"
+msgstr "403 Verboten"
+
+#: templates/404.html:9
+msgid "404: Page not found"
+msgstr "404: Seite nicht gefunden"
+
+#: templates/404.html:10
+msgid "Sorry, this page does not exist."
+msgstr "Sorry, diese Seite existiert nicht."
+
+#: templates/404.html:13
+msgid "But you might want to have a look at the most recent blog posts:"
+msgstr ""
+"Aber vielleicht möchtest du dir unsere zuletzt veröffentlichten Blog Posts "
+"angucken:"
+
+#: templates/404.html:18
+msgid "Or maybe start your exchange journey here:"
+msgstr "Oder starte deine Austauschreise hier:"
+
+#: templates/about.html:4 templates/base_generic.html:187
 msgid "About us"
 msgstr "Über uns"
 
-#: templates/about.html:10
+#: templates/about.html:16
 msgid "About Explore-Exchange.com"
 msgstr "Über Explore-Exchange.com"
 
-#: templates/about.html:12
+#: templates/about.html:18
 msgid ""
 "This website is meant to let you explore the world of an exchange student "
 "and get an insight look at what life looks like as an exchange student all "
@@ -658,45 +1885,69 @@ msgstr ""
 "der Welt geben. Wir hoffen interessant Geschichten zu präsentieren und "
 "vielleicht dein Interesse an einem Austauschjahr zu erwecken."
 
-#: templates/about.html:18
+#: templates/about.html:20
+msgid "If you have any questions, feel free to contact us at: "
+msgstr "Solltest du Fragen haben, kontaktier uns einfach unter:"
+
+#: templates/about.html:33
 msgid "Blog Posts"
 msgstr "Posts"
 
-#: templates/about.html:28
+#: templates/about.html:43
 msgid "Since"
 msgstr "Seit"
 
-#: templates/about.html:29
+#: templates/about.html:44
 msgid "22th January 2020"
 msgstr "22. Januar 2020"
 
-#: templates/base_generic.html:95
+#: templates/base_generic.html:104
 msgid "Home"
 msgstr "Home"
 
-#: templates/base_generic.html:101
+#: templates/base_generic.html:110
 msgid "Guide"
 msgstr "Guide"
 
-#: templates/base_generic.html:105
+#: templates/base_generic.html:114
 msgid "Guide Posts"
 msgstr "Guide Posts"
 
-#: templates/base_generic.html:123
+#: templates/base_generic.html:132
 msgid "About"
 msgstr "Über"
 
-#: templates/base_generic.html:138
+#: templates/base_generic.html:147
 msgid "Languages"
 msgstr "Sprachen"
 
-#: templates/base_generic.html:170
+#: templates/base_generic.html:179
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: templates/base_generic.html:182
+#: templates/base_generic.html:191
 msgid "settings"
 msgstr "Einstellungen"
+
+#: templates/base_generic.html:195
+msgid "Follow us on"
+msgstr "Folgt uns auf"
+
+#~ msgid "Explore-Exchange | Home"
+#~ msgstr "Explore-Exchange | Startseite"
+
+#~ msgid "Welcome to Explore Exchange!"
+#~ msgstr "Wilkommen zu Explore-Exchange!"
+
+#~ msgid ""
+#~ "Please select the Country Guide Template from the template button (Third "
+#~ "symbol at top left)."
+#~ msgstr ""
+#~ "Wähl bitte die „Country Guide Template” von dem Template Button (drittes "
+#~ "Symbol oben links)"
+
+#~ msgid "You are not allowed to write more than {} posts"
+#~ msgstr "Du kannst nicht mehr als {} Posts schreiben"
 
 #~ msgid "Heads Up! We need your consent."
 #~ msgstr "Achtung! Wir brachen deine Einverständniserklärung."
@@ -716,9 +1967,6 @@ msgstr "Einstellungen"
 #~ msgid "Author List"
 #~ msgstr "Autoren Liste"
 
-#~ msgid "Explore the world of exchange students!"
-#~ msgstr "Entdecke die Welt eines Austauschschülers!"
-
 #~ msgid "This blog gives you an insight in the life of an exchange student"
 #~ msgstr "Dieser Blog gibt einen Einblick in die Welt eines Austauschschülers"
 
@@ -728,14 +1976,8 @@ msgstr "Einstellungen"
 #~ msgid "author/create/"
 #~ msgstr "autor/erstellen/"
 
-#~ msgid "Follow us on"
-#~ msgstr "Folgt uns auf"
-
 #~ msgid "Number of posts: %(num_blog_posts)s"
 #~ msgstr "Anzahl von Posts: %(num_blog_posts)s"
 
 #~ msgid "Number of authors: %(num_blog_authors)s"
 #~ msgstr "Anzahl von Autoren: %(num_blog_authors)s"
-
-#~ msgid "Date of creation:"
-#~ msgstr "Erstellungsdatum:"
