@@ -2,7 +2,7 @@ asgiref==3.3.4
 bleach==3.3.0
 certifi==2020.12.5
 chardet==4.0.0
-Django==3.2
+Django==3.2.2
 django-appconf==1.0.4
 django-ckeditor-5 @ git+https://github.com/Namli1/django-ckeditor-5.git@bd84b32901d14612f6cf75442f386021289fdd32
 django-classy-tags==2.0.0
