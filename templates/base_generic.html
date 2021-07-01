@@ -69,11 +69,6 @@ body {
    margin: 0;
 }
 
-h1 {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 500;
-}
-
 #logo-header {
     font-size: 2em;
     font-family: 'Montserrat', sans-serif;
@@ -111,8 +106,8 @@ h1 {
                   </button>
                     
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="{% url 'guide-list' %}"><img src="{% static 'icons/compass.svg' %}" width="30em" height="30em">{% trans "Guide Posts" %}</a>
-                      <a class="dropdown-item" href="{% url 'countryguide-list' %}"><img src="{% static 'icons/flag.svg' %}" width="30em" height="30em">{% trans "Country Guides" %}</a>
+                      <a class="dropdown-item" href="{% url 'guide-list' %}"><img src="{% static 'icons/compass.svg' %}" width="30em" height="30em" alt="A simple compass icon from Bootstrap Icons">{% trans "Guide Posts" %}</a>
+                      <a class="dropdown-item" href="{% url 'countryguide-list' %}"><img src="{% static 'icons/flag.svg' %}" width="30em" height="30em" alt="A simple flag icon from Bootstrap Icons">{% trans "Country Guides" %}</a>
                     </div>
                 </div>
               </li>

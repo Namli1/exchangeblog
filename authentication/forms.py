@@ -3,7 +3,7 @@ import string
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.contrib.auth.models import User
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.forms import ValidationError
 from django.conf import settings
 from django.utils.crypto import get_random_string

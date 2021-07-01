@@ -7,7 +7,7 @@ from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import permission_required
 from django.core.exceptions import PermissionDenied
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from uuslug import slugify
 import datetime
 from django.forms import ModelForm, DateField
