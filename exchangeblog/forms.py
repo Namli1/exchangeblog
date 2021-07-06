@@ -1,7 +1,10 @@
+from crispy_forms.layout import Div, Layout
 from django import forms
 from exchangeblog.models import BlogAuthor
 from django.utils.translation import gettext_lazy as _
 from django.forms import ValidationError
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit
 
 from authentication.models import RegistrationCode
 
@@ -23,11 +26,19 @@ class BlogAuthorCreateForm(forms.ModelForm):
 
     class Meta:
         model = BlogAuthor
-        fields = ("name", "social_media_link", "bio", 'registration_code')
+        fields = ("name", 'profile_image', "bio", 'instagram_link', 'facebook_link', 'tiktok_link', 'website_link', 'registration_code') #"social_media_link"
         widgets = {
-            "social_media_link": forms.TextInput(attrs={'novalidate': True,}),
+            "instagram_link": forms.TextInput(attrs={'novalidate': True, 'placeholder': 'https://www.instagram.com/...',}),
+            "facebook_link": forms.TextInput(attrs={'novalidate': True, 'placeholder': 'https://www.facebook.com/...',}),
+            "tiktok_link": forms.TextInput(attrs={'novalidate': True, 'placeholder': 'https://www.tiktok.com/@....',}),
+            "website_link": forms.TextInput(attrs={'novalidate': True, 'placeholder': 'https://www.mywebsite.com',}),
         }
 
     def __init__(self, *args, **kwargs):
          self.user = kwargs.pop('user')
          super(BlogAuthorCreateForm, self).__init__(*args, **kwargs)
+         self.helper = FormHelper(self)
+         self.helper[3:7].wrap(Div, css_class="px-3")
+         self.helper[3:7].wrap_together(Div, css_class="col-12 row gy-2 gx-3 align-items-center d-flex justify-content-md-around justify-content-center")
+         self.helper[3:4].wrap_together(Div, css_class="row align-items-center text-center")
+         self.helper.add_input(Submit('submit', 'Create', css_class='btn-success'))

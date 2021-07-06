@@ -4,11 +4,45 @@
 
 {% block title%}<title> {% trans "Blog Authors" %}</title> {% endblock %}
 {% block content %}
-<h1 class="text-center">{% trans "Author:" %} {{ blogauthor.name }}</h1>
+<style>
+.profile-image {
+    height: 27rem;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1.5rem;
+}
 
-<p>{{ blogauthor.bio }}</p>
-{% if blogauthor.social_media_link %}
-<a href="{{ blogauthor.social_media_link }}"><button class="btn btn-info my-2">{% trans "Check out my social media" %}</button></a>
+.author-name {
+    font-family: 'Raleway', sans-serif;
+    font-size: 3.7rem;
+}
+</style>
+
+
+<div class="row">
+
+    <div class="col-md-5">
+        <img src="{{ blogauthor.get_profile_image_url }}" class="profile-image shadow">
+    </div>
+
+    <div class="col-md-7 my-3">
+        <h1 class="text-center author-name">{{ blogauthor.name }}
+        </h1>
+        {% if is_current_author %}
+        <div class="text-center">
+            <a class="btn btn-primary mx-2 mt-2" href="{% url 'author-update' blogauthor.slug %}" role="button">{% trans "Update Your Profile" %}</a>
+            <a class="btn btn-danger mx-2 mt-2" href="{% url 'author-delete' blogauthor.slug %}" role="button">{% trans "Delete My Profile" %}</a>
+        </div>
+        {% endif %}
+        <p class="m-3">
+            {{ blogauthor.bio }}
+        </p>
+    </div>
+
+</div>
+
+{% if blogauthor %}
+<a href="{{ blogauthor }}"><button class="btn btn-info my-2">{% trans "Check out my social media" %}</button></a>
 {% endif %}
 
 <hr>
@@ -17,7 +51,7 @@
 <h1 class="display-4">{% trans "My blog posts:" %}
     {% if user.is_authenticated and is_current_author %}
         <span class="badge">
-                <a href="{% url 'post-create' %}"><button class="btn btn-warning my-2">{% trans "Add a new blog post" %}</button></a>
+                <a href="{% url 'post-create' %}"><button class="btn btn-lg btn-success my-2">{% trans "Add a new blog post" %}</button></a>
         </span>
     {% endif %}
 </h1>

@@ -1,5 +1,6 @@
 blog/development_settings.py
 .vscode/
+/vscode/
 
 # Django #
 *.log

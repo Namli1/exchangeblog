@@ -17,6 +17,8 @@ from django_filters.views import FilterView
 from exchangeguide.models import GuidePost, CountryGuidePost
 from exchangeblog.forms import BlogAuthorCreateForm
 from authentication.models import RegistrationCode
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -100,9 +102,10 @@ class BlogAuthorDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        author = self.get_object()
         if self.request.user.is_authenticated:
             try:
-                if BlogAuthor.objects.get(user=self.request.user):
+                if author == BlogAuthor.objects.get(user=self.request.user):
                     context["is_current_author"] = True
             except:
                 pass
@@ -145,12 +148,23 @@ class BlogAuthorCreate(UserPassesTestMixin, LoginRequiredMixin, PermissionRequir
 
 class BlogAuthorUpdate(UserPassesTestMixin, LoginRequiredMixin, generic.UpdateView):
     model = BlogAuthor
-    fields = ['name', 'social_media_link', 'bio']
+    fields = ['name', 'profile_image','bio'] #'social_media_link'
     permission_denied_message = _("Permission denied. You don't have access to this site.")
     
     def form_valid(self, form):
         form.instance.slug = slugify(form.instance.name)
         return super().form_valid(form)
+
+    def test_func(self):
+        try:
+            obj = self.get_object()
+            return obj == BlogAuthor.objects.get(user=self.request.user)
+        except:
+            return False
+
+class BlogAuthorDelete(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = BlogAuthor
+    success_url = reverse_lazy('home')
 
     def test_func(self):
         try:
@@ -166,6 +180,12 @@ class BlogPostCreate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTest
     permission_required = 'exchangeblog.add_blogpost'
     permission_denied_message = _("Please make sure you're logged in and have applied as an author.")
     
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.helper = FormHelper()
+        form.helper.add_input(Submit('submit', 'Create', css_class='btn-primary'))
+        return form
+
     def form_valid(self, form):
         form.instance.date_of_creation = datetime.date.today()
         form.instance.author = get_object_or_404(BlogAuthor, user=self.request.user)

@@ -8,11 +8,13 @@
 {% block content %}
 <h1 class="text-center mt-3">{% trans "Your Blog Author Profile" %}</h1>
 
-<form method="POST" action="">
-    {% csrf_token %}
+{% crispy form %}
+
+{% comment %} <form method="POST" action="">
+    {% csrf_token %} 
     <table class="mx-auto">
-            {{ form|crispy }}
-        </table>
-        <input type="submit" class="btn btn-secondary mt-3 mb-3">
-</form>
+        
+    </table>
+    <input type="submit" class="btn btn-secondary mt-3 mb-3">
+</form> {% endcomment %}
 {% endblock %}

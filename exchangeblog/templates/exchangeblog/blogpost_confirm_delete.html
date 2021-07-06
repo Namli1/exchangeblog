@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<h1>Delete Post</h1>
+<h1>{% trans "Delete Post" %}</h1>
 
 <p>{% blocktrans with title=blogpost.title %}Are you sure you want to delete the blogpost: {{ blogpost.title }}{% endblocktrans %}</p>
 

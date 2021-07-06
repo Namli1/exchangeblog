@@ -7,6 +7,7 @@ urlpatterns = [
     path('post/create/', views.BlogPostCreate.as_view(), name='post-create'),
     path('author/create/', views.BlogAuthorCreate.as_view(), name='author-create'),
     path('<slug:slug>/author/update/', views.BlogAuthorUpdate.as_view(), name='author-update'),
+    path('<slug:slug>/author/delete/', views.BlogAuthorDelete.as_view(), name='author-delete'),
     path('<slug:author>/<slug:slug>/', views.BlogPostDetailView.as_view(), name='post-detail'),
     path(_('authors/'), views.BlogAuthorListView.as_view(), name='author-list'),
     path('<slug:slug>', views.BlogAuthorDetailView.as_view(), name='author-detail'),

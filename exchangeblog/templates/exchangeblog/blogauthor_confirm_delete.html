@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+{% load i18n %}
+
+{% block title %}<title>{% trans "Delete Author Profile?" %}</title>{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Delete Author Profile" %}</h1>
+
+<p>{% blocktrans with author=blogauthor.name %}Are you sure you want to delete your blog author profile "{{ author }}". If you delete it, your{% endblocktrans %}</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <button class="btn btn-danger mb-2" type="submit">Yes, delete</button>
+</form>
+
+{% endblock %}

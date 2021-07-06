@@ -10,17 +10,67 @@
 {% block blogauthors-active %}active{% endblock %}
 
 {% block content %}
+<style>
+.profile-image {
+    height: 15rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+#authorname {
+    color: #363537;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    float: left;
+    font-size: 9vw;
+    margin-bottom: 0px;
+}
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: #0087ca;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #0087ca;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+</style>
+
 <h1>{% trans "All Blog Authors" %}</h1>
 {% if blogauthor_list %}
 <ul class="authorlist-ul">
 {% for author in blogauthor_list %}
 <a id="author-link" href="{{ author.get_absolute_url }}">
-    <div class="list-item-container">
-        <li>
-            <h3 id="authorname">{{ author.name }}</h3>
-        </li>
-    </div>
-    </a>
+<div class="row h-25 my-4">
+        {% if author.profile_image %}
+            <div class="col-md-4 col-sm-5">
+                <img height=200 width=auto src="{{author.profile_image.url}}" alt="Profile image of {{author.name}}" class="profile-image rounded shadow">
+            </div>
+        {% endif %}
+        <div class="{% if not author.profile_image %}col-12{% else %} col-md-8 col-sm-7 {% endif %} m-auto">
+                <div>
+                    <li>
+                        <h3 id="authorname" class="hover-underline-animation">{{ author.name }}</h3>
+                    </li>
+                </div>
+        </div>
+</div>
+</a>
 {% endfor %}
 </ul>
 {% else%}

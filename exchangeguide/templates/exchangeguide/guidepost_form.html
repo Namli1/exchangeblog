@@ -9,12 +9,6 @@
 
 <h1>{% trans "Edit Guide Post" %}</h1>
 
-<form method="post" class="form-horizontal ml-md-1" action="" enctype='multipart/form-data'>
-    {% csrf_token %}
-        {{ form.media }}
-        {{ form|crispy }}
-
-        <input type="submit" class="btn btn-success mt-3 mb-5">
-</form>
+{% crispy form %}
 
 {% endblock %}

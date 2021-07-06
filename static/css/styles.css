@@ -27,6 +27,11 @@ body {
    margin: 0;
 }
 
+h1 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+}
+
 #logo-header {
     font-size: 2em;
     font-family: 'Montserrat', sans-serif;

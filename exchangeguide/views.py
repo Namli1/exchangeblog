@@ -21,6 +21,8 @@ from exchangeblog.models import BlogAuthor, BlogPost
 from django.db.models import F
 from .forms import SlideShowImageForm, SlideShowImagesFormSet, CountryGuidePostCreateForm
 from blog.helpers import max_posts_test_func_create, is_author_test_func
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
 # Create your views here.
 
@@ -89,6 +91,12 @@ class GuidePostCreate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTes
     fields = ['title', 'short_description', 'guide_content', 'thumbnail_picture',]
     permission_required = 'exchangeguide.add_guidepost'
     permission_denied_message = 'Permission denied. Please make sure you have permission to create a guide post.'
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.helper = FormHelper()
+        form.helper.add_input(Submit('submit', 'Create'))
+        return form
 
     def form_valid(self, form):
         form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])

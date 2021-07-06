@@ -70,7 +70,7 @@ class ReCaptchaPasswordResetView(PasswordResetView):
 class RegistrationCodeCreate(UserPassesTestMixin, generic.CreateView):
     model = RegistrationCode
     form_class = RegistrationCodeForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('code-list')
     permission_denied_message = _('This page is only available to site admins')
 
     def test_func(self):
