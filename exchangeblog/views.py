@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import permission_required
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import gettext_lazy as _
 from uuslug import slugify
+from django.utils.crypto import get_random_string
 import datetime
 from django.forms import ModelForm, DateField
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -135,7 +136,11 @@ class BlogAuthorCreate(UserPassesTestMixin, LoginRequiredMixin, PermissionRequir
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        form.instance.slug = slugify(form.instance.name)
+        # Create unique slug:
+        if BlogAuthor.objects.filter(slug=slugify(form.instance.name, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])).exists():
+            form.instance.slug = "%s-%s" % (slugify(form.instance.name, stopwords=['a', 'an', 'the', 'to', 'and', 'for']), get_random_string(length=9))
+        else:
+            form.instance.slug = slugify(form.instance.name, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
         registration_code = form.cleaned_data.get('registration_code')
         if RegistrationCode.objects.filter(code=registration_code).first().check_if_used_by_this_user(user=self.request.user):
             used_code = RegistrationCode.objects.filter(code=registration_code).first()
@@ -152,8 +157,18 @@ class BlogAuthorUpdate(UserPassesTestMixin, LoginRequiredMixin, generic.UpdateVi
     permission_denied_message = _("Permission denied. You don't have access to this site.")
     
     def form_valid(self, form):
-        form.instance.slug = slugify(form.instance.name)
+        # Create unique slug:
+        if BlogAuthor.objects.filter(slug=slugify(form.instance.name, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])).exists():
+            form.instance.slug = "%s-%s" % (slugify(form.instance.name, stopwords=['a', 'an', 'the', 'to', 'and', 'for']), get_random_string(length=9))
+        else:
+            form.instance.slug = slugify(form.instance.name, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
         return super().form_valid(form)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.helper = FormHelper()
+        form.helper.add_input(Submit('submit', 'Update'))
+        return form
 
     def test_func(self):
         try:
@@ -189,7 +204,11 @@ class BlogPostCreate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTest
     def form_valid(self, form):
         form.instance.date_of_creation = datetime.date.today()
         form.instance.author = get_object_or_404(BlogAuthor, user=self.request.user)
-        form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
+        # Create unique slug:
+        if BlogPost.objects.filter(slug=slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])).exists():
+            form.instance.slug = "%s-%s" % (slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for']), get_random_string(length=9))
+        else:
+            form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
         max_posts = get_object_or_404(BlogAuthor, user=self.request.user).allowed_posts
         if CountryGuidePost.objects.filter(author=form.instance.author).count() + BlogPost.objects.filter(author=form.instance.author).count() >= max_posts:
             raise PermissionDenied(_("You are not allowed to write more than {} posts, sorry. Please contact the admin via Instagram to ask if you can write more.").format(max_posts))
@@ -204,11 +223,24 @@ class BlogPostCreate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTest
 
 class BlogPostUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = BlogPost
-    fields = ['language', 'country', 'short_description', 'blogcontent', 'thumbnail_picture',]
+    fields = ['title', 'language', 'country', 'short_description', 'blogcontent', 'thumbnail_picture',]
 
     def test_func(self):
         obj = self.get_object()
         return obj.author == BlogAuthor.objects.get(user=self.request.user)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.helper = FormHelper()
+        form.helper.add_input(Submit('submit', 'Update'))
+        return form
+
+    def form_valid(self, form):
+        if BlogPost.objects.filter(slug=slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])).exists():
+            form.instance.slug = "%s-%d" % (slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for']), get_random_string(length=9))
+        else:
+            form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
+        return super().form_valid(form)
 
 class BlogPostDelete(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = BlogPost

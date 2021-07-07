@@ -11,6 +11,7 @@ from exchangeblog.models import BlogAuthor, BlogPost
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.views import generic
 from uuslug import slugify
+from django.utils.crypto import get_random_string
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import gettext_lazy as _
 from django.db import transaction
@@ -59,11 +60,10 @@ class GuidePostDetailView(generic.DetailView):
         elif BlogPost.objects.all().count() >= 2:
             context['blog_post'] = BlogPost.objects.all().order_by('?')[0:2]
         elif BlogPost.objects.all().count() >= 1:
-            print("hi there")
             context['blog_post'] = BlogPost.objects.all().order_by('?')[0:1]
         if self.request.user.is_authenticated:
             try:
-                if BlogAuthor.objects.get(user=self.request.user):
+                if self.get_object().author == BlogAuthor.objects.get(user=self.request.user):
                     context["is_author"] = BlogAuthor.objects.get(user=self.request.user).slug
             except:
                 pass
@@ -99,7 +99,11 @@ class GuidePostCreate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTes
         return form
 
     def form_valid(self, form):
-        form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
+        # Create unqiue slug
+        if GuidePost.objects.filter(slug=slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])).exists():
+            form.instance.slug = "%s-%s" % (slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for']), get_random_string(length=9))
+        else:
+            form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
         form.instance.author = get_object_or_404(BlogAuthor, user=self.request.user)
         max_posts = get_object_or_404(BlogAuthor, user=self.request.user).allowed_posts
         print(CountryGuidePost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() + BlogPost.objects.filter(author=get_object_or_404(BlogAuthor, user=self.request.user)).count() >= max_posts)
@@ -118,6 +122,19 @@ class GuidePostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UserPassesTes
 
     def test_func(self):
         return is_author_test_func(self)
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.helper = FormHelper()
+        form.helper.add_input(Submit('submit', 'Update'))
+        return form
+    
+    def form_valid(self, form):
+        if GuidePost.objects.filter(slug=slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])).exists():
+            form.instance.slug = "%s-%s" % (slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for']), get_random_string(length=9))
+        else:
+            form.instance.slug = slugify(form.instance.title, stopwords=['a', 'an', 'the', 'to', 'and', 'for'])
+        return super().form_valid(form)
 
 class GuidePostDelete(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     model = GuidePost
